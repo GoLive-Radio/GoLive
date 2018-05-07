@@ -10,8 +10,8 @@ export class Broadcast extends Component {
     this.startBroadcast = this.startBroadcast.bind(this);
   }
 
-  startBroadcast() {
-    this.connection.openOrJoin();
+  startBroadcast(id) {
+    this.connection.openOrJoin(id);
   }
 
   render() {
@@ -33,14 +33,13 @@ export class Broadcast extends Component {
     document.body.appendChild(event.mediaElement);
   }
 
-  const myID = 'MY_ID';
-
+  const myID = this.props.match.params.broadcastId
   return (
     <div>
       <h1>This is my test broadcast</h1>
       {
         myID ?
-        <button onClick={this.startBroadcast}>Broadcast me</button>
+        <button onClick={this.startBroadcast(myID)}>Broadcast me</button>
         : null
       }
     </div>
