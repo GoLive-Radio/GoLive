@@ -9,6 +9,12 @@ const Broadcast = require('./broadcast');
  *    BlogPost.belongsTo(User)
  */
 
+User.belongsToMany(Station, {through: 'user_stations'});
+Station.belongsToMany(User, {through: 'user_stations'});
+Station.hasMany(Broadcast);
+Broadcast.belongsTo(User);
+Broadcast.belongsTo(Station);
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
