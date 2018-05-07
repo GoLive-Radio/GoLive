@@ -1,5 +1,6 @@
 const User = require('./user');
 const Station = require('./station');
+const Broadcast = require('./broadcast');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -16,5 +17,6 @@ const Station = require('./station');
  */
 module.exports = {
   User,
-  Station
+  Station,
+  Broadcast
 };
