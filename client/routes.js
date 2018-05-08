@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Broadcast, Landing} from './components'
+import {Login, Signup, UserHome, Broadcast, Landing, Broadcaster, Listener} from './components'
 import {me} from './store'
 
 /**
@@ -22,10 +22,12 @@ class Routes extends Component {
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/broadcasts/broadcaster" component={Broadcaster} />
+        {/* <Route path="/broadcasts/listener" component={Listener} /> */}
         <Route
-          path="/broadcasts/:broadcastId"
+          exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
-        />        
+        />
         {
           isLoggedIn &&
             <Switch>

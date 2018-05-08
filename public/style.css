@@ -24,3 +24,41 @@ div.ui.inverted.segment {
   border-radius: 0px;
 }
 
+.top-bar {
+  display: flex;
+}
+
+div #mp3_player {
+  width: 500px;
+  height: 80px; 
+  background:#000; 
+  border-radius: 20px; 
+  /* padding:5px; 
+  margin:50px auto; */
+}
+
+div#mp3_player > div > audio {  
+  width:500px; 
+  background:#000; 
+  border-radius: 20px;
+}
+
+div#mp3_player > canvas { 
+  width:500px; 
+  height:80px; 
+  background:#002D3C;
+  border-radius: 20px; 
+}
+
+.media {
+  display: flex;
+  flex: center;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  width: 625px;
+  height: 115px;
+  background-image: url('/images/steel-vis-backplate.png');
+  border-radius: 20px;
+}
+
