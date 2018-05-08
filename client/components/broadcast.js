@@ -35,10 +35,6 @@ export class Broadcast extends Component {
     const myID = this.props.match.params.broadcastId;
     return (
       <div>
-        {/* {
-          listener ? <Listener caller={isCaller} />
-          : <Broadcaster />
-        } */}
         <h1>This is my test broadcast</h1>
         {myID ? (
           <button onClick={e => this.startBroadcast(myID)}>Broadcast me</button>
