@@ -42,6 +42,7 @@
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "rtcmulticonnection-v3": "git+https://github.com/muaz-khan/RTCMultiConnection.git",
+    "semantic-ui-react": "^0.80.0",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3"
   },
