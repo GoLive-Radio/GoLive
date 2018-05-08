@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
 import Visualizer from './Visualizer';
 
 export default class Broadcaster extends Component{
@@ -15,7 +14,6 @@ export default class Broadcaster extends Component{
       <div>
         <div className="top-bar">
           <h1>{this.state.title}</h1>
-          <Button size="mini" color="blue">Edit Title</Button>
         </div>
           <Visualizer />
       </div>
