@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Broadcast} from './components'
-import {me} from './store'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter, Route, Switch} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {Login, Signup, UserHome, Broadcast, Broadcaster, Listener} from './components';
+import {me} from './store';
 
 /**
  * COMPONENT
@@ -21,10 +21,13 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/broadcasts/broadcaster" component={Broadcaster} />
+        {/* <Route path="/broadcasts/listener" component={Listener} /> */}
         <Route
-          path="/broadcasts/:broadcastId"
+          exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
-        />        {
+        />
+        {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
