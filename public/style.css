@@ -10,14 +10,18 @@ label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
+nav a Link {
+  display: inline;
   margin: 1em;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+div.ui.inverted.segment {
+  border-radius: 0px;
 }
 
 .top-bar {
