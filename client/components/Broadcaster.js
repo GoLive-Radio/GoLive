@@ -15,15 +15,9 @@ export default class Broadcaster extends Component{
   constructor(props){
     super(props);
     this.state = {
-      title: '',
-      // recording: false
+      title: 'Music for the Soul',
     };
-    // this.toggleRecord = this.toggleRecord.bind(this);
   }
-
-  // toggleRecord(){
-  //   this.setState({recording: !this.state.recording});
-  // }
 
   render(){
     return (
@@ -32,12 +26,7 @@ export default class Broadcaster extends Component{
           <h1>{this.state.title}</h1>
           <Button size="mini" color="blue">Edit Title</Button>
         </div>
-        {/* <div className="media">
-          <div className="ui tiny image">
-            <img onClick={this.toggleRecord} src={this.state.recording ? '/images/record_on.png' : '/images/record.png'} />
-          </div> */}
           <Visualizer />
-        {/* </div> */}
       </div>
     );
   }

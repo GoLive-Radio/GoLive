@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
 
-
-// let audio = new Audio();
-let audio = new Audio();
-audio.src = '/audio/good-company.mp3';
-audio.controls = false;
-audio.loop = true;
-audio.autoplay = false;
-
 export default class Visualizer extends Component{
   constructor(props){
     super(props);
@@ -19,14 +11,20 @@ export default class Visualizer extends Component{
 
   toggleRecord(){
     this.setState({recording: !this.state.recording});
-    audio.paused ? audio.play() : audio.pause();
+    this.audio.paused ? this.audio.play() : this.audio.pause();
   }
-  
+
   componentDidMount(){
+    this.audio = new Audio();
+    let { audio } = this;
+    audio.src = '/audio/good-company.mp3';
+    audio.controls = false;
+    audio.loop = true;
+    audio.autoplay = false;
     // Establish all variables that your Analyser will use
     var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height;
     // Initialize the MP3 player after the page loads all of its HTML into the window
-    window.addEventListener("load", initMp3Player, false);
+    window.addEventListener('load', initMp3Player, false);
     function initMp3Player(){
       document.getElementById('audio_box').appendChild(audio);
       context = new AudioContext(); // AudioContext object instance
@@ -34,7 +32,7 @@ export default class Visualizer extends Component{
       canvas = document.getElementById('analyser_render');
       ctx = canvas.getContext('2d');
       // Re-route audio playback into the processing graph of the AudioContext
-      source = context.createMediaElementSource(audio); 
+      source = context.createMediaElementSource(audio);
       source.connect(analyser);
       analyser.connect(context.destination);
       frameLooper();

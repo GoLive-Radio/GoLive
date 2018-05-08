@@ -36,8 +36,7 @@ div #mp3_player {
 div#mp3_player > div > audio {  
   width:500px; 
   background:#000; 
-  border-radius: 20px; 
-
+  border-radius: 20px;
 }
 
 div#mp3_player > canvas { 
@@ -50,10 +49,12 @@ div#mp3_player > canvas {
 .media {
   display: flex;
   flex: center;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
-  width: 600px;
+  width: 625px;
+  height: 115px;
   background-image: url('/images/steel-vis-backplate.png');
   border-radius: 20px;
 }
+
