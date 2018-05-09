@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const {User} = require('../db/models');
+const {isUser} = require('../auth/middleware');
+const {isAdmin} = require('../auth/middleware');
 module.exports = router;
 
 // path '/users/'
@@ -16,7 +18,12 @@ router.get('/', (req, res, next) => {
 
 // path '/users/:id'
 router.get('/:id', (req, res, next) => {
-  User.findById(+req.params.id)
+  User.findAll({
+    attributes: ['id', 'email'],
+    where: {
+      id: +req.params.id
+    }
+  })
     .then(userById => res.json(userById))
     .catch(next);
-})
+});
