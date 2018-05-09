@@ -10,10 +10,6 @@ const mapState = state => ({
   broadcast: state.broadcast
 });
 
-// const mapDispatch = dispatch => ({
-
-// });
-
 export class Broadcast extends Component {
   constructor(props) {
     super(props);
