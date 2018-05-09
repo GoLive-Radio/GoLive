@@ -12,3 +12,16 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next);
 });
+
+//update user information
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id)
+  .then(user => {
+    return user.update(req.body);
+  })
+  .then(updatedUser => {
+    res.json(updatedUser);
+  })
+  .catch(next);
+});
