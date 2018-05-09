@@ -9,7 +9,7 @@ const Broadcast = db.define('broadcast', {
     allowNull: false
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false
   },
   tags: {
