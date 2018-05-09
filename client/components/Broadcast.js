@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 window.io = io;
 import RTCMultiConnection from 'rtcmulticonnection-v3';
 import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
+import Broadcaster from './Broadcaster';
 
 const mapState = state => ({
   broadcast: state.broadcast
@@ -17,7 +18,9 @@ export class Broadcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: null
+      event: null,
+      src: null,
+      element: null
     };
     this.startBroadcast = this.startBroadcast.bind(this);
   }
@@ -39,14 +42,17 @@ export class Broadcast extends Component {
 
     // append it to the body
     this.connection.onstream = event => {
+      console.log('the event ', event)
+      console.log('stream object', event.stream)
       this.setState({event});
     };
     this.connection.openOrJoin(id);
+    console.log('connection ', this.connection)
   }
 
   render() {
-
     const myID = this.props.match.params.broadcastId;
+    console.log('render event', this.state.event)
     return (
       <div id="container">
         <h1>This is my test broadcast</h1>
@@ -55,7 +61,23 @@ export class Broadcast extends Component {
         ) : null}
         {
           this.state.event ?
-            <MediaElement event={this.state.event} />
+            <Fragment>
+              {/* <audio
+                id="stream"
+                autoPlay={true}
+                playsInline={true}
+                controls={true}
+                muted={true}
+                ref={(element) => {
+                  if (element){
+                    element.srcObject = this.state.event.stream;
+                    this.setState({element});
+                  }
+                }}
+              /> */}
+              <MediaElement event={this.state.event} />
+              {/* <Broadcaster element={this.state.element} /> */}
+            </Fragment>
             : null
           }
       </div>

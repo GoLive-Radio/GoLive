@@ -15,7 +15,10 @@ export default class Broadcaster extends Component{
         <div className="top-bar">
           <h1>{this.state.title}</h1>
         </div>
-          <Visualizer />
+        {
+          this.props.element &&
+            <Visualizer element ={this.props.element} />
+        }
       </div>
     );
   }

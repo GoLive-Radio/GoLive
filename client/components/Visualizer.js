@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import MediaElement from './MediaElement';
 
 export default class Visualizer extends Component{
   constructor(props){
@@ -10,13 +11,15 @@ export default class Visualizer extends Component{
   }
 
   toggleRecord(){
-    this.setState({recording: !this.state.recording});
+    // this.setState({recording: !this.state.recording});
     this.audio.paused ? this.audio.play() : this.audio.pause();
   }
 
   componentDidMount(){
+    console.log('visualizer props ', this.props);
     this.audio = new Audio();
     let { audio } = this;
+    console.log('this is the audio ', audio);
     audio.src = '/audio/good-company.mp3';
     audio.controls = false;
     audio.loop = true;
@@ -29,7 +32,7 @@ export default class Visualizer extends Component{
     window.addEventListener('load', initMp3Player, false);
 
     function initMp3Player(){
-      document.getElementById('audio_box').appendChild(audio);
+      // document.getElementById('audio_box').appendChild(audio);
       context = new AudioContext(); // AudioContext object instance
       analyser = context.createAnalyser(); // AnalyserNode method
       canvas = document.getElementById('analyser_render');
