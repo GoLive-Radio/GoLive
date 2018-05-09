@@ -14,6 +14,7 @@ Station.belongsToMany(User, {through: 'user_stations'});
 Station.hasMany(Broadcast);
 Broadcast.belongsTo(User);
 Broadcast.belongsTo(Station);
+User.hasMany(Broadcast);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
