@@ -1,6 +1,7 @@
 const User = require('./user');
 const Station = require('./station');
 const Broadcast = require('./broadcast');
+const User_stations = require('./User_stations');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -25,5 +26,10 @@ User.hasMany(Broadcast);
 module.exports = {
   User,
   Station,
-  Broadcast
+  Broadcast,
+  User_stations
 };
+
+
+
+
