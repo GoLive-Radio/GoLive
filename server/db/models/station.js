@@ -12,12 +12,15 @@ const Station = db.define('station', {
     allowNull: false
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false
   },
   logoUrl: {
     type: Sequelize.STRING(1000),
-    defaultValue: defaultLogoImg
+    defaultValue: defaultLogoImg,
+    validate: {
+      isUrl: true
+    }
   },
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING),
