@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import {connect} from 'react-redux';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 
-export class MyAccount extends Component {
-  constructor(props){
-    super(props)
-
-    //bind methods
-  }
-
-  render() {
-    console.log('props', this.props);
-    return(
-      <div>
-        This is my account
-      </div>
-    )
-  }
-}
+const MyAccount = ({user}) => {
+  console.log(user);
+  return (
+    <Form>
+      <Form.Field>
+        <label>Profile picture</label>
+        <input placeholder={user.profilePic} />
+      </Form.Field>
+      <Form.Field>
+        <label>Summary</label>
+        <input placeholder={user.summary} />
+      </Form.Field>
+    </Form>
+  );
+};
 
 /**
  * CONTAINER
