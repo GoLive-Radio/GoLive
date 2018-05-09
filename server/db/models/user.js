@@ -2,6 +2,9 @@ const crypto = require('crypto');
 const Sequelize = require('sequelize');
 const db = require('../db');
 
+//profile image
+const defaultProfileImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emoji_Grinning_Face_Smiling_Eyes.svg/128px-Emoji_Grinning_Face_Smiling_Eyes.svg.png';
+
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
@@ -26,6 +29,18 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  profilePic: {
+    type: Sequelize.STRING(1000),
+    defaultValue: defaultProfileImg,
+    validate: {
+      isUrl: true
+    }
+  },
+  summary: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    defaultValue: 'Weird creature who loves radio!'
   }
 });
 
