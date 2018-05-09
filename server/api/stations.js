@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {Station} = require('../db/models');
 const { User } = require('../db/models')
-const { user_stations } = require('../db/models')
+const { User_stations } = require('../db/models')
 
 module.exports = router;
 
@@ -12,18 +12,19 @@ router.get('/', (req, res, next) => {
         .catch(next);
 });
 
-// exact path '/stations/user/:id'
-router.get('/user/:id', (req, res, next) => {
+// exact path '/stations/user/:userId'
+router.get('/user/:userId', (req, res, next) => {
     Station.findAll({
         include: [{
-            model: user_stations,
-            where: {
-                userId: +req.params.id
-            },
-            // required: true
+            model: User,
+            through: {
+                where: {
+                    userId: +req.params.userId
+                }
+            }
         }]
     })
-    .then(stationsById => res.json(stationsById))
+    .then(stationsByUserId => res.json(stationsByUserId))
     .catch(next)
 });
 
@@ -33,3 +34,7 @@ router.get('/:id', (req, res, next) => {
         .then(station => res.json(station))
         .catch(next);
 });
+
+
+
+
