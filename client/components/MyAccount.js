@@ -28,8 +28,8 @@ const mapDispatchToProps = function(dispatch) {
 const MyAccount = (props) => {
   return (
     <Fragment>
-      <h1>My account</h1>
-      <Form onSubmit={(evt) => props.handleSubmit(evt, props.user)}>
+      <Form id="my_account" onSubmit={(evt) => props.handleSubmit(evt, props.user)}>
+        <h1>My account</h1>
         <Form.Field>
           <label>Profile picture</label>
           <input
@@ -43,7 +43,7 @@ const MyAccount = (props) => {
             placeholder={props.user.summary} />
         </Form.Field>
         <Form.Field
-          control={Button} content="Save" label="Save" />
+          control={Button} content="Save" />
       </Form>
     </Fragment>
   );
