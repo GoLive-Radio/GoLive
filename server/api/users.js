@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+// path '/users/:id'
 router.get('/:id', (req, res, next) => {
   User.findById(+req.params.id)
     .then(userById => res.json(userById))
