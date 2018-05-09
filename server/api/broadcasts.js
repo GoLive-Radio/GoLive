@@ -6,3 +6,8 @@ module.exports = router;
 router.get('/', (req, res, next) => {
 
 });
+
+// exact path '/broadcasts/'
+router.get('/', (req, res, next) => {
+
+});
