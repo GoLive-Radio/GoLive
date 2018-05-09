@@ -69,3 +69,74 @@ div#mp3_player > canvas {
   flex-direction: column;
 }
 
+#broadcast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#broadcast-title {
+  font-size: 100px;
+  text-align: center;
+}
+
+#live-button {
+  margin: 50px 50px 50px 200px
+}
+
+#broadcaster-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 225px;
+  margin-left: 50px;
+  /* text-align: center; */
+  background-color: darkgrey;
+  border-radius: 10px;
+
+}
+
+#broadcaster-list h1 {
+  text-align: center;
+  background-color: lightgray;
+  border-radius: 10px;
+  width: 95%;
+  margin: 2%;
+}
+
+.user-mini {
+  display: flex;
+  width: 95%;
+  border-radius: 10px;
+  height: 60px;
+  background-color: lightgray;
+  margin-bottom: 5px;
+}
+
+.user-mini .mini-pic {
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+#mini-data {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 50px;
+  margin: 5px;
+
+}
+
+#mini-data #rating {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+#mini-data img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}

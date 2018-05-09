@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const {User} = require('../db/models');
+const {isUser} = require('../auth/middleware');
+const {isAdmin} = require('../auth/middleware');
 module.exports = router;
 
+// path '/users/'
 router.get('/', (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
@@ -23,5 +26,17 @@ router.put('/:id', (req, res, next) => {
   .then(updatedUser => {
     res.json(updatedUser);
   })
+  .catch(next);
+});
+
+// path '/users/:id'
+router.get('/:id', (req, res, next) => {
+  User.findAll({
+    attributes: ['id', 'email'],
+    where: {
+      id: +req.params.id
+    }
+  })
+  .then(userById => res.json(userById))
   .catch(next);
 });
