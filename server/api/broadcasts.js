@@ -53,3 +53,16 @@ router.post('/', (req, res, next) => {
   .then(broadcast => res.json(broadcast))
   .catch(next);
 });
+
+//update broadcast
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Broadcast.findById(id)
+  .then(broadcast => {
+    return broadcast.update(req.body);
+  })
+  .then(updatedBroadcast => {
+    res.json(updatedBroadcast);
+  })
+  .catch(next);
+});
