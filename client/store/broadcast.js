@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 /**
  * ACTION TYPES
@@ -22,6 +23,7 @@ export const toggleLive = () => ({
 /**
  * THUNK CREATORS
  */
+// fetch single broadcast
 export const fetchBroadcast = (id) =>
   dispatch =>
     axios.get(`/api/broadcasts/${id}`)
@@ -30,6 +32,17 @@ export const fetchBroadcast = (id) =>
       dispatch(getBroadcast(broadcast));
     })
     .catch(err => console.log(err));
+
+//update broadcast
+export const updateBroadcastThunk = (dataToUpdate, broadcast) =>
+  dispatch =>
+    axios.put(`/api/broadcasts/${broadcast.id}`, dataToUpdate)
+    .then(res => res.data)
+    .then(updatedBroadcast => {
+      dispatch(getBroadcast(updatedBroadcast));
+      history.push(`/broadcasts/${updatedBroadcast.id}`);
+    })
+    .catch(console.error);
 
 /**
  * INITIAL STATE
