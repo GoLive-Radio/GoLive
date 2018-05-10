@@ -134,3 +134,42 @@ div#mp3_player > canvas {
   margin-right: 5px;
 }
 
+.max-width {
+  min-width: 100vw;
+  min-width:90vh;
+}
+
+.max-height {
+  max-height: 70vh;
+  min-height:70vh;
+}
+
+.main-body {
+  background-image: url('./images/landing/main-body.jpg');
+  margin: auto; 
+}
+
+.lower-body {
+  background-image: url('./images/landing/lower-body.jpg');
+  margin: auto; 
+}
+
+.flex {
+  display: flex;
+}
+
+h3 .center-text {
+  text-align:center;
+}
+
+.main-container {
+  margin:0;
+}
+
+.auto-margin {
+  margin: auto;
+}
+
+.white-font {
+  color: white;
+}
