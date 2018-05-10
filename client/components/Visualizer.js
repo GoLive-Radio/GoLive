@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 
 export default class Visualizer extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      recording: false,
-    };
-    this.toggleRecord = this.toggleRecord.bind(this);
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     recording: false,
+  //   };
+  //   this.toggleRecord = this.toggleRecord.bind(this);
+  // }
 
-  toggleRecord(){
-    this.setState({recording: !this.state.recording});
-    this.audio.paused ? this.audio.play() : this.audio.pause();
-  }
+  // toggleRecord(){
+  //   this.setState({recording: !this.state.recording});
+  //   this.audio.paused ? this.audio.play() : this.audio.pause();
+  // }
 
   componentDidMount(){
     this.audio = new Audio();
@@ -62,9 +62,9 @@ export default class Visualizer extends Component{
   render(){
     return (
       <div className="media">
-        <div className="ui tiny image">
+        {/* <div className="ui tiny image">
             <img onClick={this.toggleRecord} src={this.state.recording ? '/images/record_on.png' : '/images/record.png'} />
-        </div>
+        </div> */}
         <div id="mp3_player">
           <div id="audio_box" />
           <canvas id="analyser_render" />
