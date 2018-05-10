@@ -5,12 +5,8 @@ import RTCMultiConnection from 'rtcmulticonnection-v3';
 import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
-import UserMini from './UserMini';
-
-const mapState = state => ({
-  broadcast: state.broadcast,
-  isLive: false
-});
+import CasterMini from './CasterMini';
+import CallerMini from './CallerMini';
 
 const fakeUsers = [
   {
@@ -60,11 +56,22 @@ const fakeUsers = [
   }
 ];
 
+const fakeBroadcast = {
+  title: 'AwesomeCast',
+  broadcasters: 2,
+  listeners: 3,
+};
+
+const mapState = state => ({
+  broadcast: fakeBroadcast,
+});
+
 export class Broadcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: null
+      event: null,
+      isLive: false
     };
     this.startBroadcast = this.startBroadcast.bind(this);
   }
@@ -92,6 +99,9 @@ export class Broadcast extends Component {
   }
 
   render() {
+    console.log('broadcast props ', this.props)
+    console.log('broadcast state ', this.state)
+
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
     });
@@ -100,33 +110,56 @@ export class Broadcast extends Component {
       if (user.isCalling) return user;
     });
 
+    const {broadcast} = this.props;
     const myID = this.props.match.params.broadcastId;
+
     return (
-      <div id="container broadcast">
+      // <div id="container broadcast">
+      <div id="broadcast">
         <h1 id="broadcast-title">AwesomeCast</h1>
-        <div id="live-button">
-          {myID ? (
-            <Image size="small" onClick={this.startBroadcast} src={this.state.isLive ? '/images/record_on.png' : '/images/record.png'} />
-          ) : null}
-          {
-            this.state.event ?
-              <MediaElement event={this.state.event} />
-              : null
-          }
-        </div>
-        <div  id="broadcaster-list">
-          <h1>Broadcasters</h1>
-          {
-            broadcasters.map(user => {
-              return (
-                <UserMini
-                  key={user.id}
-                  user={user}
-                  rate={user.broadcastRating}
-                />
-              );
-            })
-          }
+        <div id="broadcast-dash">
+          <div id="user-lists">
+            <div id="broadcaster-list">
+                <h1>Broadcasters</h1>
+                {
+                  broadcasters.map(user => {
+                    return (
+                      <CasterMini
+                        key={user.id}
+                        user={user}
+                        rate={'broadcaster'}
+                      />
+                    );
+                  })
+                }
+              </div>
+              <div  id="broadcaster-list">
+                <h1>Call Queue</h1>
+                {
+                  callers.map(user => {
+                    return (
+                      <CasterMini
+                        key={user.id}
+                        user={user}
+                        rate={'caller'}
+                      />
+                    );
+                  })
+                }
+            </div>
+          </div>
+          <div id="live-button">
+            {myID ? (
+              <Image
+                size="small"
+                onClick={this.startBroadcast} src={this.state.isLive ? '/images/record_on.png' : '/images/record.png'} />
+                ) : null}
+            {
+              this.state.event ?
+                <MediaElement event={this.state.event} />
+                : null
+            }
+          </div>
         </div>
       </div>
     );
