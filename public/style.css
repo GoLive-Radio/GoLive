@@ -159,8 +159,8 @@ div#mp3_player > canvas {
 }
 
 .max-width {
-  min-width: 100vw;
-  min-width:90vh;
+  max-width: 100vw;
+  min-width:100vw;
 }
 
 .max-height {
@@ -170,12 +170,10 @@ div#mp3_player > canvas {
 
 .main-body {
   background-image: url('./images/landing/main-body.jpg');
-  margin: auto; 
 }
 
 .lower-body {
   background-image: url('./images/landing/lower-body.jpg');
-  margin: auto; 
 }
 
 .flex {
