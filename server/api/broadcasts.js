@@ -21,3 +21,10 @@ router.get('/:stationId', (req, res, next) => {
         .then(broadcastsByStation => res.json(broadcastsByStation))
         .catch(next)
 });
+
+// GET single broadcast by id '/broadcasts/:broadcastId'
+router.get('/:broadcastId', (req, res, next) => {
+  Broadcast.findById(req.params.broadcastId)
+  .then(broadcast => res.json(broadcast))
+  .catch(next);
+});
