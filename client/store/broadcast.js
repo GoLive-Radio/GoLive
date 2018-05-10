@@ -1,9 +1,15 @@
 import axios from 'axios';
 
+/**
+ * ACTION TYPES
+ */
 const GET_BROADCAST = 'GET_BROADCAST';
 const REMOVE_BROADCAST = 'REMOVE_BROADCAST';
 const TOGGLE_LIVE = 'TOGGLE_LIVE';
 
+/**
+ * ACTION CREATORS
+ */
 export const getBroadcast = broadcast => ({
   type: GET_BROADCAST,
   broadcast
@@ -13,10 +19,28 @@ export const toggleLive = () => ({
   type: TOGGLE_LIVE
 });
 
+/**
+ * THUNK CREATORS
+ */
+export const fetchBroadcast = (id) =>
+  dispatch =>
+    axios.get(`/api/broadcasts/${id}`)
+    .then(res => res.data)
+    .then(broadcast => {
+      dispatch(getBroadcast(broadcast));
+    })
+    .catch(err => console.log(err));
+
+/**
+ * INITIAL STATE
+ */
 const defaultBroadcast = {
   isLive: false
 };
 
+/**
+ * REDUCER
+ */
 export default function (state = defaultBroadcast, action) {
   switch (action.type) {
     case GET_BROADCAST:
