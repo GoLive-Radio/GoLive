@@ -17,6 +17,7 @@ router.get('/user/:userId', (req, res, next) => {
     Station.findAll({
         include: [{
             model: User,
+            attributes: ['id', 'profilePic', 'summary'],
             through: {
                 where: {
                     userId: +req.params.userId

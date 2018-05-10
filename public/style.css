@@ -47,7 +47,7 @@ div#mp3_player > canvas {
   width:100%; 
   height:100%; 
   background:#002D3C;
-  border-radius: 20px; 
+  border-radius: 20px;
 }
 
 .media {
@@ -61,6 +61,13 @@ div#mp3_player > canvas {
   background-image: url('/images/steel-vis-backplate.png');
   border-radius: 20px;
 
+}
+
+#my_account {
+  margin-left: 2vw;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
 }
 
 #broadcast {
