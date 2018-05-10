@@ -79,6 +79,7 @@ export class Broadcast extends Component {
 
   startBroadcast(id) {
     if (!this.connection) {
+      console.log(`should be first button click`);
       this.connection = new window.RTCMultiConnection();
       this.connection.socketURL =
         'https://rtcmulticonnection.herokuapp.com:443/';
@@ -110,6 +111,8 @@ export class Broadcast extends Component {
         mediaRecorder.onstop = e => {
           let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
           console.log(`blob`, blob);
+          //store this in sequelize
+          //dispatch a thunk that hits an api/broadcast/ route
         };
         this.setState({
           isLive: true,
@@ -123,6 +126,7 @@ export class Broadcast extends Component {
       };
       this.connection.openOrJoin(id);
     } else {
+      console.log(`should be second button click`);
       this.setState({
         isLive: false
       });
