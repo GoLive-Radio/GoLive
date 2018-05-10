@@ -22,6 +22,7 @@ form div {
 
 div.ui.inverted.segment {
   border-radius: 0px;
+  height: 7vh;
 }
 
 .top-bar {
@@ -29,23 +30,22 @@ div.ui.inverted.segment {
 }
 
 div #mp3_player {
-  width: 500px;
-  height: 80px;
-  background:#000;
-  border-radius: 20px;
-  /* padding:5px;
+  width: 96%;
+  height: 80%; 
+  background:#000; 
+  border-radius: 20px; 
+  /* padding:5px; 
   margin:50px auto; */
 }
 
-div#mp3_player > div > audio {
-  width:500px;
-  background:#000;
+div#mp3_player > div > audio {  
+  background:#000; 
   border-radius: 20px;
 }
 
-div#mp3_player > canvas {
-  width:500px;
-  height:80px;
+div#mp3_player > canvas { 
+  width:100%; 
+  height:100%; 
   background:#002D3C;
   border-radius: 20px;
 }
@@ -55,11 +55,12 @@ div#mp3_player > canvas {
   flex: center;
   justify-content: space-around;
   align-items: center;
-  padding: 10px;
+  margin-left: 10px;
   width: 625px;
   height: 115px;
   background-image: url('/images/steel-vis-backplate.png');
   border-radius: 20px;
+
 }
 
 #my_account {
@@ -72,28 +73,45 @@ div#mp3_player > canvas {
 #broadcast {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
+  background-image: url("/images/broadcast-page.jpg");
+  background-size: cover;
+  height: 93vh;
 }
 
 #broadcast-title {
   font-size: 100px;
+  color: whitesmoke;
+  text-shadow: 0 0 10px white;
   text-align: center;
+  /* background-image: url('/images/banner.png');
+  background-size: cover; */
+  background-repeat: no-repeat;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
 #live-button {
-  margin: 50px 50px 50px 200px
+  height: 150px;
+  margin: 25px;
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 
 #broadcaster-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 225px;
-  margin-left: 50px;
-  /* text-align: center; */
-  background-color: darkgrey;
+  margin-left: 25px;
+  margin-top: 10px;
+  background-image: url('/images/steel.jpg');
+  background-size: cover;
   border-radius: 10px;
-
 }
 
 #broadcaster-list h1 {
@@ -101,41 +119,40 @@ div#mp3_player > canvas {
   background-color: lightgray;
   border-radius: 10px;
   width: 95%;
-  margin: 2%;
+  margin: 3%;
 }
 
-.user-mini {
+.caster-mini {
   display: flex;
   width: 95%;
   border-radius: 10px;
   height: 60px;
   background-color: lightgray;
-  margin-bottom: 5px;
+  margin-bottom: 3%;
 }
 
-.user-mini .mini-pic {
+.caster-pic {
   border-radius: 10px;
   width: 50px;
   height: 50px;
   margin: 5px;
 }
 
-#mini-data {
+#caster-data {
   display: flex;
   flex-direction: column;
   width: 75%;
   height: 50px;
   margin: 5px;
-
 }
 
-#mini-data #rating {
+/* #caster-data #rating {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-}
+} */
 
-#mini-data img {
+#caster-data img {
   width: 20px;
   height: 20px;
   margin-right: 5px;
@@ -183,6 +200,26 @@ h3 .center-text {
 
 .break {
   background-color: #002D3C;
-  min-height: 10vh;
+  min-height: 10vh; 
   min-width: 100vw;
+}
+
+#caster-data p {
+  font-size: .75em;
+  margin: 0;
+  padding: 0;
+}
+.caster-mini h4 {
+  margin-bottom: 10px;
+}
+
+#broadcast-dash {
+  display: flex;
+}
+
+#user-lists {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 0;
 }
