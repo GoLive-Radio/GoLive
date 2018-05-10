@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {Broadcast} = require('../db/models');
 const { Station } = require('../db/models');
-const { User_stations } = require('../db/models')
+const {User} = require('../db/models');
+const { User_stations } = require('../db/models');
 module.exports = router;
 
 // exact path '/broadcasts/'
@@ -11,12 +12,29 @@ router.get('/', (req, res, next) => {
       Broadcast.findAll({
         where: {
           stationId: req.query.stationId
-        }
+        },
+        include: [
+          {
+            model: User,
+            attributes: ['id', 'email', 'profilePic', 'summary']
+          },
+          {
+            model: Station
+          }
+        ]
       })
       .then(broadcastsByStation => res.json(broadcastsByStation))
       .catch(next);
     } else {
-      Broadcast.findAll({})
+      Broadcast.findAll({ include: [
+        {
+          model: User,
+          attributes: ['id', 'email', 'profilePic', 'summary']
+        },
+        {
+          model: Station
+        }
+      ]})
       .then(allBroadcasts => res.json(allBroadcasts))
       .catch(next);
     }
