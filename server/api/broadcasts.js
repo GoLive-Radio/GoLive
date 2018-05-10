@@ -8,25 +8,12 @@ module.exports = router;
 // exact path '/broadcasts/'
 // /broadcasts/?stationId=stationId
 router.get('/', (req, res, next) => {
-    if (req.query.stationId) {
-      Broadcast.findAll({
-        where: {
-          stationId: req.query.stationId
-        },
-        include: [
-          {
-            model: User,
-            attributes: ['id', 'email', 'profilePic', 'summary']
-          },
-          {
-            model: Station
-          }
-        ]
-      })
-      .then(broadcastsByStation => res.json(broadcastsByStation))
-      .catch(next);
-    } else {
-      Broadcast.findAll({ include: [
+  if (req.query.stationId) {
+    Broadcast.findAll({
+      where: {
+        stationId: req.query.stationId
+      },
+      include: [
         {
           model: User,
           attributes: ['id', 'email', 'profilePic', 'summary']
@@ -34,10 +21,23 @@ router.get('/', (req, res, next) => {
         {
           model: Station
         }
-      ]})
-      .then(allBroadcasts => res.json(allBroadcasts))
-      .catch(next);
-    }
+      ]
+    })
+    .then(broadcastsByStation => res.json(broadcastsByStation))
+    .catch(next);
+  } else {
+    Broadcast.findAll({ include: [
+      {
+        model: User,
+        attributes: ['id', 'email', 'profilePic', 'summary']
+      },
+      {
+        model: Station
+      }
+    ]})
+    .then(allBroadcasts => res.json(allBroadcasts))
+    .catch(next);
+  }
 });
 
 // GET single broadcast by id '/broadcasts/:broadcastId'

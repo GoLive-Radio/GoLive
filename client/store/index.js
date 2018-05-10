@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import user from './user';
 import broadcast from './broadcast';
 import broadcasts from './broadcasts';
+import stations from './stations';
 
-const reducer = combineReducers({user, broadcast, broadcasts});
+const reducer = combineReducers({user, broadcast, broadcasts, stations});
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -17,3 +18,4 @@ export default store;
 export * from './user';
 export * from './broadcast';
 export * from './broadcasts';
+export * from './stations';
