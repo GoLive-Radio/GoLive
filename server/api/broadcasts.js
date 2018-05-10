@@ -5,21 +5,21 @@ const { User_stations } = require('../db/models')
 module.exports = router;
 
 // exact path '/broadcasts/'
+// /broadcasts/?stationId=stationId
 router.get('/', (req, res, next) => {
-    Broadcast.findAll({})
-        .then(allBroadcasts => res.json(allBroadcasts))
-        .catch(next);
-});
-
-// exact path '/broadcasts/:stationId'
-router.get('/:stationId', (req, res, next) => {
-    Broadcast.findAll({
-       where: {
-           stationId: req.params.stationId
-       }
-    })
-        .then(broadcastsByStation => res.json(broadcastsByStation))
-        .catch(next)
+    if (req.query.stationId) {
+      Broadcast.findAll({
+        where: {
+          stationId: req.query.stationId
+        }
+      })
+      .then(broadcastsByStation => res.json(broadcastsByStation))
+      .catch(next);
+    } else {
+      Broadcast.findAll({})
+      .then(allBroadcasts => res.json(allBroadcasts))
+      .catch(next);
+    }
 });
 
 // GET single broadcast by id '/broadcasts/:broadcastId'
