@@ -46,3 +46,10 @@ router.get('/:broadcastId', (req, res, next) => {
   .then(broadcast => res.json(broadcast))
   .catch(next);
 });
+
+//post new broadcast
+router.post('/', (req, res, next) => {
+  Broadcast.create(req.body)
+  .then(broadcast => res.json(broadcast))
+  .catch(next);
+});
