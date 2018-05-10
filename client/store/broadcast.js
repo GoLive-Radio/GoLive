@@ -33,6 +33,17 @@ export const fetchBroadcast = (id) =>
     })
     .catch(err => console.log(err));
 
+//post new broadcast
+export const addBroadcastThunk = (broadcast) =>
+  dispatch =>
+    axios.post('/api/broadcasts', broadcast)
+    .then(res => res.data)
+    .then(newBroadcast => {
+      dispatch(getBroadcast(newBroadcast));
+      history.push(`/broadcasts/${newBroadcast.id}`);
+    })
+    .catch(console.error);
+
 //update broadcast
 export const updateBroadcastThunk = (dataToUpdate, broadcast) =>
   dispatch =>
