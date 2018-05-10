@@ -15,10 +15,6 @@ const {Station} = require('../server/db/models')
 const {Broadcast} = require('../server/db/models');
 const {User_stations} = require('../server/db/models');
 
-function randomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
@@ -84,7 +80,7 @@ console.log('seeding...')
 
 
 /*
-
+  ------- Seed Templates -------
 Station.create({
   name: ,
   logoUrl: ,
@@ -102,6 +98,4 @@ Broadcast.create({
 })
 
 Broadcast.create({name: , description: , tags: {''}, stationId: })  
-
-
 */
