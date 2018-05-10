@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 /**
  * ACTION TYPES
@@ -16,6 +17,7 @@ export const getStation = station => ({
 /**
  * THUNK CREATORS
  */
+// fetch single station
 export const fetchStation = (id) =>
   dispatch =>
     axios.get(`/api/stations/${id}`)
@@ -24,6 +26,17 @@ export const fetchStation = (id) =>
       dispatch(getStation(station));
     })
     .catch(err => console.log(err));
+
+// post new station
+export const addStationThunk = (station) =>
+  dispatch =>
+    axios.post('/api/stations', station)
+    .then(res => res.data)
+    .then(newStation => {
+      dispatch(getStation(newStation));
+      history.push(`/api/stations/${newStation.id}`);
+    })
+    .catch(console.error);
 
 /**
  * INITIAL STATE
