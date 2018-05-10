@@ -226,3 +226,9 @@ h3 .center-text {
   display: flex;
   justify-content: center;
 }
+
+.footer-container {
+  max-height: 10vh;
+  min-height: 10vh;
+  background-color:#002D3C; 
+}
