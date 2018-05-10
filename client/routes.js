@@ -6,7 +6,7 @@ import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
         Listener, MyAccount} from './components';
-import {me} from './store';
+import {me, fetchBroadcasts} from './store';
 
 /**
  * COMPONENT
@@ -60,10 +60,11 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
-      dispatch(me())
+      dispatch(me());
+      dispatch(fetchBroadcasts());
     }
-  }
-}
+  };
+};
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
