@@ -20,6 +20,18 @@ export const toggleLive = () => ({
 });
 
 /**
+ * THUNK CREATORS
+ */
+export const fetchBroadcast = (id) =>
+  dispatch =>
+    axios.get(`/api/broadcasts/${id}`)
+    .then(res => res.data)
+    .then(broadcast => {
+      dispatch(getBroadcast(broadcast));
+    })
+    .catch(err => console.log(err));
+
+/**
  * INITIAL STATE
  */
 const defaultBroadcast = {
