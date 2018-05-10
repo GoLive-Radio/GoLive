@@ -17,6 +17,7 @@ const getBroadcasts = broadcasts => ({
  * THUNK CREATORS
  */
 
+//get all broadcasts
 export const fetchBroadcasts = () =>
   dispatch =>
     axios.get('/api/broadcasts')
@@ -25,6 +26,15 @@ export const fetchBroadcasts = () =>
       dispatch(getBroadcasts(broadcasts));
     })
     .catch(err => console.log(err));
+
+//get all broadcasts by stationId
+export const fetchBroadcastsByStationId = (id) =>
+    dispatch =>
+      axios.get(`/api/broadcasts?stationId=${id}`)
+      .then(broadcasts => {
+        dispatch(getBroadcasts(broadcasts));
+      })
+      .catch(err => console.log(err));
 
 /**
  * INITIAL STATE

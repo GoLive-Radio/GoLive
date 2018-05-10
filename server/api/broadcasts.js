@@ -6,7 +6,7 @@ const { User_stations } = require('../db/models');
 module.exports = router;
 
 // exact path '/broadcasts/'
-// /broadcasts/?stationId=stationId
+// /broadcasts?stationId=stationId
 router.get('/', (req, res, next) => {
   if (req.query.stationId) {
     Broadcast.findAll({
