@@ -2,7 +2,6 @@ const router = require('express').Router();
 const {Broadcast} = require('../db/models');
 const { Station } = require('../db/models');
 const {User} = require('../db/models');
-const { User_stations } = require('../db/models');
 module.exports = router;
 
 // exact path '/broadcasts/'

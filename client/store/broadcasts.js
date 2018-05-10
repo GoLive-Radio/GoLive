@@ -29,12 +29,12 @@ export const fetchBroadcasts = () =>
 
 //get all broadcasts by stationId
 export const fetchBroadcastsByStationId = (id) =>
-    dispatch =>
-      axios.get(`/api/broadcasts?stationId=${id}`)
-      .then(broadcasts => {
-        dispatch(getBroadcasts(broadcasts));
-      })
-      .catch(err => console.log(err));
+  dispatch =>
+    axios.get(`/api/broadcasts?stationId=${id}`)
+    .then(broadcasts => {
+      dispatch(getBroadcasts(broadcasts));
+    })
+    .catch(err => console.log(err));
 
 /**
  * INITIAL STATE
