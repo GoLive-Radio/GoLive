@@ -34,7 +34,18 @@ export const addStationThunk = (station) =>
     .then(res => res.data)
     .then(newStation => {
       dispatch(getStation(newStation));
-      history.push(`/api/stations/${newStation.id}`);
+      history.push(`/stations/${newStation.id}`);
+    })
+    .catch(console.error);
+
+//update station
+export const updateStationThunk = (dataToUpdate, station) =>
+  dispatch =>
+    axios.put(`/api/stations/${station.id}`, dataToUpdate)
+    .then(res => res.data)
+    .then(updatedStation => {
+      dispatch(getStation(updatedStation));
+      history.push(`/stations/${updatedStation.id}`);
     })
     .catch(console.error);
 
