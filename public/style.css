@@ -30,24 +30,24 @@ div.ui.inverted.segment {
 
 div #mp3_player {
   width: 500px;
-  height: 80px; 
-  background:#000; 
-  border-radius: 20px; 
-  /* padding:5px; 
+  height: 80px;
+  background:#000;
+  border-radius: 20px;
+  /* padding:5px;
   margin:50px auto; */
 }
 
-div#mp3_player > div > audio {  
-  width:500px; 
-  background:#000; 
+div#mp3_player > div > audio {
+  width:500px;
+  background:#000;
   border-radius: 20px;
 }
 
-div#mp3_player > canvas { 
-  width:500px; 
-  height:80px; 
+div#mp3_player > canvas {
+  width:500px;
+  height:80px;
   background:#002D3C;
-  border-radius: 20px; 
+  border-radius: 20px;
 }
 
 .media {
@@ -60,6 +60,13 @@ div#mp3_player > canvas {
   height: 115px;
   background-image: url('/images/steel-vis-backplate.png');
   border-radius: 20px;
+}
+
+#my_account {
+  margin-left: 2vw;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
 }
 
 #broadcast {
@@ -133,4 +140,3 @@ div#mp3_player > canvas {
   height: 20px;
   margin-right: 5px;
 }
-
