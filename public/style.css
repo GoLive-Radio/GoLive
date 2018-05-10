@@ -173,10 +173,16 @@ h3 .center-text {
   margin:0;
 }
 
-.auto-margin {
+.auto {
   margin: auto;
 }
 
 .white-font {
   color: white;
+}
+
+.break {
+  background-color: #002D3C;
+  min-height: 10vh;
+  min-width: 100vw;
 }
