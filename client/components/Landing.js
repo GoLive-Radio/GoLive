@@ -18,9 +18,15 @@ export class Landing extends Component {
                     </div>
                 </div>
                 <div className="break auto">
-                    <div className="auto flex">
-                        <h5 className="center-text white-font auto">This is sample text</h5>
-                        <p className="center-text white-font auto"> This is a sample paragraph</p>
+                    <div className="auto flex-justify-center">
+                        <div className="content auto">
+                            <h5 className="center-text white-font auto">This is sample text</h5>
+                            <p className="center-text white-font"> This is a sample paragraph</p>
+                        </div>
+                        <div className="content auto">
+                            <h5 className="center-text white-font auto">This is sample text</h5>
+                            <p className="center-text white-font"> This is a sample paragraph</p>
+                        </div>
                     </div>
                 </div>
                 <div className="lower-body max-width max-height flex auto">
