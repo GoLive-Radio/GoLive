@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import CallerMini from './CallerMini';
 
 const fakeUsers = [
   {
@@ -99,9 +98,7 @@ export class Broadcast extends Component {
   }
 
   render() {
-    console.log('broadcast props ', this.props)
-    console.log('broadcast state ', this.state)
-
+    //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
     });
@@ -114,7 +111,6 @@ export class Broadcast extends Component {
     const myID = this.props.match.params.broadcastId;
 
     return (
-      // <div id="container broadcast">
       <div id="broadcast">
         <h1 id="broadcast-title">AwesomeCast</h1>
         <div id="broadcast-dash">
