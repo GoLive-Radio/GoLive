@@ -31,21 +31,21 @@ div.ui.inverted.segment {
 
 div #mp3_player {
   width: 96%;
-  height: 80%; 
-  background:#000; 
-  border-radius: 20px; 
-  /* padding:5px; 
+  height: 80%;
+  background:#000;
+  border-radius: 20px;
+  /* padding:5px;
   margin:50px auto; */
 }
 
-div#mp3_player > div > audio {  
-  background:#000; 
+div#mp3_player > div > audio {
+  background:#000;
   border-radius: 20px;
 }
 
-div#mp3_player > canvas { 
-  width:100%; 
-  height:100%; 
+div#mp3_player > canvas {
+  width:100%;
+  height:100%;
   background:#002D3C;
   border-radius: 20px;
 }
@@ -67,7 +67,15 @@ div#mp3_player > canvas {
   margin-left: 2vw;
   width: 55vw;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.stations {
+  display: flex;
+}
+
+#my_station {
+  margin: 1vw;
 }
 
 #broadcast {
@@ -195,7 +203,7 @@ h3 .center-text {
 
 .break {
   background-color: #002D3C;
-  min-height: 10vh; 
+  min-height: 10vh;
   min-width: 100vw;
 }
 
@@ -227,7 +235,7 @@ h3 .center-text {
 .footer-container {
   max-height: 6vh;
   min-height: 6vh;
-  background-color:#002D3C; 
+  background-color:#002D3C;
 }
 
 .vertical-form {
@@ -250,7 +258,7 @@ h3 .center-text {
 .station-card {
   max-width: 30vw;
   max-height: 40vh;
-  min-height: 40vh;   
+  min-height: 40vh;
 }
 
 .center-text {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
-        Listener, MyAccount,
+        Listener, MyAccount, MyStations,
         NewBroadcast, Station,
         NewStation} from './components';
 import {me, fetchBroadcasts} from './store';
@@ -41,6 +41,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/myAccount" component={MyAccount} />
+              <Route path="/myStations" component={MyStations} />
               <Route path="/station/new-station" component={NewStation} />
 
 
