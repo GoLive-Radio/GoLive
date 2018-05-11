@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
-        Listener, MyAccount} from './components';
+        Listener, MyAccount,
+        NewBroadcast} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -27,10 +28,12 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/broadcasts/broadcaster" component={Broadcaster} />
         {/* <Route path="/broadcasts/listener" component={Listener} /> */}
+        <Route path="/broadcasts/new-broadcast" component={NewBroadcast} />
         <Route
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
         />
+
         {
           isLoggedIn &&
             <Switch>
