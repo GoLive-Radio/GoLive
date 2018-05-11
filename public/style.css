@@ -76,7 +76,7 @@ div#mp3_player > canvas {
   /* justify-content: center; */
   background-image: url("/images/broadcast-page.jpg");
   background-size: cover;
-  height: 93vh;
+  min-height: calc(90vh - 65px);
 }
 
 #broadcast-title {
@@ -237,5 +237,5 @@ h3 .center-text {
   background-image: url('/images/new-broadcast.jpg');
   background-size: cover;
   padding: 50px;
-  min-height: 83vh;
+  min-height: calc(90vh - 65px);
 }
