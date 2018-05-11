@@ -51,9 +51,9 @@ export const logout = () =>
       .catch(err => console.log(err));
 
 //update user thunk
-export function updateUserThunk(dataToUpdate, user) {
-  return function thunk(dispatch){
-    return axios.put(`/api/users/${user.id}`, dataToUpdate)
+export const updateUserThunk = (dataToUpdate, user) =>
+  dispatch =>
+    axios.put(`/api/users/${user.id}`, dataToUpdate)
     .then(res => res.data)
     .then(updatedUser => {
       const action = updateUser(updatedUser);
@@ -61,8 +61,6 @@ export function updateUserThunk(dataToUpdate, user) {
       history.push('/home');
     })
     .catch(console.error);
-  };
-}
 
 /**
  * REDUCER
