@@ -7,8 +7,9 @@ import broadcast from './broadcast';
 import broadcasts from './broadcasts';
 import broadcastsByStation from './broadcastsByStation';
 import stations from './stations';
+import station from './station';
 
-const reducer = combineReducers({user, broadcast, broadcasts, broadcastsByStation, stations});
+const reducer = combineReducers({user, broadcast, broadcasts, broadcastsByStation, station, stations});
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -21,4 +22,5 @@ export * from './broadcast';
 export * from './broadcasts';
 export * from './broadcastsByStation';
 export * from './stations';
+export * from './station';
 

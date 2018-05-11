@@ -17,8 +17,8 @@ const CasterMini = props => {
         <p>{rate === 'broadcaster' ? 'Broadcaster Rating' : 'Caller Rating'}</p>
         <div id="rating">
           <div>
-            {user && ratingArray.map(i => (
-              <img key={i} src="/images/fakeData/star.png" />
+            {user && ratingArray.map((i, idx) => (
+              <img key={idx} src="/images/fakeData/star.png" />
             ))}
           </div>
         </div>
