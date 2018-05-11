@@ -19,6 +19,10 @@ const Broadcast = db.define('broadcast', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  isArchived: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false

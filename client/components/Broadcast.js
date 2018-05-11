@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import addLiveBroadcast from '../store';
+import { addLiveBroadcast } from '../store/broadcast';
 
 const fakeUsers = [
   {
@@ -62,10 +62,6 @@ const fakeBroadcast = {
   listeners: 3
 };
 
-const mapState = state => ({
-  broadcast: fakeBroadcast
-});
-
 export class Broadcast extends Component {
   constructor(props) {
     super(props);
@@ -112,10 +108,8 @@ export class Broadcast extends Component {
         mediaRecorder.onstop = e => {
           let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
           console.log(`blob`, blob);
-          let audioURL = window.URL.createObjectURL(blob);
-          console.log('audioURL: ', audioURL);
-          //store this in sequelize
-          //dispatch a thunk that hits an api/broadcast/ route
+          console.log(`this.props inside of onstop: `, this.props);
+          this.props.sendRecordingToDB();
         };
         this.setState({
           isLive: true,
@@ -196,4 +190,17 @@ export class Broadcast extends Component {
   }
 }
 
-export default connect(mapState)(Broadcast);
+const mapState = state => ({
+  broadcast: fakeBroadcast
+});
+
+const mapDispatch = dispatch => {
+  return {
+    sendRecordingToDB (broadcastData) {
+      console.log(`sendRecordingToDB func ran`);
+      dispatch(addLiveBroadcast(broadcastData));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(Broadcast);
