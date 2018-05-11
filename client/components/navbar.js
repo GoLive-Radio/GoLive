@@ -16,7 +16,7 @@ const Navbar = ({ handleClick, isLoggedIn, user, handleMyStations }) => {
         <Menu inverted>
           <Menu.Item as={Link} to='/' name="Home" />
           <Menu.Item as={Link} to='/myStations' name="My Stations" onClick={e => handleMyStations(user.id)} />
-          <Menu.Item as={Link} to='/' name="Create a New Station" />
+          <Menu.Item as={Link} to='/station/new-station' name="Create a New Station" />
           <Menu.Item name="Logout" onClick={handleClick} />
           <Dropdown text="Settings" className='link item'>
             <Dropdown.Menu>

@@ -6,7 +6,8 @@ import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
         Listener, MyAccount,
-        NewBroadcast, Station} from './components';
+        NewBroadcast, Station,
+        NewStation} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -27,20 +28,22 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/broadcasts/broadcaster" component={Broadcaster} />
-        {/* <Route path="/broadcasts/listener" component={Listener} /> */}
         <Route path="/broadcasts/new-broadcast" component={NewBroadcast} />
         <Route
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
         />
-        <Route path="/station/:stationId" component={Station} />
+          <Route path="/stations/:stationId" component={Station} />
 
         {
           isLoggedIn &&
-            <Switch>
+          <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/myAccount" component={MyAccount} />
+              <Route path="/station/new-station" component={NewStation} />
+
+
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
