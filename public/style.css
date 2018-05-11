@@ -225,8 +225,8 @@ h3 .center-text {
 }
 
 .footer-container {
-  max-height: 10vh;
-  min-height: 10vh;
+  max-height: 6vh;
+  min-height: 6vh;
   background-color:#002D3C; 
 }
 
@@ -238,4 +238,28 @@ h3 .center-text {
   background-size: cover;
   padding: 50px;
   min-height: 83vh;
+}
+
+.height100 {
+  min-height: 100vh;
+  background: url('/images/Station/station-body.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.station-card {
+  max-width: 30vw;
+  max-height: 40vh;
+  min-height: 40vh;   
+}
+
+.center-text {
+  text-align: center;
+}
+
+.button-link {
+  background:gray;
+  opacity: 0.7;
+  border-radius: 0.5em;
+  padding:2vh;
 }

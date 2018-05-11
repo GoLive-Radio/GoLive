@@ -6,7 +6,7 @@ import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
         Listener, MyAccount,
-        NewBroadcast} from './components';
+        NewBroadcast, Station} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -33,6 +33,7 @@ class Routes extends Component {
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
         />
+        <Route path="/station/:stationId" component={Station} />
 
         {
           isLoggedIn &&
