@@ -30,43 +30,45 @@ export default class NewBroadcast extends Component {
             tagsDirty } = this.state;
     const { handleChange } = this;
     return (
-      <Form className="vertical-form">
-        <Form.Field width={8} error={!title && titleDirty} required>
-          <label>Title</label>
-          <input
-            name="title"
-            placeholder="Broadcast title"
-            value={title}
-            onChange={handleChange} />
-        </Form.Field>
-            <Message
-              hidden={!title && titleDirty}
-              error
-              header="Title Required"
-              content="How else will the people find you???" />
-        <Form.TextArea
-          label="Description"
-          name="description"
-          placeholder="Tell your fans about your broadcast"
-          value={description}
-          width={8}
-          onChange={handleChange}
-          error={!description && descriptionDirty}
-          required />
-        <Form.Field 
-          width={8} 
-          error={!tags && tagsDirty}
-          required
-          >
-          <label>Tags</label>
-          <input
-            name="tags"
-            placeholder="Enter comma separated tags"
-            value={tags}
-            onChange={handleChange} />
-        </Form.Field>
-        <Button disabled={!title || !description || !tags } color="blue" type="submit">Onward!</Button>
-      </Form>
+      <div className="fill-page">
+        <Form className="vertical-form">
+          <Form.Field width={8} error={!title && titleDirty} required>
+            <label>Title</label>
+            <input
+              name="title"
+              placeholder="Broadcast title"
+              value={title}
+              onChange={handleChange} />
+          </Form.Field>
+              <Message
+                hidden={title || !titleDirty}
+                error
+                header="Title Required"
+                content="How else will the people find you???" />
+          <Form.TextArea
+            label="Description"
+            name="description"
+            placeholder="Tell your fans about your broadcast"
+            value={description}
+            width={8}
+            onChange={handleChange}
+            error={!description && descriptionDirty}
+            required />
+          <Form.Field
+            width={8}
+            error={!tags && tagsDirty}
+            required
+            >
+            <label>Tags</label>
+            <input
+              name="tags"
+              placeholder="Enter comma separated tags"
+              value={tags}
+              onChange={handleChange} />
+          </Form.Field>
+          <Button disabled={!title || !description || !tags } color="blue" type="submit">Onward!</Button>
+        </Form>
+      </div>
     );
   }
 
