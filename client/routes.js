@@ -33,15 +33,15 @@ class Routes extends Component {
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
         />
-        <Route path="/stations/:stationId" component={Station} />
+          <Route path="/stations/:stationId" component={Station} />
 
         {
           isLoggedIn &&
-            <Switch>
+          <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/myAccount" component={MyAccount} />
-              <Route path="/stations/new-station" component={NewStation} />
+              <Route path="/station/new-station" component={NewStation} />
 
 
             </Switch>
