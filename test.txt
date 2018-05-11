@@ -1,0 +1,37 @@
+describe(){
+    it(){
+
+    }
+}
+
+// ROUTES
+routes GET Live Broadcasts 
+routes GET Archived Broadcasts
+routes GET All Stations
+routes GET Stations By User
+routes GET Broadcasts by user Id
+
+// FRONT END
+Broadcast Component => instance method on button click, returns array 
+audio component takes prop, returns how many audio elements in that array
+Can archive file on stop recording and save =>saves file
+AllBroadcast Component => maps all broadcasts components to view
+
+
+// REDUX
+GET_BROADCAST returns single broadcast on action object
+REMOVE_BROADCAST removes broadcast?
+GET_LIVE returns an objet with an array of all broadcasts that are live
+Caller can join live broadcast => call que
+User can edit his profile
+NEW_BROADCAST action starts recording
+On stop recording => and stops recording
+File blob gets set to value on record stop // make methods
+Action to add to que
+Test Chat 
+Test forum
+
+
+
+//THUNKS
+//ACTION CREATORS

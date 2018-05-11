@@ -1,23 +1,67 @@
 const router = require('express').Router();
 const {Broadcast} = require('../db/models');
 const { Station } = require('../db/models');
-const { User_stations } = require('../db/models')
+const {User} = require('../db/models');
 module.exports = router;
 
 // exact path '/broadcasts/'
+// /broadcasts?stationId=stationId
 router.get('/', (req, res, next) => {
-    Broadcast.findAll({})
-        .then(allBroadcasts => res.json(allBroadcasts))
-        .catch(next);
+  if (req.query.stationId) {
+    Broadcast.findAll({
+      where: {
+        stationId: req.query.stationId
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'email', 'profilePic', 'summary']
+        },
+        {
+          model: Station
+        }
+      ]
+    })
+    .then(broadcastsByStation => res.json(broadcastsByStation))
+    .catch(next);
+  } else {
+    Broadcast.findAll({ include: [
+      {
+        model: User,
+        attributes: ['id', 'email', 'profilePic', 'summary']
+      },
+      {
+        model: Station
+      }
+    ]})
+    .then(allBroadcasts => res.json(allBroadcasts))
+    .catch(next);
+  }
 });
 
-// exact path '/broadcasts/:stationId'
-router.get('/:stationId', (req, res, next) => {
-    Broadcast.findAll({
-       where: {
-           stationId: req.params.stationId
-       }
-    })
-        .then(broadcastsByStation => res.json(broadcastsByStation))
-        .catch(next)
+// GET single broadcast by id '/broadcasts/:broadcastId'
+router.get('/:broadcastId', (req, res, next) => {
+  Broadcast.findById(req.params.broadcastId)
+  .then(broadcast => res.json(broadcast))
+  .catch(next);
+});
+
+//post new broadcast
+router.post('/', (req, res, next) => {
+  Broadcast.create(req.body)
+  .then(broadcast => res.json(broadcast))
+  .catch(next);
+});
+
+//update broadcast
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Broadcast.findById(id)
+  .then(broadcast => {
+    return broadcast.update(req.body);
+  })
+  .then(updatedBroadcast => {
+    res.json(updatedBroadcast);
+  })
+  .catch(next);
 });

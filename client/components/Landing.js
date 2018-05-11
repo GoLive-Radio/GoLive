@@ -11,8 +11,29 @@ export class Landing extends Component {
 
     render() {
         return(
-            <div>
-               This is the landing page 
+            <div className='main-container'>
+                <div className="main-body max-width max-height flex auto">
+                    <div className='auto flex'>
+                        <h3 className='center-text white-font'>This is the main body of the landing page </h3>
+                    </div>
+                </div>
+                <div className="break auto">
+                    <div className="auto flex-justify-center">
+                        <div className="content auto">
+                            <h5 className="center-text white-font auto">This is sample text</h5>
+                            <p className="center-text white-font"> This is a sample paragraph</p>
+                        </div>
+                        <div className="content auto">
+                            <h5 className="center-text white-font auto">This is sample text</h5>
+                            <p className="center-text white-font"> This is a sample paragraph</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="lower-body max-width max-height flex auto">
+                    <div className="auto flex">
+                        <h3 className='center-text white-font'>This is the lower body of the landing Page</h3>
+                    </div>
+                </div>
             </div>
         )
     }

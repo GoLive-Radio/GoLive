@@ -158,6 +158,50 @@ div#mp3_player > canvas {
   margin-right: 5px;
 }
 
+.max-width {
+  max-width: 100vw;
+  min-width:100vw;
+}
+
+.max-height {
+  max-height: 70vh;
+  min-height:70vh;
+}
+
+.main-body {
+  background-image: url('./images/landing/main-body.jpg');
+}
+
+.lower-body {
+  background-image: url('./images/landing/lower-body.jpg');
+}
+
+.flex {
+  display: flex;
+}
+
+h3 .center-text {
+  text-align:center;
+}
+
+.main-container {
+  margin:0;
+}
+
+.auto {
+  margin: auto;
+}
+
+.white-font {
+  color: white;
+}
+
+.break {
+  background-color: #002D3C;
+  min-height: 10vh; 
+  min-width: 100vw;
+}
+
 #caster-data p {
   font-size: .75em;
   margin: 0;
@@ -176,4 +220,15 @@ div#mp3_player > canvas {
   flex-direction: column;
   width: 250px;
   padding: 0;
+}
+
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-container {
+  max-height: 10vh;
+  min-height: 10vh;
+  background-color:#002D3C; 
 }
