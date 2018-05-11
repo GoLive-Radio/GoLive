@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Button, Message } from 'semantic-ui-react';
+import { addBroadcastThunk } from '../store';
 
-export default class NewBroadcast extends Component {
+const initialState = {
+  title: '',
+  description: '',
+  tags: '',
+  titleDirty: false,
+  descriptionDirty: false,
+  tagsDirty: false,
+};
+
+const mapDispatch = dispatch => {
+  return {
+    addBroadcast: (title, description, tags) => {
+      dispatch(addBroadcastThunk({name: title, description, tags}));
+    }
+  };
+};
+
+class NewBroadcast extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      title: '',
-      description: '',
-      tags: '',
-      titleDirty: false,
-      descriptionDirty: false,
-      tagsDirty: false,
-    };
+    this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(evt){
@@ -23,15 +35,23 @@ export default class NewBroadcast extends Component {
     this.setState({[key]: value, [dirtyField]: true});
   }
 
+  handleSubmit(evt){
+    evt.preventDefault();
+    const { title, description, tags } = this.state;
+    const newTags = tags.replace(/\s/g, '').split(',');
+    this.props.addBroadcast(title, description, newTags);
+    this.setState(initialState);
+  }
+
   render(){
     const { title, description,
             tags, titleDirty,
             descriptionDirty,
             tagsDirty } = this.state;
-    const { handleChange } = this;
+    const { handleChange, handleSubmit } = this;
     return (
       <div className="fill-page">
-        <Form className="vertical-form">
+        <Form className="vertical-form" onSubmit={handleSubmit}>
           <Form.Field width={8} error={!title && titleDirty} required>
             <label>Title</label>
             <input
@@ -41,7 +61,7 @@ export default class NewBroadcast extends Component {
               onChange={handleChange} />
           </Form.Field>
               <Message
-                hidden={title || !titleDirty}
+                hidden={!!title || !titleDirty}
                 error
                 header="Title Required"
                 content="How else will the people find you???" />
@@ -74,4 +94,4 @@ export default class NewBroadcast extends Component {
 
 }
 
-// export default connect(mapState, mapDispatch)(NewBroadcast);
+export default connect(null, mapDispatch)(NewBroadcast);
