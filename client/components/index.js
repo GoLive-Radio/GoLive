@@ -12,4 +12,5 @@ export {Landing} from './Landing';
 export {default as Broadcaster} from './Broadcaster';
 export {default as Listener} from './Listener';
 export {default as MyAccount} from './MyAccount';
+export {default as NewBroadcast} from './NewBroadcast';
 

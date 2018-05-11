@@ -22,7 +22,7 @@ form div {
 
 div.ui.inverted.segment {
   border-radius: 0px;
-  height: 7vh;
+  height: 65px;
 }
 
 .top-bar {
@@ -84,10 +84,7 @@ div#mp3_player > canvas {
   color: whitesmoke;
   text-shadow: 0 0 10px white;
   text-align: center;
-  /* background-image: url('/images/banner.png');
-  background-size: cover; */
   background-repeat: no-repeat;
-  width: 1000px;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -231,4 +228,13 @@ h3 .center-text {
   max-height: 10vh;
   min-height: 10vh;
   background-color:#002D3C; 
+}
+
+.vertical-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('/images/new-broadcast.jpg');
+  background-size: cover;
+  padding: 50px;
 }
