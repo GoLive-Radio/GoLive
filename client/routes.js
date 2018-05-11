@@ -6,7 +6,7 @@ import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
         Listener, MyAccount,
-        NewBroadcast, Station} from './components';
+        NewBroadcast, Station, MyStations} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -41,6 +41,7 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/myAccount" component={MyAccount} />
+              <Route path="/myStations" component={MyStations} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
