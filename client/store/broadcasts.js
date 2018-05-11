@@ -1,53 +1,54 @@
 import axios from 'axios';
+import { NEW_BROADCAST, UPDATE_BROADCAST, DELETE_BROADCAST, createNewBroadcast, updateBroadcast, deleteBroadcast } from './sharedBroadcast';
 
-/**
- * ACTION TYPES
- */
+// ACTION TYPES
 const GET_BROADCASTS = 'GET_BROADCASTS';
 
-/**
- * ACTION CREATORS
- */
+// ACTION CREATORS
 const getBroadcasts = broadcasts => ({
   type: GET_BROADCASTS,
   broadcasts
 });
 
-/**
- * THUNK CREATORS
- */
+// THUNK CREATORS
 
-//get all broadcasts
-export const fetchBroadcasts = () =>
-  dispatch =>
-    axios.get('/api/broadcasts')
+//fetch all broadcasts
+export const fetchBroadcasts = () => dispatch =>
+  axios
+    .get('/api/broadcasts')
     .then(res => res.data)
     .then(broadcasts => {
       dispatch(getBroadcasts(broadcasts));
     })
-    .catch(err => console.log(err));
+    .catch(console.error);
 
-//get all broadcasts by stationId
-export const fetchBroadcastsByStationId = (id) =>
-  dispatch =>
-    axios.get(`/api/broadcasts?stationId=${id}`)
-    .then(broadcasts => {
-      dispatch(getBroadcasts(broadcasts));
-    })
-    .catch(err => console.log(err));
+// INITIAL STATE
+const initialState = [];
 
-/**
- * INITIAL STATE
- */
-const broadcasts = [];
-
-/**
- * REDUCER
- */
-export default function(state = broadcasts, action) {
+// REDUCER
+export default function reducer (state = initialState, action) {
   switch (action.type) {
     case GET_BROADCASTS:
       return action.broadcasts;
-    default: return state;
+
+    case NEW_BROADCAST:
+      return [...state, action.broadcast];
+
+    case UPDATE_BROADCAST:
+      return state.map(broadcast => {
+        if (broadcast.id === action.broadcast.id) {
+          return action.broadcast;
+        } else {
+          return broadcast;
+        }
+      });
+
+    case DELETE_BROADCAST:
+      return state.filter(broadcast => {
+        return broadcast.id !== action.broadcast.id;
+      });
+
+    default:
+      return state;
   }
 }
