@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
+import addLiveBroadcast from '../store';
 
 const fakeUsers = [
   {
@@ -111,6 +112,8 @@ export class Broadcast extends Component {
         mediaRecorder.onstop = e => {
           let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
           console.log(`blob`, blob);
+          let audioURL = window.URL.createObjectURL(blob);
+          console.log('audioURL: ', audioURL);
           //store this in sequelize
           //dispatch a thunk that hits an api/broadcast/ route
         };

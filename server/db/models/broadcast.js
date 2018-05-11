@@ -12,6 +12,13 @@ const Broadcast = db.define('broadcast', {
     type: Sequelize.TEXT,
     allowNull: false
   },
+  blob: {
+    type: Sequelize.BLOB
+  },
+  isLive: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false
