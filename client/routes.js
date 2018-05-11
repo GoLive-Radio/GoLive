@@ -33,7 +33,7 @@ class Routes extends Component {
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
         />
-        <Route path="/station/:stationId" component={Station} />
+        <Route path="/stations/:stationId" component={Station} />
 
         {
           isLoggedIn &&

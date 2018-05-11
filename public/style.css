@@ -70,11 +70,12 @@ div#mp3_player > canvas {
   flex-direction: row;
 }
 
+.stations {
+  display: flex;
+}
 
 #my_station {
-  margin-left: 2vw;
-  display: flex;
-  flex-direction: column;
+  margin: 1vw;
 }
 
 #broadcast {
