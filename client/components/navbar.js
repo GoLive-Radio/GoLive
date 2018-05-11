@@ -18,7 +18,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Dropdown text="Settings" className='link item'>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to='/myAccount'>My Account</Dropdown.Item>
-              <Dropdown.Item as={Link} to="/editAccount">Edit My Account</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Menu>
@@ -30,7 +29,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Menu.Item as={Link} to='/login' name="login"/>
           <Menu.Item as={Link} to='/signup' name="Sign up" />
           <Menu.Menu position="right">
-            <Menu.Item as={Link} to='/broadcasts/1' name='Random Live Cast'/> 
+            <Menu.Item as={Link} to='/broadcasts/1' name='Random Live Cast'/>
           </Menu.Menu>
         </Menu>
       )}
