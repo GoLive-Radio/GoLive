@@ -65,7 +65,7 @@ const mapState = state => ({
   broadcast: fakeBroadcast
 });
 
-export class Broadcast extends Component {
+class Broadcast extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -139,6 +139,8 @@ export class Broadcast extends Component {
   }
 
   render() {
+
+    console.log(this.props)
     //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
@@ -153,7 +155,9 @@ export class Broadcast extends Component {
 
     return (
       <div id="broadcast">
-        <h1 id="broadcast-title">AwesomeCast</h1>
+        <h1 id="broadcast-title">{broadcast.title}</h1>
+        {
+          //check here to make sure the user is the broadcaster
         <div id="broadcast-dash">
           <div id="user-lists">
             <div id="broadcaster-list">
@@ -183,11 +187,12 @@ export class Broadcast extends Component {
                 }
               />
             ) : null}
-            {this.state.event ? (
-              <MediaElement event={this.state.event} />
-            ) : null}
           </div>
         </div>
+        }
+        {this.state.event ? (
+          <MediaElement event={this.state.event} />
+        ) : null}
       </div>
     );
   }
