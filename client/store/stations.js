@@ -28,12 +28,12 @@ export const fetchStations = () =>
 
 //get all stations by userId
 export const fetchStationsByUserId = (id) =>
-    dispatch =>
-      axios.get(`/api/stations?userId=${id}`)
-      .then(stations => {
-        dispatch(getStations(stations));
-      })
-      .catch(err => console.log(err));
+  dispatch =>
+    axios.get(`/api/stations?userId=${id}`)
+    .then(stations => {
+      dispatch(getStations(stations));
+    })
+    .catch(err => console.log(err));
 
 /**
  * INITIAL STATE
