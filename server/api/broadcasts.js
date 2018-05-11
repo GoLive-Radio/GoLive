@@ -2,7 +2,6 @@ const router = require('express').Router();
 const {Broadcast} = require('../db/models');
 const { Station } = require('../db/models');
 const {User} = require('../db/models');
-const { User_stations } = require('../db/models');
 module.exports = router;
 
 // exact path '/broadcasts/'
@@ -44,5 +43,25 @@ router.get('/', (req, res, next) => {
 router.get('/:broadcastId', (req, res, next) => {
   Broadcast.findById(req.params.broadcastId)
   .then(broadcast => res.json(broadcast))
+  .catch(next);
+});
+
+//post new broadcast
+router.post('/', (req, res, next) => {
+  Broadcast.create(req.body)
+  .then(broadcast => res.json(broadcast))
+  .catch(next);
+});
+
+//update broadcast
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Broadcast.findById(id)
+  .then(broadcast => {
+    return broadcast.update(req.body);
+  })
+  .then(updatedBroadcast => {
+    res.json(updatedBroadcast);
+  })
   .catch(next);
 });

@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const {Station} = require('../db/models');
 const { User } = require('../db/models')
-const { User_stations } = require('../db/models')
 
 module.exports = router;
 
@@ -28,7 +27,27 @@ router.get('/', (req, res, next) => {
 
 // exact path '/stations/:id
 router.get('/:id', (req, res, next) => {
-    Station.findById(+req.params.id)
-        .then(station => res.json(station))
-        .catch(next);
+  Station.findById(+req.params.id)
+      .then(station => res.json(station))
+      .catch(next);
+});
+
+// post new station
+router.post('/', (req, res, next) => {
+  Station.create(req.body)
+  .then(station => res.json(station))
+  .catch(next);
+});
+
+//update station
+router.put('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Station.findById(id)
+  .then(station => {
+    return station.update(req.body);
+  })
+  .then(updatedStation => {
+    res.json(updatedStation);
+  })
+  .catch(next);
 });
