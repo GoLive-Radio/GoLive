@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 // ACTION TYPE
-const FETCH_BROADCASTS_BY_STATION = 'FETCH_BROADCASTS_BY_STATION';
+const GET_BROADCASTS_BY_STATION = 'GET_BROADCASTS_BY_STATION';
 
 // ACTION CREATORS
-export const fetchBroadcastsByStation = broadcast => ({
-  type: FETCH_BROADCASTS_BY_STATION,
-  broadcast
+export const getBroadcastsByStation = broadcasts => ({
+  type: GET_BROADCASTS_BY_STATION,
+  broadcasts
 });
 
 //THUNK CREATORS
@@ -15,8 +15,9 @@ export const fetchBroadcastsByStation = broadcast => ({
 export const fetchBroadcastsByStationId = id => dispatch =>
   axios
     .get(`/api/broadcasts?stationId=${id}`)
+    .then(res => res.data)
     .then(broadcasts => {
-      dispatch(fetchBroadcastsByStation(broadcasts));
+      dispatch(getBroadcastsByStation(broadcasts));
     })
     .catch(console.error);
 
@@ -26,8 +27,8 @@ const initialState = [];
 // REDUCER
 export default function reducer (state = initialState, action) {
   switch (action.type) {
-    case FETCH_BROADCASTS_BY_STATION:
-      return action.broadcast;
+    case GET_BROADCASTS_BY_STATION:
+      return action.broadcasts;
     default:
       return state;
   }
