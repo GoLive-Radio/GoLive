@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Station} = require('../db/models');
-const { User } = require('../db/models')
+const { User } = require('../db/models');
+const { Broadcast } = require('../db/models');
 
 module.exports = router;
 
@@ -14,7 +15,7 @@ router.get('/', (req, res, next) => {
         required: true,
         attributes: ['id', 'email', 'profilePic', 'summary'],
         through: { where: { userId: req.query.userId } }
-    }]
+      }]
     })
     .then(stationsByUser => res.json(stationsByUser))
     .catch(next);
@@ -27,12 +28,20 @@ router.get('/', (req, res, next) => {
 
 // exact path '/stations/:id
 router.get('/:id', (req, res, next) => {
-  Station.findById(+req.params.id)
-      .then(station => {
-        console.log('backend station ', station)
-        res.json(station)
-      })
-      .catch(next);
+  const id = +req.params.id;
+  Station.findOne({
+    where: {
+      id: id
+    },
+    include: [{
+      model: Broadcast,
+      where: {stationId: id}
+    }]
+  })
+  .then(station => {
+    res.json(station);
+  })
+  .catch(next);
 });
 
 // post new station
