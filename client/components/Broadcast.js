@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import { addLiveBroadcast, fetchBroadcast } from '../store/broadcast';
+import { updateBroadcastThunk, addLiveBroadcast, fetchBroadcast } from '../store/broadcast';
 
 const fakeUsers = [
   {
@@ -80,7 +80,6 @@ class Broadcast extends Component {
 
   startBroadcast(id) {
     if (!this.connection) {
-      console.log(`should be first button click`);
       this.connection = new window.RTCMultiConnection();
       this.connection.socketURL =
         'https://rtcmulticonnection.herokuapp.com:443/';
@@ -110,10 +109,11 @@ class Broadcast extends Component {
           chunks.push(e.data);
         };
         mediaRecorder.onstop = e => {
-          let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
+          let blob = new Blob(chunks, { type: 'audio/ogg' });
           console.log(`blob`, blob);
-          console.log(`this.props inside of onstop: `, this.props);
-          this.props.sendRecordingToDB();
+          let formData = new FormData();
+          formData.append('blob', blob);
+          this.props.sendRecordingToDB(formData, { id: this.props.match.params.broadcastId });
         };
         this.setState({
           isLive: true,
@@ -122,18 +122,14 @@ class Broadcast extends Component {
           mediaRecorder
         });
         mediaRecorder.start();
-        console.log(`event.stream: `, event.stream);
-        console.log(`mediaRecorder.state: `, mediaRecorder.state);
       };
       this.connection.openOrJoin(id);
     } else {
-      console.log(`should be second button click`);
       this.setState({
         isLive: false
       });
       this.state.mediaRecorder.stop();
       console.log(`mediaRecorder.state: `, this.state.mediaRecorder.state);
-      console.log(`this.connection: `, this.connection);
       console.log(`this.state: `, this.state);
       this.connection.disconnect();
     }
@@ -141,16 +137,15 @@ class Broadcast extends Component {
 
   render() {
 
-    console.log('broadcast props ', this.props);
     //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
     });
-    
+
     const callers = fakeUsers.filter(user => {
       if (user.isCalling) return user;
     });
-    
+
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
     // const broadcasters = [broadcast.userId]
@@ -207,9 +202,9 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    sendRecordingToDB (broadcastData) {
-      console.log(`sendRecordingToDB func ran`);
-      dispatch(addLiveBroadcast(broadcastData));
+    sendRecordingToDB (broadcastData, broadcast) {
+      dispatch(updateBroadcastThunk(broadcastData, broadcast));
+      //dispatch(addLiveBroadcast(broadcastData));
     },
     loadBroadcast (){
       dispatch(fetchBroadcast(ownProps.match.params.broadcastId));

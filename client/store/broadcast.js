@@ -35,19 +35,26 @@ export const addBroadcastThunk = broadcast => dispatch =>
     .catch(console.error);
 
 //update broadcast
-export const updateBroadcastThunk = (dataToUpdate, broadcast) => dispatch =>
-  axios
-    .put(`/api/broadcasts/${broadcast.id}`, dataToUpdate)
+export const updateBroadcastThunk = (dataToUpdate, broadcast) => dispatch => {
+    console.log(`...dataToUpdate updatebroadcast thunk: `, ...dataToUpdate);
+  return axios
+    .put(`/api/broadcasts/${broadcast.id}`, dataToUpdate, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     .then(res => res.data)
     .then(updatedBroadcast => {
       dispatch(updateBroadcast(updatedBroadcast));
     })
     .catch(console.error);
+  }
 
 export const deleteBroadcastThunk = () => dispatch =>
     axios
       .delete();
       //dispatch(deleteBroadcast())
+
 
 // INITIAL STATE
 const initialState = {};

@@ -12,8 +12,8 @@ const Broadcast = db.define('broadcast', {
     type: Sequelize.TEXT,
     allowNull: false
   },
-  blob: {
-    type: Sequelize.BLOB
+  audioPath: {
+    type: Sequelize.STRING
   },
   isLive: {
     type: Sequelize.BOOLEAN,
@@ -24,8 +24,7 @@ const Broadcast = db.define('broadcast', {
     defaultValue: false
   },
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 });
 
