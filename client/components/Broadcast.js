@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import { updateBroadcastThunk, addLiveBroadcast, fetchBroadcast } from '../store/broadcast';
+import { updateBroadcastThunk, fetchBroadcast } from '../store/broadcast';
 
 const fakeUsers = [
   {
@@ -74,7 +74,7 @@ class Broadcast extends Component {
     this.startBroadcast = this.startBroadcast.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.loadBroadcast();
   }
 
@@ -99,7 +99,6 @@ class Broadcast extends Component {
 
       // append it to the body
       this.connection.onstream = event => {
-        console.log(`onstream func ran`);
         let mediaRecorder = new MediaRecorder(event.stream, {
           mimeType: 'audio/webm'
         });
@@ -109,11 +108,16 @@ class Broadcast extends Component {
           chunks.push(e.data);
         };
         mediaRecorder.onstop = e => {
+          /*
+          This event fires when the recording has stopped. We can then collect the recorded data and convert it to FormData so that it can be sent to our backend.
+          */
           let blob = new Blob(chunks, { type: 'audio/ogg' });
           console.log(`blob`, blob);
           let formData = new FormData();
           formData.append('blob', blob);
-          this.props.sendRecordingToDB(formData, { id: this.props.match.params.broadcastId });
+          this.props.sendRecordingToDB(formData, {
+            id: this.props.match.params.broadcastId
+          });
         };
         this.setState({
           isLive: true,
@@ -136,8 +140,7 @@ class Broadcast extends Component {
   }
 
   render() {
-
-    //filter data for propegation in list components
+    //filter data for propagation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
     });
@@ -156,41 +159,45 @@ class Broadcast extends Component {
         <h4 id="broadcast-desc">{broadcast.description}</h4>
         {
           //check here to make sure the user is the broadcaster
-        <div id="broadcast-dash">
-          <div id="user-lists">
-            <div id="broadcaster-list">
-              <h1>Broadcasters</h1>
-              {broadcasters.map(user => {
-                return (
-                  <CasterMini key={user.id} user={user} rate={'broadcaster'} />
-                );
-              })}
+          <div id="broadcast-dash">
+            <div id="user-lists">
+              <div id="broadcaster-list">
+                <h1>Broadcasters</h1>
+                {broadcasters.map(user => {
+                  return (
+                    <CasterMini
+                      key={user.id}
+                      user={user}
+                      rate={'broadcaster'}
+                    />
+                  );
+                })}
+              </div>
+              <div id="broadcaster-list">
+                <h1>Call Queue</h1>
+                {callers.map(user => {
+                  return (
+                    <CasterMini key={user.id} user={user} rate={'caller'} />
+                  );
+                })}
+              </div>
             </div>
-            <div id="broadcaster-list">
-              <h1>Call Queue</h1>
-              {callers.map(user => {
-                return <CasterMini key={user.id} user={user} rate={'caller'} />;
-              })}
+            <div id="live-button">
+              {myID ? (
+                <Image
+                  size="small"
+                  onClick={this.startBroadcast}
+                  src={
+                    this.state.isLive
+                      ? '/images/record_on.png'
+                      : '/images/record.png'
+                  }
+                />
+              ) : null}
             </div>
           </div>
-          <div id="live-button">
-            {myID ? (
-              <Image
-                size="small"
-                onClick={this.startBroadcast}
-                src={
-                  this.state.isLive
-                    ? '/images/record_on.png'
-                    : '/images/record.png'
-                }
-              />
-            ) : null}
-          </div>
-        </div>
         }
-        {this.state.event ? (
-          <MediaElement event={this.state.event} />
-        ) : null}
+        {this.state.event ? <MediaElement event={this.state.event} /> : null}
       </div>
     );
   }
@@ -202,11 +209,10 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    sendRecordingToDB (broadcastData, broadcast) {
+    sendRecordingToDB(broadcastData, broadcast) {
       dispatch(updateBroadcastThunk(broadcastData, broadcast));
-      //dispatch(addLiveBroadcast(broadcastData));
     },
-    loadBroadcast (){
+    loadBroadcast() {
       dispatch(fetchBroadcast(ownProps.match.params.broadcastId));
     }
   };

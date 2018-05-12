@@ -62,8 +62,11 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-//upload broadcast audio pathname to DB
-// /broadcasts/:id
+/*
+This put request fires when the recording is finished. We use the multer package in order to handle formData. Multer is configured with dest: path.join(__dirname, '..', '..', '/public/audio/'). This is writing the blob data to our public/audio folder. We're then updating the broadcast DB data and attaching the audioPath: req.file.filename
+
+path: /broadcasts/:id
+*/
 router.put('/:id', upload.single('blob'), (req, res, next) => {
   console.log(`req.body: `, req.body);
   console.log(`req.file: `, req.file);
@@ -82,7 +85,11 @@ router.put('/:id', upload.single('blob'), (req, res, next) => {
     .catch(next);
 });
 
-// /broadcasts/:id/playback
+/*
+This get request fires when the playback react component mounts. If there is no filepath in the DB then we set it temporarily to a default mp3. If there is an audioPath in the DB for the specific broadcast we fs.readfile the associated audio file and res.json out the data to the frontend.
+
+path:  /broadcasts/:id/playback
+*/
 router.get('/:id/playback', (req, res, next) => {
   Broadcast.findById(req.params.id)
     .then(broadcast => {
