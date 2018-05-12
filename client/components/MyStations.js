@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import {fetchStationsByUserId} from '../store';
 
 /**
