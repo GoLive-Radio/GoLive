@@ -51,7 +51,7 @@ class NewStation extends Component {
     const { handleChange, handleSubmit } = this;
     return (
       <div className="fill-page">
-        <Form className="vertical-form" onSubmit={handleSubmit}>
+        <Form className="vertical-form new-station" onSubmit={handleSubmit}>
           <Form.Field width={8} error={!name && nameDirty} required>
             <label>Name</label>
             <input

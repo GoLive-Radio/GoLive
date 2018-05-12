@@ -92,7 +92,14 @@ div#mp3_player > canvas {
   color: whitesmoke;
   text-shadow: 0 0 10px white;
   text-align: center;
-  background-repeat: no-repeat;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+#broadcast-desc {
+  font-size: 25px;
+  color: whitesmoke;
+  text-shadow: 0 0 10px white;
+  text-align: center;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -245,7 +252,17 @@ h3 .center-text {
   background-image: url('/images/new-broadcast.jpg');
   background-size: cover;
   padding: 50px;
-  min-height: calc(90vh - 65px);
+  min-height: calc(94vh - 65px);
+}
+
+.new-broadcast {
+  background-image: url('/images/new-broadcast.jpg');
+  background-size: cover;
+}
+
+.new-station {
+  background-image: url('/images/Station/new-station-body.jpg');
+  background-size: cover;
 }
 
 .height100 {

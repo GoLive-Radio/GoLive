@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import { addLiveBroadcast } from '../store/broadcast';
+import { addLiveBroadcast, fetchBroadcast } from '../store/broadcast';
 
 const fakeUsers = [
   {
@@ -74,6 +74,10 @@ class Broadcast extends Component {
     this.startBroadcast = this.startBroadcast.bind(this);
   }
 
+  componentDidMount(){
+    this.props.loadBroadcast();
+  }
+
   startBroadcast(id) {
     if (!this.connection) {
       console.log(`should be first button click`);
@@ -137,22 +141,24 @@ class Broadcast extends Component {
 
   render() {
 
-    console.log(this.props)
+    console.log('broadcast props ', this.props);
     //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
     });
-
+    
     const callers = fakeUsers.filter(user => {
       if (user.isCalling) return user;
     });
-
+    
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
+    // const broadcasters = [broadcast.userId]
 
     return (
       <div id="broadcast">
-        <h1 id="broadcast-title">{broadcast.title}</h1>
+        <h1 id="broadcast-title">{broadcast.name}</h1>
+        <h4 id="broadcast-desc">{broadcast.description}</h4>
         {
           //check here to make sure the user is the broadcaster
         <div id="broadcast-dash">
@@ -196,14 +202,17 @@ class Broadcast extends Component {
 }
 
 const mapState = state => ({
-  broadcast: fakeBroadcast
+  broadcast: state.broadcast
 });
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     sendRecordingToDB (broadcastData) {
       console.log(`sendRecordingToDB func ran`);
       dispatch(addLiveBroadcast(broadcastData));
+    },
+    loadBroadcast (){
+      dispatch(fetchBroadcast(ownProps.match.params.broadcastId));
     }
   };
 };
