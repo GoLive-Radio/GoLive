@@ -4,15 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {Login, Signup,
         UserHome, Broadcast,
-        Landing, Broadcaster,
-<<<<<<< HEAD
-        Listener, MyAccount,
-        NewBroadcast, Station, Player} from './components';
-=======
+        Landing, Broadcaster, Player,
         Listener, MyAccount, MyStations,
         NewBroadcast, Station,
         NewStation} from './components';
->>>>>>> master
 import {me, fetchBroadcasts} from './store';
 
 /**
