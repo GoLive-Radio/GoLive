@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import {Card, Grid, Image} from 'semantic-ui-react';
+import {Grid, Image} from 'semantic-ui-react';
 import { fetchStation } from '../store';
 
 export class SingleStation extends Component {
