@@ -67,7 +67,7 @@ div#mp3_player > canvas {
   margin-left: 2vw;
   width: 55vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .stations {
