@@ -13,7 +13,7 @@ const Broadcast = db.define('broadcast', {
     allowNull: false
   },
   blob: {
-    type: Sequelize.BLOB
+    type: Sequelize.BLOB('long')
   },
   isLive: {
     type: Sequelize.BOOLEAN,
@@ -24,8 +24,7 @@ const Broadcast = db.define('broadcast', {
     defaultValue: false
   },
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-    allowNull: false
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 });
 

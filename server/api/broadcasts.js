@@ -2,6 +2,11 @@ const router = require('express').Router();
 const {Broadcast} = require('../db/models');
 const { Station } = require('../db/models');
 const {User} = require('../db/models');
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
+const upload = multer({ dest: path.join(__dirname, '..', '..', '/public/audio/') });
+
 module.exports = router;
 
 // exact path '/broadcasts/'
@@ -53,8 +58,10 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
-//update broadcast
-router.put('/:id', (req, res, next) => {
+//upload broadcast audio
+router.put('/:id', upload.single('blob'), (req, res, next) => {
+  console.log(`req.body: `, req.body);
+  console.log(`req.file: `, req.file);
   const id = req.params.id;
   Broadcast.findById(id)
   .then(broadcast => {
@@ -64,4 +71,15 @@ router.put('/:id', (req, res, next) => {
     res.json(updatedBroadcast);
   })
   .catch(next);
+});
+
+router.get('/:id/playback', (req, res, next) => {
+  fs.readFile(path.join(__dirname, '..', '..', '/public/audio/4ce1ea38c6624626c5b26c194ad42126'), (err, data) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log(`data on api route: `, data);
+      res.json(data);
+    }
+  });
 });

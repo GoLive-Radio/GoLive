@@ -6,7 +6,7 @@ import {Login, Signup,
         UserHome, Broadcast,
         Landing, Broadcaster,
         Listener, MyAccount,
-        NewBroadcast, Station} from './components';
+        NewBroadcast, Station, Player} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -29,6 +29,7 @@ class Routes extends Component {
         <Route path="/broadcasts/broadcaster" component={Broadcaster} />
         {/* <Route path="/broadcasts/listener" component={Listener} /> */}
         <Route path="/broadcasts/new-broadcast" component={NewBroadcast} />
+        <Route exact path="/broadcasts/:broadcastId/playback" render={({ match }) => <Player match={match} />} />
         <Route
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}

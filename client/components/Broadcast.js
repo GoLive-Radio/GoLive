@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 window.io = io;
 import RTCMultiConnection from 'rtcmulticonnection-v3';
+import $ from 'jquery';
 import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import { addLiveBroadcast } from '../store/broadcast';
+import { updateBroadcastThunk } from '../store/broadcast';
 
 const fakeUsers = [
   {
@@ -76,7 +77,6 @@ class Broadcast extends Component {
 
   startBroadcast(id) {
     if (!this.connection) {
-      console.log(`should be first button click`);
       this.connection = new window.RTCMultiConnection();
       this.connection.socketURL =
         'https://rtcmulticonnection.herokuapp.com:443/';
@@ -106,10 +106,22 @@ class Broadcast extends Component {
           chunks.push(e.data);
         };
         mediaRecorder.onstop = e => {
-          let blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
+          console.log(`chunks: `, chunks);
+          let blob = new Blob(chunks, { type: 'audio/ogg' });
           console.log(`blob`, blob);
-          console.log(`this.props inside of onstop: `, this.props);
-          this.props.sendRecordingToDB();
+          let objectURL = URL.createObjectURL(blob);
+          console.log(`objectURL: `, objectURL);
+          let formData = new FormData();
+          formData.append('blob', blob);
+          //formData.append('isArchived', true);
+          //formData.append('isLive', false);
+          const updatedData = {
+            //isArchived: true,
+            //isLive: false,
+            blob
+          };
+          console.log(`...formData: `, ...formData);
+          this.props.sendRecordingToDB(formData, { id: this.props.match.params.broadcastId });
         };
         this.setState({
           isLive: true,
@@ -118,18 +130,14 @@ class Broadcast extends Component {
           mediaRecorder
         });
         mediaRecorder.start();
-        console.log(`event.stream: `, event.stream);
-        console.log(`mediaRecorder.state: `, mediaRecorder.state);
       };
       this.connection.openOrJoin(id);
     } else {
-      console.log(`should be second button click`);
       this.setState({
         isLive: false
       });
       this.state.mediaRecorder.stop();
       console.log(`mediaRecorder.state: `, this.state.mediaRecorder.state);
-      console.log(`this.connection: `, this.connection);
       console.log(`this.state: `, this.state);
       this.connection.disconnect();
     }
@@ -137,7 +145,6 @@ class Broadcast extends Component {
 
   render() {
 
-    console.log(this.props)
     //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
@@ -201,9 +208,11 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    sendRecordingToDB (broadcastData) {
+    sendRecordingToDB (broadcastData, broadcast) {
       console.log(`sendRecordingToDB func ran`);
-      dispatch(addLiveBroadcast(broadcastData));
+      console.log(`...broadcastData: `, ...broadcastData);
+      console.log(`broadcast: `, broadcast);
+      dispatch(updateBroadcastThunk(broadcastData, broadcast));
     }
   };
 };
