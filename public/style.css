@@ -266,7 +266,7 @@ h3 .center-text {
 }
 
 .height100 {
-  min-height: 100vh;
+  min-height: 90vh;
   background: url('/images/Station/station-body.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -287,4 +287,12 @@ h3 .center-text {
   opacity: 0.7;
   border-radius: 0.5em;
   padding:2vh;
+}
+
+.margin-left {
+  margin-left: 1vw;
+}
+
+.padding-top {
+  padding-top: 2vh;
 }

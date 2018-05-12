@@ -29,8 +29,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   Station.findById(+req.params.id)
       .then(station => {
-        console.log('backend station ', station)
-        res.json(station)
+        res.json(station);
       })
       .catch(next);
 });

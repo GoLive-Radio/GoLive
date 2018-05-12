@@ -13,6 +13,6 @@ export {default as Broadcaster} from './Broadcaster';
 export {default as Listener} from './Listener';
 export {default as MyAccount} from './MyAccount';
 export {default as NewBroadcast} from './NewBroadcast';
-export {default as Station} from './Station';
+export {default as SingleStation} from './SingleStation';
 export {default as MyStations} from './MyStations';
 export {default as NewStation} from './NewStation';
