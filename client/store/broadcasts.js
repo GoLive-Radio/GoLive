@@ -3,12 +3,18 @@ import { NEW_BROADCAST, UPDATE_BROADCAST, DELETE_BROADCAST, createNewBroadcast, 
 
 // ACTION TYPES
 const GET_BROADCASTS = 'GET_BROADCASTS';
+// const GET_STATION_BROADCASTS = 'GET_STATION_BROADCASTS'
 
 // ACTION CREATORS
 const getBroadcasts = broadcasts => ({
   type: GET_BROADCASTS,
   broadcasts
 });
+
+// const getStationBroadcasts = stationId => ({
+//   type: GET_STATION_BROADCASTS,
+//   broadcasts
+// })
 
 // THUNK CREATORS
 

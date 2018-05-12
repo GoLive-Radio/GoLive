@@ -143,16 +143,17 @@ class Broadcast extends Component {
 
     console.log('broadcast props ', this.props);
     //filter data for propegation in list components
-    const broadcasters = fakeUsers.filter(user => {
-      if (user.isBroadcasting) return user;
-    });
-
+    // const broadcasters = fakeUsers.filter(user => {
+    //   if (user.isBroadcasting) return user;
+    // });
+    
     const callers = fakeUsers.filter(user => {
       if (user.isCalling) return user;
     });
-
+    
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
+    const broadcasters = [broadcast.userId]
 
     return (
       <div id="broadcast">

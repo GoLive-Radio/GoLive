@@ -12,10 +12,18 @@ const initialState = {
   tagsDirty: false,
 };
 
-const mapDispatch = dispatch => {
+const mapState = state => {
+  console.log('mapstate ', state)
   return {
-    addBroadcast: (title, description, tags) => {
-      dispatch(addBroadcastThunk({name: title, description, tags}));
+    user: state.user
+  }
+};
+
+const mapDispatch = (dispatch, ownProps) => {
+  console.log('newBroadcastProps ', ownProps)
+  return {
+    addBroadcast: (title, description, tags, userId) => {
+      dispatch(addBroadcastThunk({name: title, description, tags, userId}));
     }
   };
 };
@@ -37,9 +45,10 @@ class NewBroadcast extends Component {
 
   handleSubmit(evt){
     evt.preventDefault();
+    const userId = this.props.user.id;
     const { title, description, tags } = this.state;
     const newTags = tags.replace(/\s/g, '').split(',');
-    this.props.addBroadcast(title, description, newTags);
+    this.props.addBroadcast(title, description, newTags, userId);
     this.setState(initialState);
   }
 
@@ -94,4 +103,4 @@ class NewBroadcast extends Component {
 
 }
 
-export default connect(null, mapDispatch)(NewBroadcast);
+export default connect(mapState, mapDispatch)(NewBroadcast);

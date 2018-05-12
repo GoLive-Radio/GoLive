@@ -19,10 +19,11 @@ export const getStation = station => ({
  */
 // fetch single station
 export const fetchStation = (id) =>
-  dispatch =>
+dispatch =>
     axios.get(`/api/stations/${id}`)
     .then(res => res.data)
     .then(station => {
+      console.log('retrieved station ', station);
       dispatch(getStation(station));
     })
     .catch(err => console.log(err));
