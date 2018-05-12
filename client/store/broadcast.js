@@ -19,6 +19,7 @@ export const fetchBroadcast = id => dispatch =>
     .get(`/api/broadcasts/${id}`)
     .then(res => res.data)
     .then(broadcast => {
+      console.log('broadcast store', broadcast)
       dispatch(getBroadcast(broadcast));
     })
     .catch(console.error);
@@ -56,7 +57,7 @@ export const deleteBroadcastThunk = () => dispatch =>
 
 
 // INITIAL STATE
-const initialState = [];
+const initialState = {};
 
 // REDUCER
 export default function(state = initialState, action) {

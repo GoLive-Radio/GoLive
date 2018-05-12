@@ -31,21 +31,21 @@ div.ui.inverted.segment {
 
 div #mp3_player {
   width: 96%;
-  height: 80%; 
-  background:#000; 
-  border-radius: 20px; 
-  /* padding:5px; 
+  height: 80%;
+  background:#000;
+  border-radius: 20px;
+  /* padding:5px;
   margin:50px auto; */
 }
 
-div#mp3_player > div > audio {  
-  background:#000; 
+div#mp3_player > div > audio {
+  background:#000;
   border-radius: 20px;
 }
 
-div#mp3_player > canvas { 
-  width:100%; 
-  height:100%; 
+div#mp3_player > canvas {
+  width:100%;
+  height:100%;
   background:#002D3C;
   border-radius: 20px;
 }
@@ -70,13 +70,21 @@ div#mp3_player > canvas {
   flex-direction: column;
 }
 
+.stations {
+  display: flex;
+}
+
+#my_station {
+  margin: 1vw;
+}
+
 #broadcast {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   background-image: url("/images/broadcast-page.jpg");
   background-size: cover;
-  height: 93vh;
+  min-height: calc(100vh - 65px);
 }
 
 #broadcast-title {
@@ -84,7 +92,14 @@ div#mp3_player > canvas {
   color: whitesmoke;
   text-shadow: 0 0 10px white;
   text-align: center;
-  background-repeat: no-repeat;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+#broadcast-desc {
+  font-size: 25px;
+  color: whitesmoke;
+  text-shadow: 0 0 10px white;
+  text-align: center;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -195,7 +210,7 @@ h3 .center-text {
 
 .break {
   background-color: #002D3C;
-  min-height: 10vh; 
+  min-height: 10vh;
   min-width: 100vw;
 }
 
@@ -227,7 +242,7 @@ h3 .center-text {
 .footer-container {
   max-height: 6vh;
   min-height: 6vh;
-  background-color:#002D3C; 
+  background-color:#002D3C;
 }
 
 .vertical-form {
@@ -237,7 +252,17 @@ h3 .center-text {
   background-image: url('/images/new-broadcast.jpg');
   background-size: cover;
   padding: 50px;
-  min-height: 83vh;
+  min-height: calc(94vh - 65px);
+}
+
+.new-broadcast {
+  background-image: url('/images/new-broadcast.jpg');
+  background-size: cover;
+}
+
+.new-station {
+  background-image: url('/images/Station/new-station-body.jpg');
+  background-size: cover;
 }
 
 .height100 {
@@ -250,7 +275,7 @@ h3 .center-text {
 .station-card {
   max-width: 30vw;
   max-height: 40vh;
-  min-height: 40vh;   
+  min-height: 40vh;
 }
 
 .center-text {

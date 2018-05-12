@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 window.io = io;
 import RTCMultiConnection from 'rtcmulticonnection-v3';
-import $ from 'jquery';
 import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
-import { updateBroadcastThunk } from '../store/broadcast';
+import { updateBroadcastThunk, addLiveBroadcast, fetchBroadcast } from '../store/broadcast';
 
 const fakeUsers = [
   {
@@ -73,6 +72,10 @@ class Broadcast extends Component {
       mediaRecorder: null
     };
     this.startBroadcast = this.startBroadcast.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.loadBroadcast();
   }
 
   startBroadcast(id) {
@@ -145,6 +148,7 @@ class Broadcast extends Component {
 
   render() {
 
+    console.log('broadcast props ', this.props);
     //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
@@ -156,10 +160,12 @@ class Broadcast extends Component {
 
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
+    // const broadcasters = [broadcast.userId]
 
     return (
       <div id="broadcast">
-        <h1 id="broadcast-title">{broadcast.title}</h1>
+        <h1 id="broadcast-title">{broadcast.name}</h1>
+        <h4 id="broadcast-desc">{broadcast.description}</h4>
         {
           //check here to make sure the user is the broadcaster
         <div id="broadcast-dash">
@@ -203,16 +209,20 @@ class Broadcast extends Component {
 }
 
 const mapState = state => ({
-  broadcast: fakeBroadcast
+  broadcast: state.broadcast
 });
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     sendRecordingToDB (broadcastData, broadcast) {
       console.log(`sendRecordingToDB func ran`);
       console.log(`...broadcastData: `, ...broadcastData);
       console.log(`broadcast: `, broadcast);
       dispatch(updateBroadcastThunk(broadcastData, broadcast));
+      dispatch(addLiveBroadcast(broadcastData));
+    },
+    loadBroadcast (){
+      dispatch(fetchBroadcast(ownProps.match.params.broadcastId));
     }
   };
 };

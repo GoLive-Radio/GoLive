@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Card} from 'semantic-ui-react';
+import { fetchStation } from '../store';
 
-export default class Station extends Component {
+class Station extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             // Local State...
         }
         // Bind methods...
     }
 
+    componentDidCatch(){
+        this.props.loadStation();
+    }
+
     render() {
-        return (
+        const { station } = this.props;
+        console.log('props station ', station);
+        return station ? (
             <div className="height100">
                 <div className="white-font auto flex station-card">
-                    <span className="flex auto center-text">Station Name</span>
+                    <span className="flex auto center-text">{station.name}</span>
                     <span className="flex auto">Station Description</span>
                     <span className="flex auto">Station logoUrl</span>
                     <span className="flex auto">Station Tags</span>
@@ -26,18 +33,23 @@ export default class Station extends Component {
         {/*<Link to="/stations/:stationId/broadcasts/new-broadcasts">Create Broadcast</Link>*/} 
                 </div>
             </div>
-        )
+        ) : null;
     }
 }
 
 
 
 /* CONTAINER */
-// function mapState(state) {
+const mapState = state => ({
+    station: state.station
+});
 
-// }
+const mapDispatch = (dispatch, ownProps) => {
+    return {
+        loadStation: () => {
+            dispatch(fetchStation(ownProps.match.params.stationId));
+        }
+    };
+};
 
-// function mapDispatch(state) {
-
-// }
-// export default connect(mapState, mapDispatch)(Station)
+export default connect(mapState, mapDispatch)(Station);

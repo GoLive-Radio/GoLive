@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { NEW_STATION, UPDATE_STATION, createNewStation, updateStation} from './sharedStation';
 
 /**
  * ACTION TYPES
@@ -26,15 +27,6 @@ export const fetchStations = () =>
     })
     .catch(err => console.log(err));
 
-//get all stations by userId
-export const fetchStationsByUserId = (id) =>
-  dispatch =>
-    axios.get(`/api/stations?userId=${id}`)
-    .then(stations => {
-      dispatch(getStations(stations));
-    })
-    .catch(err => console.log(err));
-
 /**
  * INITIAL STATE
  */
@@ -47,6 +39,16 @@ export default function(state = stations, action) {
   switch (action.type) {
     case GET_STATIONS:
       return action.stations;
+    case NEW_STATION:
+      return [...state, action.station];
+    case UPDATE_STATION:
+      return state.map(station => {
+        if (station.id === action.station.id) {
+          return action.station;
+        } else {
+          return station;
+        }
+      });
     default: return state;
   }
 }
