@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import { NEW_STATION, UPDATE_STATION, createNewStation, updateStation } from './sharedStation';
 
 /**
  * ACTION TYPES
@@ -34,7 +35,7 @@ export const addStationThunk = (station) =>
     axios.post('/api/stations', station)
     .then(res => res.data)
     .then(newStation => {
-      dispatch(getStation(newStation));
+      dispatch(createNewStation(newStation));
       history.push(`/stations/${newStation.id}`);
     })
     .catch(console.error);
@@ -45,7 +46,7 @@ export const updateStationThunk = (dataToUpdate, station) =>
     axios.put(`/api/stations/${station.id}`, dataToUpdate)
     .then(res => res.data)
     .then(updatedStation => {
-      dispatch(getStation(updatedStation));
+      dispatch(updateStation(updatedStation));
       history.push(`/stations/${updatedStation.id}`);
     })
     .catch(console.error);
@@ -61,6 +62,8 @@ const station = {};
 export default function(state = station, action) {
   switch (action.type) {
     case GET_STATION:
+    case NEW_STATION:
+    case UPDATE_STATION:
       return action.station;
     default: return state;
   }

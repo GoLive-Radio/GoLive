@@ -1,12 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout, fetchStationsByUserId} from '../store'
-import { Menu, Segment, Icon, Dropdown } from 'semantic-ui-react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {logout} from '../store';
+import { Menu, Segment, Dropdown } from 'semantic-ui-react';
 
 
-const Navbar = ({ handleClick, isLoggedIn, user, handleMyStations }) => {
+const Navbar = ({ handleClick, isLoggedIn}) => {
   return (
   <div>
   <Segment inverted>
@@ -15,7 +15,7 @@ const Navbar = ({ handleClick, isLoggedIn, user, handleMyStations }) => {
         {/* The navbar will show these links after you log in */}
         <Menu inverted>
           <Menu.Item as={Link} to='/' name="Home" />
-          <Menu.Item as={Link} to='/myStations' name="My Stations" onClick={e => handleMyStations(user.id)} />
+          <Menu.Item as={Link} to='/myStations' name="My Stations" />
           <Menu.Item as={Link} to='/station/new-station' name="Create a New Station" />
           <Menu.Item name="Logout" onClick={handleClick} />
           <Dropdown text="Settings" className='link item'>
@@ -38,30 +38,26 @@ const Navbar = ({ handleClick, isLoggedIn, user, handleMyStations }) => {
       )}
     </Segment>
   </div>
-)
-}
+);
+};
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id,
-    user: state.user
-  }
-}
+    isLoggedIn: !!state.user.id
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout());
-    },
-    handleMyStations(id) {
-      dispatch(fetchStationsByUserId(id));
     }
-  }
-}
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);
 
 /**
  * PROP TYPES
@@ -69,4 +65,4 @@ export default connect(mapState, mapDispatch)(Navbar)
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
-}
+};

@@ -1,74 +1,72 @@
 import React, { Fragment, Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import { Card, Icon, Image } from 'semantic-ui-react';
-import { fetchStationsByUserId } from '../store';
+import { Card, Image } from 'semantic-ui-react';
+import {fetchStationsByUserId} from '../store';
 
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
-    stations: state.stations,
-    user: state.user
+    user: state.user,
+    stationsByUser: state.stationsByUser
   };
 };
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
-    loadMyStations: () => {
-      console.log('dispatch props ', ownProps);
-      // dispatch(fetchStationsByUserId())
+    handleStationsByUser(id) {
+      dispatch(fetchStationsByUserId(id));
     }
   };
 };
 
-class MyStations extends Component {
-
-  componentDidMount(){
-    this.props.loadMyStations(this.props.user);
+export class MyStations extends Component {
+  componentDidMount() {
+    const userId = this.props.user.id;
+    this.props.handleStationsByUser(userId);
   }
 
-  render(){
-    const { stations } = this.props;
-
-    return stations ? (
+  render() {
+    const stations = this.props.stationsByUser;
+    return (
       <Fragment>
         <h1>My Stations</h1>
-        <div className="stations">
-        {stations && stations.map(station => {
-          return (
-            <Card key={station.id} id="my_station">
-            <Image src={station.logoUrl} />
-            <Card.Content>
-            <Card.Header>
-            {station.name}
-            </Card.Header>
-            </Card.Content>
-            <Card.Meta>
-            {station.tags ? station.tags.map(tag => {
-              return (
-                <span key={tag} className="date">
+        <div className='stations'>
+          {stations && stations.map(station => {
+            return (
+              <Card key={station.id} id='my_station'>
+                <Image src={station.logoUrl} />
+                <Card.Content>
+                <Card.Header>
+                  {station.name}
+                </Card.Header>
+                </Card.Content>
+                <Card.Meta>
+                {station.tags ? station.tags.map(tag => {
+                  return (
+                    <span key={tag} className='date'>
                       tags: {tag}
                       </span>
-                    );
-                  }) : null}
-                  </Card.Meta>
-                  <Card.Description>
+                  );
+                 }) : null}
+                </Card.Meta>
+                <Card.Description>
                   {station.description}
-                  </Card.Description>
-                  <Card.Content extra>
+                </Card.Description>
+                <Card.Content extra>
                   <Link to={`/stations/${station.id}`}>
-                  <span>View station page</span>
+                    <span>View station page</span>
                   </Link>
-                  </Card.Content>
-                  </Card>
-                );
-              })}
-              </div>
+                </Card.Content>
+              </Card>
+            );
+          })}
+        </div>
       </Fragment>
-    ) : null ;
+    );
   }
 }
 
-export default connect(mapState, mapDispatch)(MyStations);
+export default connect(mapState, mapDispatchToProps)(MyStations);
