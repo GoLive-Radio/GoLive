@@ -59,7 +59,7 @@ export default function(state = initialState, action) {
     case UPDATE_BROADCAST:
       return action.broadcast;
     case DELETE_BROADCAST:
-      return initialState;
+      return state;
     default:
       return state;
   }

@@ -10,7 +10,7 @@ import {fetchStationsByUserId} from '../store';
 const mapState = state => {
   return {
     user: state.user,
-    stations: state.stations
+    stationsByUser: state.stationsByUser
   };
 };
 
@@ -29,7 +29,7 @@ export class MyStations extends Component {
   }
 
   render() {
-    const stations = this.props.stations;
+    const stations = this.props.stationsByUser;
     return (
       <Fragment>
         <h1>My Stations</h1>
