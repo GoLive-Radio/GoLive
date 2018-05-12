@@ -51,7 +51,7 @@ class NewBroadcast extends Component {
     const { handleChange, handleSubmit } = this;
     return (
       <div className="fill-page">
-        <Form className="vertical-form" onSubmit={handleSubmit}>
+        <Form className="vertical-form new-broadcast" onSubmit={handleSubmit}>
           <Form.Field width={8} error={!title && titleDirty} required>
             <label>Title</label>
             <input

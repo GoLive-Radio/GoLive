@@ -32,6 +32,7 @@ export const fetchStationsByUserId = (id) =>
     axios.get(`/api/stations?userId=${id}`)
     .then(res => res.data)
     .then(stations => {
+      console.log('return stations ', stations);
       dispatch(getStations(stations));
     })
     .catch(err => console.log(err));
