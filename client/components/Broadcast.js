@@ -109,21 +109,10 @@ class Broadcast extends Component {
           chunks.push(e.data);
         };
         mediaRecorder.onstop = e => {
-          console.log(`chunks: `, chunks);
           let blob = new Blob(chunks, { type: 'audio/ogg' });
           console.log(`blob`, blob);
-          let objectURL = URL.createObjectURL(blob);
-          console.log(`objectURL: `, objectURL);
           let formData = new FormData();
           formData.append('blob', blob);
-          //formData.append('isArchived', true);
-          //formData.append('isLive', false);
-          const updatedData = {
-            //isArchived: true,
-            //isLive: false,
-            blob
-          };
-          console.log(`...formData: `, ...formData);
           this.props.sendRecordingToDB(formData, { id: this.props.match.params.broadcastId });
         };
         this.setState({
@@ -148,7 +137,6 @@ class Broadcast extends Component {
 
   render() {
 
-    console.log('broadcast props ', this.props);
     //filter data for propegation in list components
     const broadcasters = fakeUsers.filter(user => {
       if (user.isBroadcasting) return user;
@@ -215,11 +203,8 @@ const mapState = state => ({
 const mapDispatch = (dispatch, ownProps) => {
   return {
     sendRecordingToDB (broadcastData, broadcast) {
-      console.log(`sendRecordingToDB func ran`);
-      console.log(`...broadcastData: `, ...broadcastData);
-      console.log(`broadcast: `, broadcast);
       dispatch(updateBroadcastThunk(broadcastData, broadcast));
-      dispatch(addLiveBroadcast(broadcastData));
+      //dispatch(addLiveBroadcast(broadcastData));
     },
     loadBroadcast (){
       dispatch(fetchBroadcast(ownProps.match.params.broadcastId));

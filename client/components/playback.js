@@ -5,20 +5,17 @@ export default class Player extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      audioSrc: null
+      audioSrc: ''
     };
   }
 
   componentDidMount() {
-    console.log(`this.props.match: `, this.props.match);
-    axios
+    return axios
       .get(`/api/broadcasts/${this.props.match.params.broadcastId}/playback`)
       .then(res => res.data)
       .then(audio => {
         const blob = new Blob([new Uint8Array(audio.data)], { type: audio.type});
         const audioURL = window.URL.createObjectURL(blob);
-        console.log(`audio: `, audio);
-        console.log(`blob: `, blob);
         this.setState({
           audioSrc: audioURL
         });
@@ -26,7 +23,6 @@ export default class Player extends Component {
   }
 
   render() {
-    console.log(`this: `, this);
     return (
       <div>
         <p>Test</p>
