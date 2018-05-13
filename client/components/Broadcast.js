@@ -7,6 +7,7 @@ import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
 import { updateBroadcastThunk, addLiveBroadcast, fetchBroadcast } from '../store/broadcast';
+import axios from 'axios';
 
 const fakeUsers = [
   {
@@ -83,6 +84,8 @@ class Broadcast extends Component {
       this.connection = new window.RTCMultiConnection();
       this.connection.socketURL =
         'https://rtcmulticonnection.herokuapp.com:443/';
+
+      // is this setState necessary? it's happening again on ln 129
       this.setState({
         isLive: true
       });
@@ -92,6 +95,10 @@ class Broadcast extends Component {
         video: false,
         oneway: true
       };
+      
+      // close out all connections when host leaves
+      this.connection.autoCloseEntireSession = true;
+
 
       //make sure I also don't see the video
       this.connection.mediaConstraints.video = false;
@@ -99,7 +106,7 @@ class Broadcast extends Component {
 
       // append it to the body
       this.connection.onstream = event => {
-        console.log(`onstream func ran`);
+        console.log(`onstream func ran`, event.stream);
         let mediaRecorder = new MediaRecorder(event.stream, {
           mimeType: 'audio/webm'
         });
@@ -123,8 +130,14 @@ class Broadcast extends Component {
         });
         mediaRecorder.start();
       };
+
+      // update db with broadcast status
+      axios.put(`/api/broadcasts/${this.props.match.params.broadcastId}/is-live`, {isLive: true});
       this.connection.openOrJoin(id);
+      
     } else {
+      // this code will execute when broadcast is being stopped.
+      axios.put(`/api/broadcasts/${this.props.match.params.broadcastId}/is-live`, {isLive: false});
       this.setState({
         isLive: false
       });
@@ -177,7 +190,7 @@ class Broadcast extends Component {
             {myID ? (
               <Image
                 size="small"
-                onClick={this.startBroadcast}
+                onClick={() => this.startBroadcast(myID)}
                 src={
                   this.state.isLive
                     ? '/images/record_on.png'

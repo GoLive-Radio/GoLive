@@ -107,3 +107,17 @@ router.get('/:id/playback', (req, res, next) => {
     })
     .catch(next);
 });
+router.put('/:id/is-live', (req, res, next) => {
+  console.log(`req.body: `, req.body);
+  const id = req.params.id;
+  Broadcast.findById(id)
+    .then(broadcast => {
+      return broadcast.update({
+        isLive: true
+      });
+    })
+    .then(updatedBroadcast => {
+      res.json(updatedBroadcast);
+    })
+    .catch(next);
+});
