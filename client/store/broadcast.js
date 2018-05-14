@@ -19,7 +19,6 @@ export const fetchBroadcast = id => dispatch =>
     .get(`/api/broadcasts/${id}`)
     .then(res => res.data)
     .then(broadcast => {
-      console.log('broadcast store', broadcast)
       dispatch(getBroadcast(broadcast));
     })
     .catch(console.error);
@@ -36,7 +35,6 @@ export const addBroadcastThunk = broadcast => dispatch =>
 
 //update broadcast
 export const updateBroadcastThunk = (dataToUpdate, broadcast) => dispatch => {
-    console.log(`...dataToUpdate updatebroadcast thunk: `, ...dataToUpdate);
   return axios
     .put(`/api/broadcasts/${broadcast.id}`, dataToUpdate, {
       headers: {

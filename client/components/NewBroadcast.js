@@ -4,7 +4,7 @@ import { Form, Button, Message } from 'semantic-ui-react';
 import { addBroadcastThunk } from '../store';
 
 const initialState = {
-  title: '',
+  name: '',
   description: '',
   tags: '',
   titleDirty: false,
@@ -13,17 +13,16 @@ const initialState = {
 };
 
 const mapState = state => {
-  console.log('mapstate ', state)
   return {
-    user: state.user
-  }
+    user: state.user,
+    station: state.station
+  };
 };
 
-const mapDispatch = (dispatch, ownProps) => {
-  console.log('newBroadcastProps ', ownProps)
+const mapDispatch = (dispatch) => {
   return {
-    addBroadcast: (title, description, tags, userId) => {
-      dispatch(addBroadcastThunk({name: title, description, tags, userId}));
+    addBroadcast: (broadcastData) => {
+      dispatch(addBroadcastThunk(broadcastData));
     }
   };
 };
@@ -46,14 +45,23 @@ class NewBroadcast extends Component {
   handleSubmit(evt){
     evt.preventDefault();
     const userId = this.props.user.id;
-    const { title, description, tags } = this.state;
-    const newTags = tags.replace(/\s/g, '').split(',');
-    this.props.addBroadcast(title, description, newTags, userId);
+    const { name, description} = this.state;
+    let {tags} = this.state;
+    tags = tags.replace(/\s/g, '').split(',');
+    const stationId = this.props.station.id;
+    const broadcastData = {
+      name,
+      description,
+      tags,
+      stationId,
+      userId
+    };
+    this.props.addBroadcast(broadcastData);
     this.setState(initialState);
   }
 
   render(){
-    const { title, description,
+    const { name, description,
             tags, titleDirty,
             descriptionDirty,
             tagsDirty } = this.state;
@@ -61,16 +69,16 @@ class NewBroadcast extends Component {
     return (
       <div className="fill-page">
         <Form className="vertical-form new-broadcast" onSubmit={handleSubmit}>
-          <Form.Field width={8} error={!title && titleDirty} required>
+          <Form.Field width={8} error={!name && titleDirty} required>
             <label>Title</label>
             <input
               name="title"
               placeholder="Broadcast title"
-              value={title}
+              value={name}
               onChange={handleChange} />
           </Form.Field>
               <Message
-                hidden={!!title || !titleDirty}
+                hidden={!!name || !titleDirty}
                 error
                 header="Title Required"
                 content="How else will the people find you???" />
@@ -95,7 +103,7 @@ class NewBroadcast extends Component {
               value={tags}
               onChange={handleChange} />
           </Form.Field>
-          <Button disabled={!title || !description || !tags } color="blue" type="submit">Onward!</Button>
+          <Button disabled={!name || !description || !tags } color="blue" type="submit">Onward!</Button>
         </Form>
       </div>
     );
