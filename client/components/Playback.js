@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Header, Image, Modal, Fragment, Card } from 'semantic-ui-react';
-import { fetchBroadcast } from '../store';
+import { Image, Card } from 'semantic-ui-react';
 import RTCMultiConnection from 'rtcmulticonnection-v3';
 import MediaElement from './MediaElement';
 
@@ -82,7 +81,7 @@ class Player extends Component {
           </Card.Description>
           {
             broadcast &&
-              <MediaElement event={event} audioSrc={audioSrc} />
+              <MediaElement type="listener" event={event} audioSrc={audioSrc} />
           }
         </Card.Content>
       </Card>
@@ -95,13 +94,5 @@ const mapState = state => {
     broadcast: state.broadcast
   };
 };
-
-const mapDispatch = (dispatch, ownProps) => {
-  return {
-    loadBroadcast (){
-      dispatch(fetchBroadcast(ownProps.match.params.broadcastId));
-    }
-  }
-}
 
 export default connect(mapState)(Player);
