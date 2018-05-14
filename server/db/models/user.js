@@ -6,6 +6,13 @@ const db = require('../db');
 const defaultProfileImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emoji_Grinning_Face_Smiling_Eyes.svg/128px-Emoji_Grinning_Face_Smiling_Eyes.svg.png';
 
 const User = db.define('user', {
+  userName: {
+    type: Sequelize.STRING,
+    // uncomment next lines after changing front end Forms to accept userName upon sigup/ login with google, 
+    // or create getter/setter to just slice off the characters before the @ symbol in the email upon signup
+    // unique: true,
+    // isEmpty: false
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
