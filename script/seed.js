@@ -55,31 +55,31 @@ async function seed () {
     Station.create({name: 'How to build a "Hackintosh for under $100"', logoUrl: 'https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Tech Hacks'] , description: 'Test Description'}),
     Station.create({name: 'Chrome Extensions to increase build proficiency', logoUrl: 'https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Dev Tips'] , description: 'Test Description'}),
     Station.create({name: 'Day in the life of a developer', logoUrl: 'https://images.pexels.com/photos/7375/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'] , description: 'Test Description'}),
-    Station.create({name: 'Joe Rogan Experiance', logoUrl: 'https://www.google.com/imgres?imgurl=http%3A%2F%2Fstatic1.squarespace.com%2Fstatic%2F57bb65fe2e69cf170f6ef1f0%2Ft%2F57d178c03e00be8ad66911ce%2F1485317938342%2F&imgrefurl=http%3A%2F%2Fwww.jrepodcaststuff.com%2F&docid=FWlftw0oYugkHM&tbnid=wI34sKpGk2MAGM%3A&vet=10ahUKEwjrq_u0joPbAhVls1kKHTEUDo8QMwhEKAMwAw..i&w=429&h=435&bih=826&biw=1440&q=joe%20rogan%20experiance&ved=0ahUKEwjrq_u0joPbAhVls1kKHTEUDo8QMwhEKAMwAw&iact=mrc&uact=8', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
+    Station.create({name: 'Experiance', logoUrl: 'https://images.pexels.com/photos/534263/pexels-photo-534263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
     Station.create({name: 'By the Book', logoUrl: 'https://itunes.apple.com/us/podcast/by-the-book/id1217948628?mt=2', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks. The results are often hilarious — especially when they enlist their beleaguered partners to join in — and occasionally life-changing.'}),
     Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
     Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'})
   ])
 
   const broadcasts = await Promise.all([
-    Broadcast.create({name: 'This is a test', description: 'Test Broadcast', tags: ['Test Cast'], stationId: 1}),
-    Broadcast.create({name: "This is fake", description: "News", tags: ['Tech'], stationId: 2}),
-    Broadcast.create({name: "Our first Broadcast", description: "Trial Run", tags: ['Newbies'], stationId: 3}),
-    Broadcast.create({name: "This week in Silicon Valley", description: "Walmart goes head-to-head with amazon on big deals", tags: ['Clickbait'], stationId: 4}),
-    Broadcast.create({name: "This Week in Nature Valley", description: "Still making Ranch Dressing", tags: ['Ranch'], stationId: 5}),
-    Broadcast.create({name: "Let's talk, Google Assistant", description: "Touching on the recently unveiled 'Google Assistant'", tags: ['AI'], stationId: 6}),
-    Broadcast.create({name: "Css Grid Vs FlexBox", description: "Which to learn first", tags: ['Tech Talch'], stationId: 7}),
-    Broadcast.create({name: "Linux Vs Mac Development", description: "Which is the better enviornment", tags: ['consumer'], stationId: 8}),
-    Broadcast.create({name: "Tabs Or Spaces", description: "Little things in development, that end up being a BIG deal", tags: ['Dev Tips'], stationId: 9}),
-    Broadcast.create({name: "Nvidia GeForece 1180", description: "Will it be worth the wait, should I just spend thirteen grand on a max spec iMac pro??", tags: ['Nerd Stuff'], stationId: 5}),
-    Broadcast.create({name: 'Game of Thrones', description: 'A recap/analysis of the popular show.', tags: ['Analysis'], stationId: 5,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: '20 Questions', description: '20 Questions to ask someone to get a better understanding of who they are and how they think.', tags: ['Mind Games'], stationId: 4,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: '60 Seeconds', description: 'Second By second recap of the real life news situations, Journalism at it\'s best', tags: ['Lifestyle'], stationId: 4,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: 'The Illusion', description: 'Step by step \'talk-throughs\' of the oldest magic tricks in the book. With the addition of some of the more popular tricks done by famous magicians.', tags: ['Magic'], stationId: 12,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: 'Book club', description: 'Tune in to hear recaps of the book of the week. By two notorious book worms, and intermittent special guests.', tags: ['Reading'], stationId: 3,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: 'Food Is Rad.io', description: 'Rotating Host\'s talking about the best unknown spots in their boroughs.', tags: ['Food', 'Lifestyle'], stationId: 12,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: 'This week in science', description: 'All the breakthroughs you heard and missed, recapped in a two hour cast.', tags: ['Science', 'Earth Science', 'Learning'], stationId: 4,audioPath: null, isLive: false, isArchived: false}),
-    Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7,audioPath: null, isLive: false, isArchived: false})
+    Broadcast.create({name: 'This is a test', description: 'Test Broadcast', tags: ['Test Cast'], stationId: 1, userId: 1}),
+    Broadcast.create({name: "This is fake", description: "News", tags: ['Tech'], stationId: 2, userId: 2}),
+    Broadcast.create({name: "Our first Broadcast", description: "Trial Run", tags: ['Newbies'], stationId: 3, userId: 3}),
+    Broadcast.create({name: "This week in Silicon Valley", description: "Walmart goes head-to-head with amazon on big deals", tags: ['Clickbait'], stationId: 4, userId: 4}),
+    Broadcast.create({name: "This Week in Nature Valley", description: "Still making Ranch Dressing", tags: ['Ranch'], stationId: 5, userId: 5}),
+    Broadcast.create({name: "Let's talk, Google Assistant", description: "Touching on the recently unveiled 'Google Assistant'", tags: ['AI'], stationId: 6, userId: 6}),
+    Broadcast.create({name: "Css Grid Vs FlexBox", description: "Which to learn first", tags: ['Tech Talch'], stationId: 7, userId: 7}),
+    Broadcast.create({name: "Linux Vs Mac Development", description: "Which is the better enviornment", tags: ['consumer'], stationId: 8, userId: 8}),
+    Broadcast.create({name: "Tabs Or Spaces", description: "Little things in development, that end up being a BIG deal", tags: ['Dev Tips'], stationId: 9, userId: 9}),
+    Broadcast.create({name: "Nvidia GeForece 1180", description: "Will it be worth the wait, should I just spend thirteen grand on a max spec iMac pro??", tags: ['Nerd Stuff'], stationId: 5, userId: 3}),
+    Broadcast.create({name: 'Game of Thrones', description: 'A recap/analysis of the popular show.', tags: ['Analysis'], stationId: 5,audioPath: null, isLive: false, isArchived: false, userId: 2}),
+    Broadcast.create({name: '20 Questions', description: '20 Questions to ask someone to get a better understanding of who they are and how they think.', tags: ['Mind Games'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 1}),
+    Broadcast.create({name: '60 Seeconds', description: 'Second By second recap of the real life news situations, Journalism at it\'s best', tags: ['Lifestyle'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 4}),
+    Broadcast.create({name: 'The Illusion', description: 'Step by step \'talk-throughs\' of the oldest magic tricks in the book. With the addition of some of the more popular tricks done by famous magicians.', tags: ['Magic'], stationId: 12,audioPath: null, isLive: false, isArchived: false, userId: 5}),
+    Broadcast.create({name: 'Book club', description: 'Tune in to hear recaps of the book of the week. By two notorious book worms, and intermittent special guests.', tags: ['Reading'], stationId: 3,audioPath: null, isLive: false, isArchived: false, userId: 6}),
+    Broadcast.create({name: 'Food Is Rad.io', description: 'Rotating Host\'s talking about the best unknown spots in their boroughs.', tags: ['Food', 'Lifestyle'], stationId: 12,audioPath: null, isLive: false, isArchived: false, userId: 10}),
+    Broadcast.create({name: 'This week in science', description: 'All the breakthroughs you heard and missed, recapped in a two hour cast.', tags: ['Science', 'Earth Science', 'Learning'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 11}),
+    Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7,audioPath: null, isLive: false, isArchived: false, userId: 12})
   ])
 
   const userStations = await Promise.all([
