@@ -296,3 +296,15 @@ h3 .center-text {
 .padding-top {
   padding-top: 2vh;
 }
+
+.station-broadcasts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#station-broadcast {
+  margin: 5px;
+  width: 350px;
+}

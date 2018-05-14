@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MediaElement = props => {
-  return props.event.stream ?  (
+  return props.event ?  (
     <audio
       autoPlay={true}
       playsInline={true}
@@ -14,7 +14,19 @@ const MediaElement = props => {
       }}
     />
   )
-  : null;
+  : (
+  <audio
+    autoPlay={true}
+    playsInline={true}
+    controls={true}
+    muted={true}
+    ref={(element) => {
+      if (element){
+        element.src = props.audioSrc;
+      }
+    }}
+  />
+  );
 };
 
 export default MediaElement;

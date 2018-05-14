@@ -4,7 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {Login, Signup,
         UserHome, Broadcast,
-        Landing, Broadcaster, Player,
+        Landing, Broadcaster, Playback,
         Listener, MyAccount, MyStations,
         NewBroadcast, SingleStation,
         NewStation} from './components';
@@ -29,7 +29,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/broadcasts/broadcaster" component={Broadcaster} />
         <Route path="/broadcasts/new-broadcast" component={NewBroadcast} />
-        <Route exact path="/broadcasts/:broadcastId/playback" render={({ match }) => <Player match={match} />} />
+        {/* <Route exact path="/broadcasts/:broadcastId/playback" render={({ match }) => <Playback match={match} />} /> */}
         <Route
           exact path="/broadcasts/:broadcastId"
           render={({ match }) => <Broadcast match={match} />}
