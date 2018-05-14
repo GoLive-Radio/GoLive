@@ -25,7 +25,7 @@ const Broadcast = db.define('broadcast', {
   },
   tags: {
     type: Sequelize.ARRAY(Sequelize.STRING)
-  }
+  },
 });
 
 module.exports = Broadcast;
