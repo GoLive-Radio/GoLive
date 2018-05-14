@@ -46,8 +46,19 @@ router.get('/:id', (req, res, next) => {
 
 // post new station
 router.post('/', (req, res, next) => {
+  const userId = req.body.userId;
+  delete req.body.userId;
   Station.create(req.body)
-  .then(station => res.json(station))
+  .then(station => {
+    return User.findById(userId)
+      .then(user => {
+        return station.addUser(user);
+      })
+      .then(() => {
+        res.json(station);
+      });
+      // .catch?
+  })
   .catch(next);
 });
 

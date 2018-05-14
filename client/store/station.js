@@ -29,9 +29,9 @@ dispatch =>
     .catch(err => console.log(err));
 
 // post new station
-export const addStationThunk = (station) =>
+export const addStationThunk = (stationData) =>
   dispatch =>
-    axios.post('/api/stations', station)
+    axios.post('/api/stations', stationData)
     .then(res => res.data)
     .then(newStation => {
       dispatch(createNewStation(newStation));
