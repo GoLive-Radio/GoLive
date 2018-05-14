@@ -29,15 +29,7 @@ router.get('/', (req, res, next) => {
 // exact path '/stations/:id
 router.get('/:id', (req, res, next) => {
   const id = +req.params.id;
-  Station.findOne({
-    where: {
-      id: id
-    },
-    include: [{
-      model: Broadcast,
-      where: {stationId: id}
-    }]
-  })
+  Station.findById(id)
   .then(station => {
     res.json(station);
   })
