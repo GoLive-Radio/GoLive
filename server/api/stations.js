@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
 // exact path '/stations/:id
 router.get('/:id', (req, res, next) => {
   const id = +req.params.id;
-  Station.findById(id)
+  Station.findById(id, {include: [{model: Broadcast}]})
   .then(station => {
     res.json(station);
   })

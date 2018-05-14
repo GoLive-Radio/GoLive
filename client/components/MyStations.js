@@ -33,10 +33,10 @@ export class MyStations extends Component {
     return (
       <Fragment>
         <h1>My Stations</h1>
-        <div className='stations'>
+        <div className="stations">
           {stations && stations.map(station => {
             return (
-              <Card key={station.id} id='my_station'>
+              <Card key={station.id} id="my_station">
                 <Image src={station.logoUrl} />
                 <Card.Content>
                 <Card.Header>
@@ -46,7 +46,7 @@ export class MyStations extends Component {
                 <Card.Meta>
                 {station.tags ? station.tags.map(tag => {
                   return (
-                    <span key={tag} className='date'>
+                    <span key={tag} className="date">
                       tags: {tag}
                       </span>
                   );
