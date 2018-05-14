@@ -12,14 +12,6 @@ const initialState = {
   tagsDirty: false,
 };
 
-const mapDispatch = dispatch => {
-  return {
-    addStation: (name, description, tags) => {
-      dispatch(addStationThunk({name, description, tags}));
-    }
-  };
-};
-
 class NewStation extends Component {
   constructor(props){
     super(props);
@@ -37,9 +29,17 @@ class NewStation extends Component {
 
   handleSubmit(evt){
     evt.preventDefault();
-    const { name, description, tags } = this.state;
-    const newTags = tags.replace(/\s/g, '').split(',');
-    this.props.addStation(name, description, newTags);
+    const { name, description } = this.state;
+    let { tags } = this.state;
+    tags = tags.replace(/\s/g, '').split(',');
+    const userId  = this.props.user.id;
+    const stationData = {
+      name,
+      description,
+      tags,
+      userId
+    };
+    this.props.addStation(stationData);
     this.setState(initialState);
   }
 
@@ -94,4 +94,18 @@ class NewStation extends Component {
 
 }
 
-export default connect(null, mapDispatch)(NewStation);
+const mapState = state => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    addStation: (stationData) => {
+      dispatch(addStationThunk(stationData));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(NewStation);
