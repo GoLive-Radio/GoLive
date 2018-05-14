@@ -22,20 +22,43 @@ async function seed () {
   // executed until that promise resolves!
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'cody@email.com', password: '123', userName: 'Cody'}),
+    User.create({email: 'murphy@email.com', password: '123', userName: 'Murphy'}),
+    User.create({email: 'fake@emailcom', password: '123', userName: 'Terry'}),
+    User.create({email: 'billMurphy@email.com', password: '234', userName: 'Bill'}),
+    User.create({email: 'thomas@email.com', password: '234', userName: 'Thomas'}),
+    User.create({email: 'delilah@email.com', password: '234', userName: 'Delilah'}),
+    User.create({email: 'jonathon@email.com', password: '234', userName: 'John'}),
+    User.create({email: 'william@email.com', password: '234', userName: 'William'}),
+    User.create({email: 'richard@email.com', password: '234', userName: 'Richard'}),
+    User.create({email: 'kelly@email.com', password: '234', userName: 'Kelly'}),
+    User.create({email: 'timothy@email.com', password: '234', userName: 'Timothy'}),
+    User.create({email: 'david@email.com', password: '234', userName: 'David'}),
+    User.create({email: 'amy@email.com', password: '234', userName: 'Amy'}),
+    User.create({email: 'naomi@email.com', password: '234', userName: 'Naomi'}),
+    User.create({email: 'ivan@email.com', password: '234', userName: 'Ivan'}),
+    User.create({email: 'lois@email.com', password: '234', userName: 'Lois'}),
+    User.create({email: 'alison@email.com', password: '234', userName: 'Alison'}),
+    User.create({email: 'youngG@email.com', password: '234', userName: 'Young'}),
+    User.create({email: 'brian@email.com', password: '234', userName: 'Brian'}),
+    User.create({email: 'karen@email.com', password: '234', userName: 'Karen'}),
+    User.create({email: 'james@email.com', password: '234', userName: 'James'})
   ])
 
   const stations = await Promise.all([
-    Station.create({name: 'Web Design 418', logoUrl: 'http://fakeUrl.com', description: 'Test Description', tags: ['Tech'] }),
-    Station.create({name: 'Tech\'d Out', logoUrl: 'http://fakeUrl.com', tags: ['Tech'], description: 'Test Description' }),
-    Station.create({name: 'The Script Crypt', logoUrl: 'http://fakeUrl.com', tags: ['Nerd Stuff'] , description: 'Test Description'}),
-    Station.create({name: 'Life On Earth', logoUrl: 'http://fakeUrl.com', tags: ['random'] , description: 'Test Description'}),
-    Station.create({name: 'New Stock Trends', logoUrl: 'http://fakeUrl.com', tags: ['consumer'] , description: 'Test Description'}),
-    Station.create({name: 'How to re-use literally anything', logoUrl: 'http://fakeUrl.com', tags: ['Life Hacks'] , description: 'Test Description'}),
-    Station.create({name: 'How to build a "Hackintosh for under $100"', logoUrl: 'http://fakeUrl.com', tags: ['Tech Hacks'] , description: 'Test Description'}),
-    Station.create({name: 'Chrome Extensions to increase build proficiency', logoUrl: 'http://fakeUrl.com', tags: ['Dev Tips'] , description: 'Test Description'}),
-    Station.create({name: 'Day in the life of a developer', logoUrl: 'http://fakeUrl.com', tags: ['Lifestyle'] , description: 'Test Description'})
+    Station.create({name: 'Web Design 418', logoUrl: 'https://gotechtown.org/wp-content/uploads/2018/04/Web-Design-Image-1.jpg', description: 'Test Description', tags: ['Tech'] }),
+    Station.create({name: 'Tech\'d Out', logoUrl: 'https://s3-us-west-2.amazonaws.com/anchor-generated-image-bank/production/podcast_uploaded_nologo/433449/433449-1524787291548-e60fdacc9a1c2.jpg', tags: ['Tech'], description: 'Test Description' }),
+    Station.create({name: 'The Script Crypt', logoUrl: 'https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', tags: ['Nerd Stuff'] , description: 'Test Description'}),
+    Station.create({name: 'Life On Earth', logoUrl: 'https://images.pexels.com/photos/695299/pexels-photo-695299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', tags: ['random'] , description: 'Test Description'}),
+    Station.create({name: 'New Stock Trends', logoUrl: 'https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['consumer'] , description: 'Test Description'}),
+    Station.create({name: 'How to re-use literally anything', logoUrl: 'https://images.pexels.com/photos/1055712/pexels-photo-1055712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Life Hacks'] , description: 'Test Description'}),
+    Station.create({name: 'How to build a "Hackintosh for under $100"', logoUrl: 'https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Tech Hacks'] , description: 'Test Description'}),
+    Station.create({name: 'Chrome Extensions to increase build proficiency', logoUrl: 'https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Dev Tips'] , description: 'Test Description'}),
+    Station.create({name: 'Day in the life of a developer', logoUrl: 'https://images.pexels.com/photos/7375/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'] , description: 'Test Description'}),
+    Station.create({name: 'Joe Rogan Experiance', logoUrl: 'https://www.google.com/imgres?imgurl=http%3A%2F%2Fstatic1.squarespace.com%2Fstatic%2F57bb65fe2e69cf170f6ef1f0%2Ft%2F57d178c03e00be8ad66911ce%2F1485317938342%2F&imgrefurl=http%3A%2F%2Fwww.jrepodcaststuff.com%2F&docid=FWlftw0oYugkHM&tbnid=wI34sKpGk2MAGM%3A&vet=10ahUKEwjrq_u0joPbAhVls1kKHTEUDo8QMwhEKAMwAw..i&w=429&h=435&bih=826&biw=1440&q=joe%20rogan%20experiance&ved=0ahUKEwjrq_u0joPbAhVls1kKHTEUDo8QMwhEKAMwAw&iact=mrc&uact=8', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
+    Station.create({name: 'By the Book', logoUrl: 'https://itunes.apple.com/us/podcast/by-the-book/id1217948628?mt=2', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks. The results are often hilarious — especially when they enlist their beleaguered partners to join in — and occasionally life-changing.'}),
+    Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
+    Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'})
   ])
 
   const broadcasts = await Promise.all([
@@ -48,12 +71,50 @@ async function seed () {
     Broadcast.create({name: "Css Grid Vs FlexBox", description: "Which to learn first", tags: ['Tech Talch'], stationId: 7}),
     Broadcast.create({name: "Linux Vs Mac Development", description: "Which is the better enviornment", tags: ['consumer'], stationId: 8}),
     Broadcast.create({name: "Tabs Or Spaces", description: "Little things in development, that end up being a BIG deal", tags: ['Dev Tips'], stationId: 9}),
-    Broadcast.create({name: "Nvidia GeForece 1180", description: "Will it be worth the wait, should I just spend thirteen grand on a max spec iMac pro??", tags: ['Nerd Stuff'], stationId: 5})
+    Broadcast.create({name: "Nvidia GeForece 1180", description: "Will it be worth the wait, should I just spend thirteen grand on a max spec iMac pro??", tags: ['Nerd Stuff'], stationId: 5}),
+    Broadcast.create({name: 'Game of Thrones', description: 'A recap/analysis of the popular show.', tags: ['Analysis'], stationId: 5,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: '20 Questions', description: '20 Questions to ask someone to get a better understanding of who they are and how they think.', tags: ['Mind Games'], stationId: 4,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: '60 Seeconds', description: 'Second By second recap of the real life news situations, Journalism at it\'s best', tags: ['Lifestyle'], stationId: 4,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: 'The Illusion', description: 'Step by step \'talk-throughs\' of the oldest magic tricks in the book. With the addition of some of the more popular tricks done by famous magicians.', tags: ['Magic'], stationId: 12,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: 'Book club', description: 'Tune in to hear recaps of the book of the week. By two notorious book worms, and intermittent special guests.', tags: ['Reading'], stationId: 3,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: 'Food Is Rad.io', description: 'Rotating Host\'s talking about the best unknown spots in their boroughs.', tags: ['Food', 'Lifestyle'], stationId: 12,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: 'This week in science', description: 'All the breakthroughs you heard and missed, recapped in a two hour cast.', tags: ['Science', 'Earth Science', 'Learning'], stationId: 4,audioPath: null, isLive: false, isArchived: false}),
+    Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7,audioPath: null, isLive: false, isArchived: false})
+  ])
+
+  const userStations = await Promise.all([
+    User_stations.create({userId: 1, stationId: 1}),
+    User_stations.create({userId: 2, stationId: 2}),
+    User_stations.create({userId: 3, stationId: 3}),
+    User_stations.create({userId: 4, stationId: 4}),
+    User_stations.create({userId: 5, stationId: 5}),
+    User_stations.create({userId: 6, stationId: 6}),
+    User_stations.create({userId: 7, stationId: 7}),
+    User_stations.create({userId: 8, stationId: 8}),
+    User_stations.create({userId: 2, stationId: 1}),
+    User_stations.create({userId: 3, stationId: 2}),
+    User_stations.create({userId: 4, stationId: 3}),
+    User_stations.create({userId: 5, stationId: 4}),
+    User_stations.create({userId: 6, stationId: 5}),
+    User_stations.create({userId: 7, stationId: 6}),
+    User_stations.create({userId: 8, stationId: 7}),
+    User_stations.create({userId: 1, stationId: 8}),
+    User_stations.create({userId: 3, stationId: 1}),
+    User_stations.create({userId: 4, stationId: 2}),
+    User_stations.create({userId: 5, stationId: 3}),
+    User_stations.create({userId: 6, stationId: 4}),
+    User_stations.create({userId: 7, stationId: 5}),
+    User_stations.create({userId: 8, stationId: 6}),
+    User_stations.create({userId: 1, stationId: 7}),
+    User_stations.create({userId: 2, stationId: 8})
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${stations.length} Stations`);
+  console.log(`seeded ${broadcasts.length} Broadcasts`);
+  console.log(`seeded ${userStations.length} Join Relations Between Users And Stations`);
+  console.log(`seeded successfully`);
 }
 
 // Execute the `seed` function
@@ -81,6 +142,16 @@ console.log('seeding...')
 
 /*
   ------- Seed Templates -------
+User.create({
+  userName: '',
+  email: '',
+  password: '',
+  profilePic: '',
+  summary: ''
+})
+
+User.create({userName: '',email: '', password: '', profilePic: '', summary: ''})
+
 Station.create({
   name: ,
   logoUrl: ,
@@ -88,14 +159,24 @@ Station.create({
   description: ''
 })
 
-Station.create({name: , logoUrl: , tags: {''} })
+Station.create({name: , logoUrl: , tags: [''], description: ''})
 
 Broadcast.create({
   name: ,
   description: ,
   tags: {''},
-  stationId: 
+  stationId: ,
+  audioPath: null,
+  isLive: false,
+  isArchived: false
 })
 
-Broadcast.create({name: , description: , tags: {''}, stationId: })  
+Broadcast.create({name: , description: , tags: {''}, stationId: ,audioPath: null, isLive: false, isArchived: false})  
+
+User_station.create({
+  userId: ,
+  stationId:
+})
+
+User_stations.create({userId: , stationId: })
 */
