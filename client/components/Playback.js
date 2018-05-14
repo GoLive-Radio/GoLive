@@ -17,6 +17,10 @@ class Player extends Component {
     this.startPlayback = this.startPlayback.bind(this);
   }
 
+  componentWillUnmount(){
+    this.connection && this.connection.disconnect();
+  }
+
   startPlayback() {
     const { broadcastId } = this.props;
 
@@ -37,14 +41,14 @@ class Player extends Component {
           // // if you want audio+video conferencing
           this.connection.session = {
             audio: true,
-            video: false
+            video: false,
+            oneway: true
           };
 
           this.connection.onstream = event => {
             this.setState({event});
           };
 
-          //this needs to be fixed so that it is dynamic
           this.connection.join(broadcastId);
 
         } else {
