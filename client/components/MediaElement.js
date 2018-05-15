@@ -9,7 +9,7 @@ const MediaElement = props => {
     <audio
       autoPlay={props.type === 'broadcaster'}
       playsInline={true}
-      controls={true}
+      controls={props.type !== 'broadcaster'}
       muted={props.type === 'broadcaster'}
       ref={(element) => {
         if (element){
