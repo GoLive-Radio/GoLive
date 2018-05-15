@@ -22,7 +22,7 @@ export class SingleStation extends Component {
                 <Image bordered src={station.logoUrl} />
               </Grid.Column>
               <Grid.Column width={12} className="white-font">
-                <h1>{station.name}</h1>
+                <h1 className="station-title">{station.name}</h1>
                 <p>{station.description}</p>
                 <Link
                   className="auto button-link white-font"
