@@ -48,7 +48,7 @@ class NewBroadcast extends Component {
     const { name, description} = this.state;
     let {tags} = this.state;
     tags = tags.replace(/\s/g, '').split(',');
-    const stationId = this.props.station.id;
+    const stationId = this.props.match.params.stationId;
     const broadcastData = {
       name,
       description,

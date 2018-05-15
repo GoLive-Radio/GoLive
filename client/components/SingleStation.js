@@ -36,7 +36,7 @@ export class SingleStation extends Component {
                 <h1 className="margin-left">Today</h1>
                 <p>Today's live broadcast was the best!!</p>
                 <p>{/*Add dynamic updates*/}</p>
-                <Link className="auto button-link white-font" to="/broadcasts/new-broadcast">Create Broadcast</Link>
+                <Link className="auto button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create Broadcast</Link>
                 {/*<Link to="/stations/:stationId/broadcasts/new-broadcasts">Create Broadcast</Link>*/}
                 {/*Move this somewhere else*/}
               </Grid.Column>
