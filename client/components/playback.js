@@ -29,33 +29,28 @@ class Player extends Component {
       this.setState({broadcast});
       if (broadcast.isLive){
         this.connection = new window.RTCMultiConnection();
-        console.log('parsed playback connection ', this.connection)
-        // this line is VERY_important
         this.connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
         this.connection.mediaConstraints.video = false;
         this.connection.autoCreateMediaElement = false;
 
-        // // if you want audio+video conferencing
+        //  if you want audio+video conferencing
         this.connection.session = {
           audio: true,
           video: false
         };
 
         this.connection.onstream = event => {
-          console.log(`onstream func ran`, event.stream);
           this.setState({event});
         };
 
-        //this needs to be fixed so that it is dynamic
         this.connection.join(broadcastId);
-        console.log('this is the connection ', this.connection);
 
       } else {
         axios.get(`/api/broadcasts/${this.props.match.params.broadcastId}/playback`)
         .then(res => res.data)
         .then(audio => {
-          const blob = new Blob([new Uint8Array(audio.data)], { type: audio.type});
+          const blob = new Blob([new Uint8Array(audio.blob.data)], { type: audio.type});
           const audioURL = window.URL.createObjectURL(blob);
           this.setState({
             audioSrc: audioURL
@@ -67,8 +62,6 @@ class Player extends Component {
   }
 
   render() {
-    console.log('playback props ', this.props);
-    console.log('state ', this.state)
     const { broadcast, audioSrc } = this.state;
     const IndividualCard = (
       <Card>
@@ -87,7 +80,7 @@ class Player extends Component {
     );
 
     return  (
-      
+
       <Modal trigger={IndividualCard}>
         <Modal.Header>Select a Photo</Modal.Header>
         <Modal.Content image>
