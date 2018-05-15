@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStations } from '../store';
+import { Link } from 'react-router-dom';
+import { Card, Image } from 'semantic-ui-react';
 
 export class AllStations extends Component {
   componentDidMount() {
@@ -9,10 +11,33 @@ export class AllStations extends Component {
 
   render() {
     const {stations} = this.props;
-    console.log(stations);
-    return stations ? (
-      <h1>All Stations</h1>
-    ) : null;
+    return !stations ? (
+      <h1>There are currently no stations on the platform</h1>
+    ) : (
+      <div className="all-stations-container">
+      { stations.map(station => {
+        const tags = station.tags.join(', ').trim();
+        return (
+          <Link key={station.id} to={`/stations/${station.id}`}>
+            <Card className="stations-card">
+              <Image src={station.logoUrl} className="stations-image-height" />
+              <Card.Content>
+                <Card.Header>
+                  {station.name}
+                </Card.Header>
+                <Card.Description>
+                  {station.description}
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                {tags ? tags : null}
+              </Card.Content>
+            </Card>
+          </Link>
+        );
+      })}
+      </div>
+    );
   }
 }
 

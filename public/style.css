@@ -369,3 +369,18 @@ h3 .center-text {
   display: flex;
   flex-direction: column;
 }
+
+.all-stations-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 4vw;
+}
+
+.stations-image-height {
+  height: 20vh;
+}
+
+.stations-card {
+  /* margin-left: 10vw; */
+}
