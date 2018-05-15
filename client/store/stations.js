@@ -22,6 +22,7 @@ const getStations = stations => ({
 export const fetchStations = () =>
   dispatch =>
     axios.get('api/stations')
+    .then(res => res.data)
     .then(stations => {
       dispatch(getStations(stations));
     })
