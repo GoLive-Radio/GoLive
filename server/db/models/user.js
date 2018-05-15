@@ -48,6 +48,16 @@ const User = db.define('user', {
     type: Sequelize.TEXT,
     allowNull: false,
     defaultValue: 'Weird creature who loves radio!'
+  },
+  broadcasterRating: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 4
+  },
+  callerRating: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 3
   }
 });
 

@@ -22,27 +22,27 @@ async function seed () {
   // executed until that promise resolves!
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123', userName: 'Cody'}),
-    User.create({email: 'murphy@email.com', password: '123', userName: 'Murphy'}),
-    User.create({email: 'fake@emailcom', password: '123', userName: 'Terry'}),
-    User.create({email: 'billMurphy@email.com', password: '234', userName: 'Bill'}),
-    User.create({email: 'thomas@email.com', password: '234', userName: 'Thomas'}),
-    User.create({email: 'delilah@email.com', password: '234', userName: 'Delilah'}),
-    User.create({email: 'jonathon@email.com', password: '234', userName: 'John'}),
-    User.create({email: 'william@email.com', password: '234', userName: 'William'}),
-    User.create({email: 'richard@email.com', password: '234', userName: 'Richard'}),
-    User.create({email: 'kelly@email.com', password: '234', userName: 'Kelly'}),
-    User.create({email: 'timothy@email.com', password: '234', userName: 'Timothy'}),
-    User.create({email: 'david@email.com', password: '234', userName: 'David'}),
-    User.create({email: 'amy@email.com', password: '234', userName: 'Amy'}),
-    User.create({email: 'naomi@email.com', password: '234', userName: 'Naomi'}),
-    User.create({email: 'ivan@email.com', password: '234', userName: 'Ivan'}),
-    User.create({email: 'lois@email.com', password: '234', userName: 'Lois'}),
-    User.create({email: 'alison@email.com', password: '234', userName: 'Alison'}),
-    User.create({email: 'youngG@email.com', password: '234', userName: 'Young'}),
-    User.create({email: 'brian@email.com', password: '234', userName: 'Brian'}),
-    User.create({email: 'karen@email.com', password: '234', userName: 'Karen'}),
-    User.create({email: 'james@email.com', password: '234', userName: 'James'})
+    User.create({email: 'cody@email.com', password: '123', userName: 'Cody', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'murphy@email.com', password: '123', userName: 'Murphy', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'fake@emailcom', password: '123', userName: 'Terry', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'billMurphy@email.com', password: '234', userName: 'Bill', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'thomas@email.com', password: '234', userName: 'Thomas', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'delilah@email.com', password: '234', userName: 'Delilah', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'jonathon@email.com', password: '234', userName: 'John', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'william@email.com', password: '234', userName: 'William', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'richard@email.com', password: '234', userName: 'Richard', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'kelly@email.com', password: '234', userName: 'Kelly', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'timothy@email.com', password: '234', userName: 'Timothy', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'david@email.com', password: '234', userName: 'David', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'amy@email.com', password: '234', userName: 'Amy', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'naomi@email.com', password: '234', userName: 'Naomi', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'ivan@email.com', password: '234', userName: 'Ivan', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'lois@email.com', password: '234', userName: 'Lois', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'alison@email.com', password: '234', userName: 'Alison', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'youngG@email.com', password: '234', userName: 'Young', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'brian@email.com', password: '234', userName: 'Brian', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'karen@email.com', password: '234', userName: 'Karen', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'james@email.com', password: '234', userName: 'James', broadcasterRating: 4, callerRating: 3})
   ])
 
   const stations = await Promise.all([
@@ -147,10 +147,12 @@ User.create({
   email: '',
   password: '',
   profilePic: '',
-  summary: ''
+  summary: '',
+  broadCasterRating: ,
+  callerRating: 
 })
 
-User.create({userName: '',email: '', password: '', profilePic: '', summary: ''})
+User.create({userName: '',email: '', password: '', profilePic: '', summary: '', broadcasterRating: , callerRating: })
 
 Station.create({
   name: ,

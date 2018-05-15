@@ -92,8 +92,7 @@ div#mp3_player > canvas {
   color: whitesmoke;
   text-shadow: 0 0 10px white;
   text-align: center;
-  margin: 0 auto;
-  margin-top: 10px;
+  margin: auto;
 }
 #broadcast-desc {
   font-size: 25px;
@@ -319,4 +318,10 @@ h3 .center-text {
   padding: 5px;
   height: 150px;
   width: 750px;
+}
+
+#back-button {
+  width: 12vw;
+  display: fixed;
+  margin: 3vh 0 0 4vw;
 }
