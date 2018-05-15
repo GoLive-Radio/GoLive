@@ -277,6 +277,10 @@ h3 .center-text {
   background-size: cover;
 }
 
+.station-wrapper {
+  padding: 40px;
+}
+
 .station-card {
   max-width: 30vw;
   max-height: 40vh;
@@ -300,6 +304,10 @@ h3 .center-text {
 
 .padding-top {
   padding-top: 2vh;
+}
+
+.padding-top-large {
+  padding-top: 7vh;
 }
 
 .station-broadcasts {
