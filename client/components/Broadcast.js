@@ -100,7 +100,7 @@ class Broadcast extends Component {
         video: false,
         oneway: true
       };
-      
+
       // close out all connections when host leaves
       this.connection.autoCloseEntireSession = true;
 
@@ -116,7 +116,6 @@ class Broadcast extends Component {
         });
         let chunks = [];
         mediaRecorder.ondataavailable = e => {
-          console.log(`e.data: `, e.data);
           chunks.push(e.data);
         };
         mediaRecorder.onstop = e => {
@@ -124,7 +123,6 @@ class Broadcast extends Component {
           This event fires when the recording has stopped. We can then collect the recorded data and convert it to FormData so that it can be sent to our backend.
           */
           let blob = new Blob(chunks, { type: 'audio/ogg' });
-          console.log(`blob`, blob);
           let formData = new FormData();
           formData.append('blob', blob);
           this.props.sendRecordingToDB(formData, {
@@ -143,7 +141,7 @@ class Broadcast extends Component {
       // update db with broadcast status
       axios.put(`/api/broadcasts/${this.props.match.params.broadcastId}/is-live`, {isLive: true});
       this.connection.openOrJoin(id);
-      
+
     } else {
       // this code will execute when broadcast is being stopped.
       axios.put(`/api/broadcasts/${this.props.match.params.broadcastId}/is-live`, {isLive: false});
@@ -151,8 +149,6 @@ class Broadcast extends Component {
         isLive: false
       });
       this.state.mediaRecorder.stop();
-      console.log(`mediaRecorder.state: `, this.state.mediaRecorder.state);
-      console.log(`this.state: `, this.state);
       this.connection.disconnect();
     }
   }

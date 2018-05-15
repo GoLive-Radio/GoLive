@@ -57,7 +57,7 @@ class Player extends Component {
           axios.get(`/api/broadcasts/${broadcastId}/playback`)
           .then(res => res.data)
           .then(audio => {
-            const blob = new Blob([new Uint8Array(audio.data)], { type: audio.type});
+            const blob = new Blob([new Uint8Array(audio.blob.data)], { type: audio.type});
             const audioURL = window.URL.createObjectURL(blob);
             this.setState({
               audioSrc: audioURL

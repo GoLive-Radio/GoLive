@@ -72,7 +72,7 @@ class NewBroadcast extends Component {
           <Form.Field width={8} error={!name && titleDirty} required>
             <label>Title</label>
             <input
-              name="title"
+              name="name"
               placeholder="Broadcast title"
               value={name}
               onChange={handleChange} />
