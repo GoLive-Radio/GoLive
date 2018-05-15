@@ -4,15 +4,15 @@ import { Image } from 'semantic-ui-react';
 const CasterMini = props => {
   const { user, rate } = props;
   const rating =
-    rate === 'broadcaster' ? user.broadcastRating : user.callerRating;
+    rate === 'broadcaster' ? user.broadcasterRating : user.callerRating;
   const ratingArray = new Array(rating).fill(0);
 
   return (
     <div className="caster-mini">
-      <img className="caster-pic" src={user.imageUrl} />
+      <img className="caster-pic" src={user.profilePic} />
       <div id="caster-data">
         <div>
-          <h4>{user.fullName}</h4>
+          <h4>{user.userName}</h4>
         </div>
         <p>{rate === 'broadcaster' ? 'Broadcaster Rating' : 'Caller Rating'}</p>
         <div id="rating">

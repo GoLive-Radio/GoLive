@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 window.io = io;
 import RTCMultiConnection from 'rtcmulticonnection-v3';
 import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
-import { Image } from 'semantic-ui-react';
+import { Image, Button } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
 import Visualizer from './Visualizer'
 import { updateBroadcastThunk, fetchBroadcast } from '../store/broadcast';
@@ -13,56 +14,50 @@ import axios from 'axios';
 const fakeUsers = [
   {
     id: 1,
-    fullName: 'Geoff Bass',
+    userName: 'Geoff Bass',
     broadcastRating: 5,
     callerRating: 5,
-    imageUrl: '/images/fakeData/Geoff.jpeg',
+    profilePic: '/images/fakeData/Geoff.jpeg',
     isBroadcasting: true,
     isCalling: false
   },
   {
     id: 2,
-    fullName: 'Omri Bernstein',
+    userName: 'Omri Bernstein',
     broadcastRating: 5,
     callerRating: 5,
-    imageUrl: '/images/fakeData/omri.png',
+    profilePic: '/images/fakeData/omri.png',
     isBroadcasting: false,
     isCalling: true
   },
   {
     id: 3,
-    fullName: 'Corey Greenwald',
+    userName: 'Corey Greenwald',
     broadcastRating: 5,
     callerRating: 3,
-    imageUrl: '/images/fakeData/Corey.jpg',
+    profilePic: '/images/fakeData/Corey.jpg',
     isBroadcasting: false,
     isCalling: true
   },
   {
     id: 4,
-    fullName: 'Karen MacPherson',
+    userName: 'Karen MacPherson',
     broadcastRating: 5,
     callerRating: 5,
-    imageUrl: '/images/fakeData/karen.jpeg',
+    profilePic: '/images/fakeData/karen.jpeg',
     isBroadcasting: false,
     isCalling: true
   },
   {
     id: 5,
-    fullName: "Scott D'Alessandro",
+    userName: "Scott D'Alessandro",
     broadcastRating: 4,
     callerRating: 5,
-    imageUrl: '/images/fakeData/scott.jpg',
+    profilePic: '/images/fakeData/scott.jpg',
     isBroadcasting: true,
     isCalling: false
   }
 ];
-
-const fakeBroadcast = {
-  title: 'AwesomeCast',
-  broadcasters: 2,
-  listeners: 3
-};
 
 class Broadcast extends Component {
   constructor(props) {
@@ -81,7 +76,9 @@ class Broadcast extends Component {
   }
 
   componentWillUnmount(){
-    this.connection.close()
+    this.connection && 
+    this.connection.close() && 
+    this.connection.disconnect();
   }
 
   startBroadcast(id) {
@@ -155,19 +152,21 @@ class Broadcast extends Component {
 
   render() {
     //filter data for propagation in list components
-    const broadcasters = fakeUsers.filter(user => {
-      if (user.isBroadcasting) return user;
-    });
-
+    let broadcasters;
     const callers = fakeUsers.filter(user => {
       if (user.isCalling) return user;
     });
 
+    if (this.props.broadcast.user){
+      broadcasters = [this.props.broadcast.user];
+    }
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
 
+    console.log(this.props, 'these are the ppropps ///////////')
     return (
       <div id="broadcast">
+      <Button as={Link} to='/myStations' id='back-button' content="Back to my stations." icon="left arrow" labelPosition='left' />
         <h1 id="broadcast-title">{broadcast.name}</h1>
         <h4 id="broadcast-desc">{broadcast.description}</h4>
         {
@@ -176,7 +175,7 @@ class Broadcast extends Component {
             <div id="user-lists">
               <div id="broadcaster-list">
                 <h1>Broadcasters</h1>
-                {broadcasters.map(user => {
+                {broadcasters && broadcasters.map(user => {
                   return (
                     <CasterMini
                       key={user.id}
@@ -213,7 +212,7 @@ class Broadcast extends Component {
             </div>
           </div>
         }
-        {this.state.event ? <MediaElement type="broadcaster" event={this.state.event} /> : null}
+        {this.state.event ? <MediaElement type="broadcaster" event={this.state.event} /> : null}        
       </div>
     );
   }

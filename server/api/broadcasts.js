@@ -47,7 +47,14 @@ router.get('/', (req, res, next) => {
 
 // GET single broadcast by id '/broadcasts/:broadcastId'
 router.get('/:broadcastId', (req, res, next) => {
-  Broadcast.findById(req.params.broadcastId)
+  Broadcast.findById(req.params.broadcastId,
+    {
+      include: [{
+        model: User,
+        attributes: ['id', 'profilePic', 'broadcasterRating', 'callerRating', 'userName']
+      }]
+    }
+  )
     .then(broadcast => res.json(broadcast))
     .catch(next);
 });
