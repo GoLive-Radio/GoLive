@@ -110,7 +110,12 @@ div#mp3_player > canvas {
   margin-left: 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  background-image: url('/images/steel.jpg');
+  background-size: cover;
+  border-radius: 85px;
+  width: 940px;
+  height: 170px;
 }
 
 
@@ -307,4 +312,11 @@ h3 .center-text {
 #station-broadcast {
   margin: 5px;
   width: 350px;
+}
+
+.sound-bar {
+  border-radius: 75px;
+  padding: 5px;
+  height: 150px;
+  width: 750px;
 }

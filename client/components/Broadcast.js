@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import MediaElement from './MediaElement';
 import { Image } from 'semantic-ui-react';
 import CasterMini from './CasterMini';
+import Visualizer from './Visualizer'
 import { updateBroadcastThunk, fetchBroadcast } from '../store/broadcast';
 import axios from 'axios';
 
@@ -77,6 +78,10 @@ class Broadcast extends Component {
 
   componentDidMount() {
     this.props.loadBroadcast();
+  }
+
+  componentWillUnmount(){
+    this.connection.close()
   }
 
   startBroadcast(id) {
@@ -204,8 +209,11 @@ class Broadcast extends Component {
                       ? '/images/record_on.png'
                       : '/images/record.png'
                   }
-                />
-              ) : null}
+                  />
+                ) : null}
+                <Visualizer
+                  event={this.state.event}
+                  isLive={this.state.isLive} />
             </div>
           </div>
         }
