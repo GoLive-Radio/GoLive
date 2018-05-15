@@ -88,6 +88,7 @@ class NewBroadcast extends Component {
             placeholder="Tell your fans about your broadcast"
             value={description}
             width={8}
+            maxLength={116}
             onChange={handleChange}
             error={!description && descriptionDirty}
             required />
