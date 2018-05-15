@@ -11,7 +11,6 @@ export class SingleStation extends Component {
   }
 
   render() {
-    console.log(`this.props: `, this.props);
     const { station } = this.props;
     return station ? (
       <div className="height100 station-wrapper">
