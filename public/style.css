@@ -335,3 +335,7 @@ h3 .center-text {
   height: 150px;
   width: 750px;
 }
+
+.station-media-element {
+  width: 100%;
+}

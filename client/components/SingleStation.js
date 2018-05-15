@@ -19,7 +19,7 @@ export class SingleStation extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column width={4} className="white-font">
-                <Image bordered src={station.logoUrl} />
+                <Image src={station.logoUrl} />
               </Grid.Column>
               <Grid.Column width={12} className="white-font">
                 <h1 className="station-title">{station.name}</h1>

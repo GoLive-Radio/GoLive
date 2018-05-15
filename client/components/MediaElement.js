@@ -3,10 +3,11 @@ import React from 'react';
 const MediaElement = props => {
 
   // returns an audio element depending on whether it is a live stream
-  // playback or archieved audio playback
+  // playback or archived audio playback
 
   return props.event ?  (
     <audio
+      className="station-media-element"
       autoPlay={props.type === 'broadcaster'}
       playsInline={true}
       controls={true}
@@ -20,6 +21,7 @@ const MediaElement = props => {
   )
   : (
   <audio
+    className="station-media-element"
     autoPlay={false}
     playsInline={true}
     controls={true}
