@@ -29,6 +29,8 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
         <Menu inverted>
           {/* The navbar will show these links before you log in */}
           <Menu.Item as={Link} to='/' name="Home"/>
+          <Menu.Item as={Link} to='/all-stations' name="All Stations" />
+          <Menu.Item as={Link} to='/all-broadcasts' name="All Broadcasts" />
           <Menu.Item as={Link} to='/login' name="login"/>
           <Menu.Item as={Link} to='/signup' name="Sign up" />
           <Menu.Menu position="right">
