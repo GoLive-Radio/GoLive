@@ -18,7 +18,9 @@ class Player extends Component {
   }
 
   componentWillUnmount(){
-    this.connection && this.connection.disconnect();
+    this.connection &&
+      this.connection.close() &&
+      this.connection.disconnect();
   }
 
   startPlayback() {
@@ -40,7 +42,7 @@ class Player extends Component {
 
           // // if you want audio+video conferencing
           this.connection.session = {
-            audio: true,
+            audio: false,
             video: false,
             oneway: true
           };
