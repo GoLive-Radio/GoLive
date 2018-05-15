@@ -25,10 +25,10 @@ export class SingleStation extends Component {
                 <h1 className="station-title">{station.name}</h1>
                 <p className="station-description">{station.description}</p>
                 <Link
-                  className="auto button-link white-font"
+                  className="button-link white-font"
                   to="/broadcasts/new-broadcast"
                 >
-                  Create Broadcast
+                  Create New Broadcast
                 </Link>
               </Grid.Column>
             </Grid.Row>
