@@ -339,3 +339,13 @@ h3 .center-text {
 .station-media-element {
   width: 100%;
 }
+
+.border-1px {
+  border: 1px solid whitesmoke
+}
+
+.station-description {
+  font-size: 110%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
