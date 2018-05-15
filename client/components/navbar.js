@@ -14,13 +14,13 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
       <div>
         {/* The navbar will show these links after you log in */}
         <Menu inverted>
-          <Menu.Item as={Link} to='/' name="Home" />
-          <Menu.Item as={Link} to='/myStations' name="My Stations" />
-          <Menu.Item as={Link} to='/station/new-station' name="Create a New Station" />
+          <Menu.Item as={Link} to="/" name="Home" />
+          <Menu.Item as={Link} to="/myStations" name="My Stations" />
+          <Menu.Item as={Link} to="/new-station" name="Create a New Station" />
           <Menu.Item name="Logout" onClick={handleClick} />
-          <Dropdown text="Settings" className='link item'>
+          <Dropdown text="Settings" className="link item">
             <Dropdown.Menu>
-              <Dropdown.Item as={Link} to='/myAccount'>My Account</Dropdown.Item>
+              <Dropdown.Item as={Link} to="/myAccount">My Account</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Menu>
@@ -34,7 +34,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
           <Menu.Item as={Link} to='/login' name="login"/>
           <Menu.Item as={Link} to='/signup' name="Sign up" />
           <Menu.Menu position="right">
-            <Menu.Item as={Link} to='/broadcasts/1' name='Random Live Cast'/>
+            <Menu.Item as={Link} to="/broadcasts/1" name="Random Live Cast" />
           </Menu.Menu>
         </Menu>
       )}

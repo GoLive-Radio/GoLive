@@ -88,7 +88,7 @@ div#mp3_player > canvas {
 #broadcast {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: start;
   background-image: url("/images/broadcast-page.jpg");
   background-size: cover;
   min-height: calc(100vh - 65px);
@@ -99,7 +99,7 @@ div#mp3_player > canvas {
   color: whitesmoke;
   text-shadow: 0 0 10px white;
   text-align: center;
-  margin: auto;
+  margin: 0 auto;
 }
 #broadcast-desc {
   font-size: 25px;
@@ -361,5 +361,11 @@ h3 .center-text {
 #back-button {
   width: 12vw;
   display: fixed;
-  margin: 3vh 0 0 4vw;
+  margin: 0 5vh;
+  border-radius: 25rem;
+}
+
+.broadcast-mid-content {
+  display: flex;
+  flex-direction: column;
 }

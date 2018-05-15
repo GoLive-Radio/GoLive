@@ -23,12 +23,9 @@ export class SingleStation extends Component {
               <Grid.Column width={12} className="white-font">
                 <h1 className="station-title">{station.name}</h1>
                 <p className="station-description">{station.description}</p>
-                <Link
-                  className="button-link white-font"
-                  to="/broadcasts/new-broadcast"
-                >
-                  Create New Broadcast
-                </Link>
+                <br />
+                <Link className="button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create New Broadcast</Link>
+
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>

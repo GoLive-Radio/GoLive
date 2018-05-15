@@ -4,10 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {Login, Signup,
         UserHome, Broadcast,
-        Landing, Broadcaster, Playback,
-        Listener, MyAccount, MyStations,
-        NewBroadcast, SingleStation,
-        NewStation, AllStations} from './components';
+        Landing, MyAccount,
+        MyStations, NewBroadcast,
+        SingleStation, NewStation,
+        AllStations} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -27,26 +27,21 @@ class Routes extends Component {
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/broadcasts/broadcaster" component={Broadcaster} />
-        <Route path="/broadcasts/new-broadcast" component={NewBroadcast} />
-        {/* <Route exact path="/broadcasts/:broadcastId/playback" render={({ match }) => <Playback match={match} />} /> */}
-        <Route
-          exact path="/broadcasts/:broadcastId"
-          render={({ match }) => <Broadcast match={match} />}
-        />
-          <Route path="/all-stations" component={AllStations} />
-          <Route path="/stations/:stationId" component={SingleStation} />
-
+        <Route exact path="/stations/:stationId" component={SingleStation} />
+        <Route path="/all-stations" component={AllStations} />
         {
           isLoggedIn &&
           <Switch>
+              <Route
+                exact path="/broadcasts/:broadcastId"
+                render={({ match }) => <Broadcast match={match} />}
+              />
               {/* Routes placed here are only available after logging in */}
+              <Route exact path="/new-station" component={NewStation} />
+              <Route exact path="/stations/:stationId/new-broadcast" component={NewBroadcast} />
               <Route path="/home" component={UserHome} />
               <Route path="/myAccount" component={MyAccount} />
               <Route path="/myStations" component={MyStations} />
-              <Route path="/station/new-station" component={NewStation} />
-
-
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

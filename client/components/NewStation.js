@@ -58,6 +58,7 @@ class NewStation extends Component {
               name="name"
               placeholder="Station name"
               value={name}
+              maxLength={45}
               onChange={handleChange} />
           </Form.Field>
               <Message
@@ -71,6 +72,7 @@ class NewStation extends Component {
             placeholder="Tell your fans about your Station"
             value={description}
             width={8}
+            maxLength={450}
             onChange={handleChange}
             error={!description && descriptionDirty}
             required />
