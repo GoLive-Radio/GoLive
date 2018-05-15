@@ -25,13 +25,6 @@ div.ui.inverted.segment {
   height: 65px;
 }
 
-.station-title {
-  font-family: Arial;
-  font-size: 40px;
-  color: whitesmoke;
-  text-shadow: 0 0 10px white;
-}
-
 .top-bar {
   display: flex;
 }
@@ -71,7 +64,7 @@ div#mp3_player > canvas {
 }
 
 #my_account {
-  margin-left: 2vw;
+  margin: 10vh 25% 0 25%;
   width: 55vw;
   display: flex;
   flex-direction: column;
@@ -283,10 +276,6 @@ h3 .center-text {
   background-size: cover;
 }
 
-.station-wrapper {
-  padding: 40px;
-}
-
 .station-card {
   max-width: 30vw;
   max-height: 40vh;
@@ -298,20 +287,10 @@ h3 .center-text {
 }
 
 .button-link {
-  background-color: #821601;
-  color: #ECEFF1;
-  border-color: #ECEFF1;
-  border: 1px solid;
-  margin-top: 30px;
-  border-radius: 5px;
+  background:gray;
+  opacity: 0.7;
+  border-radius: 0.5em;
   padding:2vh;
-  font-weight: 600;
-  width: 200px;
-}
-
-.button-link:hover {
-  color: #ECEFF1;
-  background-color: black;
 }
 
 .margin-left {
@@ -320,10 +299,6 @@ h3 .center-text {
 
 .padding-top {
   padding-top: 2vh;
-}
-
-.padding-top-large {
-  padding-top: 7vh;
 }
 
 .station-broadcasts {
@@ -345,21 +320,34 @@ h3 .center-text {
   width: 750px;
 }
 
-.station-media-element {
-  width: 100%;
-}
-
-.border-1px {
-  border: 1px solid whitesmoke
-}
-
-.station-description {
-  font-size: 110%;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-}
 #back-button {
   width: 12vw;
   display: fixed;
   margin: 3vh 0 0 4vw;
+}
+
+.myStations {
+  background-image: url('/images/Mystations/myStations.jpg')
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.margin-top {
+  margin: 30vh 0 0 9vw;
+}
+
+.wide-left {
+  margin: 0 0 0 8vw;
+}
+
+.my-account {
+  height: 95vh;
+  width: 100vw;
+  background-image: url('images/MyAccount/myAccount.jpg');
+}
+
+.shadow {
+  text-shadow: 1px 1px #000000;
 }
