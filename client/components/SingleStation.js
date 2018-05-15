@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Grid, Image} from 'semantic-ui-react';
 import { fetchStation } from '../store';
+import Playback from './Playback';
 
 export class SingleStation extends Component {
     componentDidMount(){
@@ -40,7 +41,17 @@ export class SingleStation extends Component {
                 {/*Move this somewhere else*/}
               </Grid.Column>
             </Grid.Row>
+            <div className="station-broadcasts" >
+              {
+                station.broadcasts ? (
+                  station.broadcasts.map( broadcast => {
+                    return <Playback key={broadcast.id} broadcastId={broadcast.id} stationLogo={station.logoUrl} />;
+                  })
+                ) : null
+              }
+            </div>
           </Grid>
+
           </div>
         : <p>Station you're looking for no longer exists.</p> );
     }

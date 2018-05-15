@@ -160,7 +160,6 @@ class Broadcast extends Component {
 
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
-    // const broadcasters = [broadcast.userId]
 
     return (
       <div id="broadcast">
@@ -206,7 +205,7 @@ class Broadcast extends Component {
             </div>
           </div>
         }
-        {this.state.event ? <MediaElement event={this.state.event} /> : null}
+        {this.state.event ? <MediaElement type="broadcaster" event={this.state.event} /> : null}
       </div>
     );
   }
