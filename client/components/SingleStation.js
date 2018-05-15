@@ -35,16 +35,21 @@ export class SingleStation extends Component {
             <Grid.Row>
               {station.broadcasts
                 ? station.broadcasts.map(broadcast => {
-                  return (
-                    <Grid.Column width={4} key={broadcast.id} className="padding-top-large">
-                      <Playback
-                      key={broadcast.id}
-                      broadcastId={broadcast.id}
-                      stationLogo={station.logoUrl}
-                      />
-                    </Grid.Column>
-                  );
-                }) : null}
+                    return (
+                      <Grid.Column
+                        width={4}
+                        key={broadcast.id}
+                        className="padding-top-large"
+                      >
+                        <Playback
+                          key={broadcast.id}
+                          broadcastId={broadcast.id}
+                          stationLogo={station.logoUrl}
+                        />
+                      </Grid.Column>
+                    );
+                  })
+                : null}
             </Grid.Row>
           </Grid>
         </div>

@@ -71,6 +71,8 @@ class Player extends Component {
   render() {
     !this.state.broadcast && this.startPlayback();
     const { broadcast, audioSrc, event } = this.state;
+    console.log(`broadcast: `, broadcast && broadcast);
+    console.log(`broadcast.isLive: `, broadcast && broadcast.isLive);
 
     return broadcast ? (
       <Card id="station-broadcast">
@@ -79,6 +81,7 @@ class Player extends Component {
           this.props.stationLogo
           : 'https://www.fillmurray.com/400/400' } />
         <Card.Content>
+        {broadcast.isLive && <Image floated="right" size="tiny" src="/images/isLive.gif" /> }
           <Card.Header>
             {broadcast.name}
           </Card.Header>
