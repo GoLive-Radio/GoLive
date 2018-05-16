@@ -353,19 +353,8 @@ h3 .center-text {
   flex-direction: column;
 }
 
-.all-stations-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-left: 4vw;
-}
-
 .stations-image-height {
   height: 20vh;
-}
-
-.stations-card {
-  /* margin-left: 10vw; */
 }
 
 .all-broadcasts {
@@ -376,6 +365,17 @@ h3 .center-text {
   background-image: url('/images/all_broadcasts/grayscale_soundboard.jpg');
   background-size: contain;
   background-repeat: repeat-y;
+}
+
+.all-stations {
+  min-height: calc(90vh - 65px);
+  background-image: url('/images/landing/lower-body.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#margin-bottom {
+  margin-bottom: 5vh;
 }
 
 .all-cast-cards {
@@ -395,6 +395,14 @@ h3 .center-text {
   padding: 0 35px;
   border-radius: 75px;
   box-shadow: 0 0 10px white;
+}
+
+#all-stations-title {
+  font-size: 100px;
+  color: whitesmoke;
+  text-shadow: 0 0 10px black;
+  text-align: center;
+  margin: 20px auto;
 }
 
 #text-glow {
