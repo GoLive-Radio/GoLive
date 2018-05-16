@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
       where: {
         stationId: req.query.stationId
       },
+      attributes: { exclude: ['blob']},
       include: [
         {
           model: User,
@@ -30,6 +31,7 @@ router.get('/', (req, res, next) => {
       .catch(next);
   } else {
     Broadcast.findAll({
+      attributes: { exclude: ['blob']},
       include: [
         {
           model: User,
@@ -49,6 +51,7 @@ router.get('/', (req, res, next) => {
 router.get('/:broadcastId', (req, res, next) => {
   Broadcast.findById(req.params.broadcastId,
     {
+      attributes: { exclude: ['blob']},
       include: [{
         model: User,
         attributes: ['id', 'profilePic', 'broadcasterRating', 'callerRating', 'userName']

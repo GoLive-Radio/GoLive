@@ -23,9 +23,9 @@ const MediaElement = props => {
   : (
   <audio
     className="station-media-element"
-    preload="metadata"
     autoPlay={true}
     playsInline={true}
+    preload="none"
     controls={true}
     muted={false}
     ref={(element) => {
