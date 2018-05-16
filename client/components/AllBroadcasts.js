@@ -22,7 +22,7 @@ class AllBroadcasts extends Component {
 		const { broadcasts } = this.props;
 		return broadcasts ? (
 			<div className="all-broadcasts">
-				<h1 id="all-broadcasts-title">Currently Live!</h1>
+				<h1 id="broadcast-title">Currently Live!</h1>
 				<div className="all-cast-cards">
 					{ this.filterLive(broadcasts).length ?
 						this.filterLive(broadcasts).map( broadcast => {
@@ -35,10 +35,10 @@ class AllBroadcasts extends Component {
 								/>
 							);
 						})
-						: <h1 id="text-glow">There are currently no live casts (hint hint).</h1>
+						: <h1 id="text-glow">There are currently no live casts</h1>
 					}
 				</div>
-				<h1 id="all-broadcasts-title">Archived broadcasts</h1>
+				<h1 id="broadcast-title">Archived broadcasts</h1>
 				<div className="all-cast-cards">
 						{
 							this.filterArchived(broadcasts).map( broadcast => {
