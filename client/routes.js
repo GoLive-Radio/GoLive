@@ -6,8 +6,8 @@ import {Login, Signup,
         UserHome, Broadcast,
         Landing, MyAccount,
         MyStations, NewBroadcast,
-        SingleStation, NewStation
-        } from './components';
+        SingleStation, NewStation,
+        AllBroadcasts} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -28,6 +28,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/stations/:stationId" component={SingleStation} />
+        <Route path="/all-broadcasts" component={AllBroadcasts} />
         {
           isLoggedIn &&
           <Switch>
@@ -72,7 +73,7 @@ const mapDispatch = (dispatch) => {
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(connect(mapState, mapDispatch)(Routes));
 
 /**
  * PROP TYPES
