@@ -14,6 +14,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
         <Menu.Item as={Link} to="/" name="Home" />
         <Menu.Item as={Link} to="/all-stations" name="All Stations" />
         <Menu.Item as={Link} to="/all-broadcasts" name="All Broadcasts" />
+        {/* The navbar will show these links after you log in */}
         {
         isLoggedIn &&
           <div className="flex">
@@ -27,6 +28,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
             </Dropdown>
           </div>
         }
+        {/* The navbar will show these links before you log in */}
         {
         !isLoggedIn &&
           <div className="flex">
