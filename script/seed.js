@@ -17,20 +17,27 @@ const {User_stations} = require('../server/db/models');
 const fs = require('fs');
 const path = require('path');
 
-function getAudioFile (filePath, broadcastId) {
+function getAudioFile (filePath) {
   filePath = path.join(__dirname, '..', 'public/audio', filePath);
-  fs.readFile(filePath, (err, audioData) => {
-    if (err) {
-      throw err;
-    } else {
-      Broadcast.findById(broadcastId)
-        .then(broadcast => {
-          return broadcast.update({
-            blob: audioData
-          });
-        })
-    }
-  });
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, (err, audioData) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(audioData);
+      }
+    });
+  })
+}
+
+function updateBroadcast (audioData, broadcastId) {
+  Broadcast.findById(broadcastId)
+    .then(broadcast => {
+      return broadcast.update({
+        blob: audioData
+      });
+    })
+    .catch(console.error);
 }
 
 async function seed () {
@@ -60,8 +67,8 @@ async function seed () {
     User.create({email: 'youngG@email.com', password: '234', userName: 'Young', broadcasterRating: 4, callerRating: 3}),
     User.create({email: 'brian@email.com', password: '234', userName: 'Brian', broadcasterRating: 4, callerRating: 3}),
     User.create({email: 'karen@email.com', password: '234', userName: 'Karen', broadcasterRating: 4, callerRating: 3}),
-    User.create({email: 'james@email.com', password: '234', userName: 'James', broadcasterRating: 4, callerRating: 3}),
-    User.create({email: 'rhcp@email.com', password: '234', userName: 'James', broadcasterRating: 5, callerRating: 5})
+    User.create({email: 'james@email.com', password: '234', userName: 'RHCP', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'upfirst@email.com', password: '234', userName: 'UpFirst', broadcasterRating: 5, callerRating: 5})
   ])
 
   const stations = await Promise.all([
@@ -79,6 +86,7 @@ async function seed () {
     Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
     Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'}),
     Station.create({name: 'Red Hot Chili Peppers', logoUrl: 'https://yt3.ggpht.com/a-/AJLlDp0VxNB9AWWpNbXvmG8izm_Y655heq61QO1Inw=s900-mo-c-c0xffffffff-rj-k-no', tags: ['Music'], description: `Red Hot Chili Peppers are an American funk rock band formed in Los Angeles in 1983. The group's musical style primarily consists of rock with an emphasis on funk, as well as elements from other genres such as punk rock and psychedelic rock.`}),
+    Station.create({name: 'Up First', logoUrl: 'https://media.npr.org/assets/img/2017/03/21/upfirst_sq-ffcb53c89446b62b66fefb97b9356ad49b31bc5d-s700-c85.png', tags: ['News'], description: `NPR's Up First is the news you need to start your day. The biggest stories and ideas — from politics to pop culture — in 10 minutes. Hosted by Rachel Martin, David Greene and Steve Inskeep, with reporting and analysis from NPR News. Available weekdays by 6 a.m. ET. Subscribe and listen, then support your local NPR station at donate.npr.org.`}),
   ])
 
   const broadcasts = await Promise.all([
@@ -100,13 +108,27 @@ async function seed () {
     Broadcast.create({name: 'Food Is Rad.io', description: 'Rotating Host\'s talking about the best unknown spots in their boroughs.', tags: ['Food', 'Lifestyle'], stationId: 12,audioPath: null, isLive: false, isArchived: false, userId: 10}),
     Broadcast.create({name: 'This week in science', description: 'All the breakthroughs you heard and missed, recapped in a two hour cast.', tags: ['Science', 'Earth Science', 'Learning'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 11}),
     Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7, audioPath: null, isLive: false, isArchived: false, userId: 12}),
-    Broadcast.create({name: 'Californication', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 22}),
-    Broadcast.create({name: 'Dark Necessities', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 22}),
+    Broadcast.create({name: 'Californication', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 21}),
+    Broadcast.create({name: 'Dark Necessities', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 21}),
+    Broadcast.create({name: '5-16-18', description: '', tags: ['News'], stationId: 15, audioPath: null, isLive: false, isArchived: true, userId: 22}),
   ])
 
   const audioSeed = await Promise.all([
-    getAudioFile('californication.mp3', 19),
-    getAudioFile('dark-necessities.mp3', 20)
+    getAudioFile('californication.mp3')
+      .then(audioData => {
+        updateBroadcast(audioData, 19);
+      })
+      .catch(console.error),
+    getAudioFile('dark-necessities.mp3')
+      .then(audioData => {
+        updateBroadcast(audioData, 20);
+      })
+      .catch(console.error),
+    getAudioFile('upfirst-5-16-18.mp3')
+      .then(audioData => {
+        updateBroadcast(audioData, 21);
+      })
+      .catch(console.error),
   ])
 
   const userStations = await Promise.all([
