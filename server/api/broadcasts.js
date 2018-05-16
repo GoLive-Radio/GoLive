@@ -52,6 +52,9 @@ router.get('/:broadcastId', (req, res, next) => {
       include: [{
         model: User,
         attributes: ['id', 'profilePic', 'broadcasterRating', 'callerRating', 'userName']
+      }, {
+        model: Station,
+        attributes: ['logoUrl']
       }]
     }
   )
