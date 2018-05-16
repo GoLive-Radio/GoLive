@@ -17,7 +17,7 @@ const {User_stations} = require('../server/db/models');
 const fs = require('fs');
 const path = require('path');
 
-function getAudioFile (filePath) {
+function getAudioFile (filePath, broadcastId) {
   filePath = path.join(__dirname, '..', 'public/audio', filePath);
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, (err, audioData) => {
@@ -28,16 +28,15 @@ function getAudioFile (filePath) {
       }
     });
   })
-}
-
-function updateBroadcast (audioData, broadcastId) {
-  Broadcast.findById(broadcastId)
+  .then(audioData => {
+    Broadcast.findById(broadcastId)
     .then(broadcast => {
       return broadcast.update({
         blob: audioData
       });
-    })
-    .catch(console.error);
+    });
+  })
+  .catch(console.error);
 }
 
 async function seed () {
@@ -68,7 +67,8 @@ async function seed () {
     User.create({email: 'brian@email.com', password: '234', userName: 'Brian', broadcasterRating: 4, callerRating: 3}),
     User.create({email: 'karen@email.com', password: '234', userName: 'Karen', broadcasterRating: 4, callerRating: 3}),
     User.create({email: 'james@email.com', password: '234', userName: 'RHCP', broadcasterRating: 4, callerRating: 3}),
-    User.create({email: 'upfirst@email.com', password: '234', userName: 'UpFirst', broadcasterRating: 5, callerRating: 5})
+    User.create({email: 'upfirst@email.com', password: '234', userName: 'UpFirst', broadcasterRating: 5, callerRating: 5}),
+    User.create({email: 'techdout@email.com', password: '234', userName: 'Techd-Out', broadcasterRating: 5, callerRating: 5})
   ])
 
   const stations = await Promise.all([
@@ -110,25 +110,28 @@ async function seed () {
     Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7, audioPath: null, isLive: false, isArchived: false, userId: 12}),
     Broadcast.create({name: 'Californication', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 21}),
     Broadcast.create({name: 'Dark Necessities', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 21}),
+    Broadcast.create({name: '5-11-18', description: '', tags: ['News'], stationId: 15, audioPath: null, isLive: false, isArchived: true, userId: 22}),
+    Broadcast.create({name: '5-14-18', description: '', tags: ['News'], stationId: 15, audioPath: null, isLive: false, isArchived: true, userId: 22}),
+    Broadcast.create({name: '5-15-18', description: '', tags: ['News'], stationId: 15, audioPath: null, isLive: false, isArchived: true, userId: 22}),
     Broadcast.create({name: '5-16-18', description: '', tags: ['News'], stationId: 15, audioPath: null, isLive: false, isArchived: true, userId: 22}),
+    Broadcast.create({name: `1. The Internet, Browsers, and How JavaScript Became Trendy`, description: `Corey and Geoff break down the internet. What allows us to just type a few words in the URL bar of our browser and, like magic, we're looking at a million cute puppies? How did browsers come about and how did JavaScript become so dang important?`, tags: ['Coding'], stationId: 2, audioPath: null, isLive: false, isArchived: true, userId: 23}),
+    Broadcast.create({name: `2. Understanding Data: Bits to Bytes to Paul Revere's Lights`, description: `Corey and Geoff dive into data. What exactly is data? How do our devices store that very necessary photo you took of yourself when you started your new workout routine? #DayOne #NewYearNewMe`, tags: ['Coding'], stationId: 2, audioPath: null, isLive: false, isArchived: true, userId: 23}),
+    Broadcast.create({name: `3. Algorithms: Problem Solving and Logical Conniving`, description: `Corey and Geoff discuss algorithms in modern computing, the ways they are commonly designed, as well as some of their well-known limitations. These two accomplish this in a non-technical way by addressing Geoff's "obsession" with carnivals.`, tags: ['Coding', 'Algorithms'], stationId: 2, audioPath: null, isLive: false, isArchived: true, userId: 23}),
+    Broadcast.create({name: `4. Performance: The Art of Making Software Faster`, description: `Corey and Geoff discuss the performance of our logic. How is it possible that checking if you put "apples" on a shopping list of 1-million items could take less time than sifting through a list of just 100 items?`, tags: ['Coding'], stationId: 2, audioPath: null, isLive: false, isArchived: true, userId: 23}),
   ])
+  //
 
   const audioSeed = await Promise.all([
-    getAudioFile('californication.mp3')
-      .then(audioData => {
-        updateBroadcast(audioData, 19);
-      })
-      .catch(console.error),
-    getAudioFile('dark-necessities.mp3')
-      .then(audioData => {
-        updateBroadcast(audioData, 20);
-      })
-      .catch(console.error),
-    getAudioFile('upfirst-5-16-18.mp3')
-      .then(audioData => {
-        updateBroadcast(audioData, 21);
-      })
-      .catch(console.error),
+    getAudioFile('californication.mp3', 19),
+    getAudioFile('dark-necessities.mp3', 20),
+    getAudioFile('upfirst-5-11-18.mp3', 21),
+    getAudioFile('upfirst-5-14-18.mp3', 22),
+    getAudioFile('upfirst-5-15-18.mp3', 23),
+    getAudioFile('upfirst-5-16-18.mp3', 24),
+    getAudioFile('techd-out-1.m4a', 25),
+    getAudioFile('techd-out-2.m4a', 26),
+    getAudioFile('techd-out-3.m4a', 27),
+    getAudioFile('techd-out-4.m4a', 28),
   ])
 
   const userStations = await Promise.all([
