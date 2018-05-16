@@ -9,11 +9,29 @@
  *
  * Now that you've got the main idea, check it out in practice below!
  */
-const db = require('../server/db')
-const {User} = require('../server/db/models')
-const {Station} = require('../server/db/models')
+const db = require('../server/db');
+const {User} = require('../server/db/models');
+const {Station} = require('../server/db/models');
 const {Broadcast} = require('../server/db/models');
 const {User_stations} = require('../server/db/models');
+const fs = require('fs');
+const path = require('path');
+
+function getAudioFile (filePath, broadcastId) {
+  filePath = path.join(__dirname, '..', 'public/audio', filePath);
+  fs.readFile(filePath, (err, audioData) => {
+    if (err) {
+      throw err;
+    } else {
+      Broadcast.findById(broadcastId)
+        .then(broadcast => {
+          return broadcast.update({
+            blob: audioData
+          });
+        })
+    }
+  });
+}
 
 async function seed () {
   await db.sync({force: true})
@@ -42,7 +60,8 @@ async function seed () {
     User.create({email: 'youngG@email.com', password: '234', userName: 'Young', broadcasterRating: 4, callerRating: 3}),
     User.create({email: 'brian@email.com', password: '234', userName: 'Brian', broadcasterRating: 4, callerRating: 3}),
     User.create({email: 'karen@email.com', password: '234', userName: 'Karen', broadcasterRating: 4, callerRating: 3}),
-    User.create({email: 'james@email.com', password: '234', userName: 'James', broadcasterRating: 4, callerRating: 3})
+    User.create({email: 'james@email.com', password: '234', userName: 'James', broadcasterRating: 4, callerRating: 3}),
+    User.create({email: 'rhcp@email.com', password: '234', userName: 'James', broadcasterRating: 5, callerRating: 5})
   ])
 
   const stations = await Promise.all([
@@ -55,10 +74,11 @@ async function seed () {
     Station.create({name: 'How to build a "Hackintosh for under $100"', logoUrl: 'https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Tech Hacks'] , description: 'Test Description'}),
     Station.create({name: 'Chrome Extensions to increase build proficiency', logoUrl: 'https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Dev Tips'] , description: 'Test Description'}),
     Station.create({name: 'Day in the life of a developer', logoUrl: 'https://images.pexels.com/photos/7375/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'] , description: 'Test Description'}),
-    Station.create({name: 'Experiance', logoUrl: 'https://images.pexels.com/photos/534263/pexels-photo-534263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
+    Station.create({name: 'Experience', logoUrl: 'https://images.pexels.com/photos/534263/pexels-photo-534263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
     Station.create({name: 'By the Book', logoUrl: 'https://itunes.apple.com/us/podcast/by-the-book/id1217948628?mt=2', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks. The results are often hilarious — especially when they enlist their beleaguered partners to join in — and occasionally life-changing.'}),
     Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
-    Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'})
+    Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'}),
+    Station.create({name: 'Red Hot Chili Peppers', logoUrl: 'https://yt3.ggpht.com/a-/AJLlDp0VxNB9AWWpNbXvmG8izm_Y655heq61QO1Inw=s900-mo-c-c0xffffffff-rj-k-no', tags: ['Music'], description: `Red Hot Chili Peppers are an American funk rock band formed in Los Angeles in 1983. The group's musical style primarily consists of rock with an emphasis on funk, as well as elements from other genres such as punk rock and psychedelic rock.`}),
   ])
 
   const broadcasts = await Promise.all([
@@ -79,7 +99,14 @@ async function seed () {
     Broadcast.create({name: 'Book club', description: 'Tune in to hear recaps of the book of the week. By two notorious book worms, and intermittent special guests.', tags: ['Reading'], stationId: 3,audioPath: null, isLive: false, isArchived: false, userId: 6}),
     Broadcast.create({name: 'Food Is Rad.io', description: 'Rotating Host\'s talking about the best unknown spots in their boroughs.', tags: ['Food', 'Lifestyle'], stationId: 12,audioPath: null, isLive: false, isArchived: false, userId: 10}),
     Broadcast.create({name: 'This week in science', description: 'All the breakthroughs you heard and missed, recapped in a two hour cast.', tags: ['Science', 'Earth Science', 'Learning'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 11}),
-    Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7,audioPath: null, isLive: false, isArchived: false, userId: 12})
+    Broadcast.create({name: 'Choosing the right parts for the build.', description: 'Episode 4 of the build a hackintosh for under $100 dollars series.', tags: ['Tech'], stationId: 7, audioPath: null, isLive: false, isArchived: false, userId: 12}),
+    Broadcast.create({name: 'Californication', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 22}),
+    Broadcast.create({name: 'Dark Necessities', description: '', tags: ['Music'], stationId: 14, audioPath: null, isLive: false, isArchived: true, userId: 22}),
+  ])
+
+  const audioSeed = await Promise.all([
+    getAudioFile('californication.mp3', 19),
+    getAudioFile('dark-necessities.mp3', 20)
   ])
 
   const userStations = await Promise.all([
@@ -108,6 +135,7 @@ async function seed () {
     User_stations.create({userId: 1, stationId: 7}),
     User_stations.create({userId: 2, stationId: 8})
   ])
+
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`);
@@ -149,7 +177,7 @@ User.create({
   profilePic: '',
   summary: '',
   broadCasterRating: ,
-  callerRating: 
+  callerRating:
 })
 
 User.create({userName: '',email: '', password: '', profilePic: '', summary: '', broadcasterRating: , callerRating: })
@@ -173,7 +201,7 @@ Broadcast.create({
   isArchived: false
 })
 
-Broadcast.create({name: , description: , tags: {''}, stationId: ,audioPath: null, isLive: false, isArchived: false})  
+Broadcast.create({name: , description: , tags: {''}, stationId: ,audioPath: null, isLive: false, isArchived: false})
 
 User_station.create({
   userId: ,

@@ -68,6 +68,7 @@ router.post('/', (req, res, next) => {
 
 //path: /broadcasts/:id
 router.put('/:id', upload.single('blob'), (req, res, next) => {
+  console.log(`req.file.buffer: `, req.file.buffer);
   const id = req.params.id;
   Broadcast.findById(id)
     .then(broadcast => {
