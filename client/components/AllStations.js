@@ -11,19 +11,28 @@ export class AllStations extends Component {
 
   render() {
     const {stations} = this.props;
-    console.log(stations);
 
     return stations ? (
       <div className="all-stations">
-        <h1 id="all-stations-title">All stations</h1>
+        <h1 id="all-stations-title">GoLive Stations</h1>
         <div className="all-cast-cards">
         {stations.map(station => {
           const tags = station.tags.join(', ').trim();
+          const broadcasts = station.broadcasts;
           return (
             <Link key={station.id} to={`/stations/${station.id}`}>
               <Card className="all-stations-card" id="margin-bottom">
                 <Image className="stations-image-height" src={station.logoUrl} />
                 <Card.Content>
+                  {broadcasts ? broadcasts.map(broadcast => {
+                    if (broadcast.isLive) {
+                      return (
+                        <Image key={broadcast.id} floated="right" size="tiny" src="/images/isLive.gif" />
+                      );
+                    } else {
+                      return null;
+                    }
+                  }) : null}
                   <Card.Header>
                     {station.name}
                   </Card.Header>
