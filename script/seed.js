@@ -16,6 +16,7 @@ const {Broadcast} = require('../server/db/models');
 const {User_stations} = require('../server/db/models');
 const fs = require('fs');
 const path = require('path');
+const bluebird = require('bluebird');
 
 function getAudioFile (filePath, name) {
   filePath = path.join(__dirname, '..', 'public/audio', filePath);
@@ -29,7 +30,7 @@ function getAudioFile (filePath, name) {
     });
   })
   .then(audioData => {
-    Broadcast.findOne({
+    return Broadcast.findOne({
       where: {
         name: name
       }
@@ -84,23 +85,23 @@ async function seed () {
     User.create({email: 'techdout@email.com', password: '234', userName: 'Techd-Out', broadcasterRating: 5, callerRating: 5})
   ])
 
-  const stations = await Promise.all([
-    Station.create({name: 'Web Design 418', logoUrl: 'https://gotechtown.org/wp-content/uploads/2018/04/Web-Design-Image-1.jpg', description: 'Test Description', tags: ['Tech'] }),
-    Station.create({name: 'Tech\'d Out', logoUrl: 'https://s3-us-west-2.amazonaws.com/anchor-generated-image-bank/production/podcast_uploaded_nologo/433449/433449-1524787291548-e60fdacc9a1c2.jpg', tags: ['Tech'], description: 'Test Description' }),
-    Station.create({name: 'The Script Crypt', logoUrl: 'https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', tags: ['Nerd Stuff'] , description: 'Test Description'}),
-    Station.create({name: 'Life On Earth', logoUrl: 'https://images.pexels.com/photos/695299/pexels-photo-695299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', tags: ['random'] , description: 'Test Description'}),
-    Station.create({name: 'New Stock Trends', logoUrl: 'https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['consumer'] , description: 'Test Description'}),
-    Station.create({name: 'How to re-use literally anything', logoUrl: 'https://images.pexels.com/photos/1055712/pexels-photo-1055712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Life Hacks'] , description: 'Test Description'}),
-    Station.create({name: 'How to build a "Hackintosh for under $100"', logoUrl: 'https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Tech Hacks'] , description: 'Test Description'}),
-    Station.create({name: 'Chrome Extensions to increase build proficiency', logoUrl: 'https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Dev Tips'] , description: 'Test Description'}),
-    Station.create({name: 'Day in the life of a developer', logoUrl: 'https://images.pexels.com/photos/7375/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'] , description: 'Test Description'}),
-    Station.create({name: 'Experience', logoUrl: 'https://images.pexels.com/photos/534263/pexels-photo-534263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
-    Station.create({name: 'By the Book', logoUrl: 'https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/1f/f9/dc/1ff9dce4-208f-b59b-2bdc-cbf6ea0b50b9/source/170x170bb.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks.'}),
-    Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
-    Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'}),
-    Station.create({name: 'RHCP', logoUrl: 'https://yt3.ggpht.com/a-/AJLlDp0VxNB9AWWpNbXvmG8izm_Y655heq61QO1Inw=s900-mo-c-c0xffffffff-rj-k-no', tags: ['Music'], description: `Red Hot Chili Peppers are an American funk rock band formed in Los Angeles in 1983. The group's musical style primarily consists of rock with an emphasis on funk, as well as elements from other genres such as punk rock and psychedelic rock.`}),
-    Station.create({name: 'Up First', logoUrl: 'https://media.npr.org/assets/img/2017/03/21/upfirst_sq-ffcb53c89446b62b66fefb97b9356ad49b31bc5d-s700-c85.png', tags: ['News'], description: `NPR's Up First is the news you need to start your day. The biggest stories and ideas — from politics to pop culture — in 10 minutes. Hosted by Rachel Martin, David Greene and Steve Inskeep, with reporting and analysis from NPR News. Available weekdays by 6 a.m. ET. Subscribe and listen, then support your local NPR station at donate.npr.org.`}),
-  ])
+  const stations = await bluebird.each([
+    {name: 'Web Design 418', logoUrl: 'https://gotechtown.org/wp-content/uploads/2018/04/Web-Design-Image-1.jpg', description: 'Test Description', tags: ['Tech'] },
+    {name: 'Tech\'d Out', logoUrl: 'https://s3-us-west-2.amazonaws.com/anchor-generated-image-bank/production/podcast_uploaded_nologo/433449/433449-1524787291548-e60fdacc9a1c2.jpg', tags: ['Tech'], description: 'Test Description' },
+    {name: 'The Script Crypt', logoUrl: 'https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', tags: ['Nerd Stuff'] , description: 'Test Description'},
+    {name: 'Life On Earth', logoUrl: 'https://images.pexels.com/photos/695299/pexels-photo-695299.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', tags: ['random'] , description: 'Test Description'},
+    {name: 'New Stock Trends', logoUrl: 'https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['consumer'] , description: 'Test Description'},
+    {name: 'How to re-use literally anything', logoUrl: 'https://images.pexels.com/photos/1055712/pexels-photo-1055712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Life Hacks'] , description: 'Test Description'},
+    {name: 'How to build a "Hackintosh for under $100"', logoUrl: 'https://images.pexels.com/photos/196658/pexels-photo-196658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Tech Hacks'] , description: 'Test Description'},
+    {name: 'Chrome Extensions to increase build proficiency', logoUrl: 'https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Dev Tips'] , description: 'Test Description'},
+    {name: 'Day in the life of a developer', logoUrl: 'https://images.pexels.com/photos/7375/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'] , description: 'Test Description'},
+    {name: 'Experience', logoUrl: 'https://images.pexels.com/photos/534263/pexels-photo-534263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'},
+    {name: 'By the Book', logoUrl: 'https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/1f/f9/dc/1ff9dce4-208f-b59b-2bdc-cbf6ea0b50b9/source/170x170bb.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks.'},
+    {name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'},
+    {name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'},
+    {name: 'RHCP', logoUrl: 'https://yt3.ggpht.com/a-/AJLlDp0VxNB9AWWpNbXvmG8izm_Y655heq61QO1Inw=s900-mo-c-c0xffffffff-rj-k-no', tags: ['Music'], description: `Red Hot Chili Peppers are an American funk rock band formed in Los Angeles in 1983. The group's musical style primarily consists of rock with an emphasis on funk, as well as elements from other genres such as punk rock and psychedelic rock.`},
+    {name: 'Up First', logoUrl: 'https://media.npr.org/assets/img/2017/03/21/upfirst_sq-ffcb53c89446b62b66fefb97b9356ad49b31bc5d-s700-c85.png', tags: ['News'], description: `NPR's Up First is the news you need to start your day. The biggest stories and ideas — from politics to pop culture — in 10 minutes. Hosted by Rachel Martin, David Greene and Steve Inskeep, with reporting and analysis from NPR News. Available weekdays by 6 a.m. ET. Subscribe and listen, then support your local NPR station at donate.npr.org.`},
+  ], Station.create.bind(Station));
 
   const broadcasts = await Promise.all([
     Broadcast.create({name: 'This is a test', description: 'Test Broadcast', tags: ['Test Cast'], stationId: 1, userId: 1}),
