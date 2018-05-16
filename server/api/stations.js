@@ -12,9 +12,9 @@ router.get('/', (req, res, next) => {
     Station.findAll({
       include: [{
         model: User,
-        // required: true,
-        attributes: ['id', 'email', 'profilePic', 'summary']
-        // through: { where: { userId: req.query.userId } }
+        required: true,
+        attributes: ['id', 'email', 'profilePic', 'summary'],
+        through: { where: { userId: req.query.userId } }
       }]
     })
       .then(stationsByUser => res.json(stationsByUser))
@@ -25,7 +25,8 @@ router.get('/', (req, res, next) => {
         model: User,
         attributes: ['id', 'email', 'profilePic', 'summary']
       }, {
-        model: Broadcast
+        model: Broadcast,
+        attributes: { exclude: ['blob'] }
       }]
     })
         .then(stations => res.json(stations))

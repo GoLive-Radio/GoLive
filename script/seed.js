@@ -17,7 +17,7 @@ const {User_stations} = require('../server/db/models');
 const fs = require('fs');
 const path = require('path');
 
-function getAudioFile (filePath, broadcastId) {
+function getAudioFile (filePath, name) {
   filePath = path.join(__dirname, '..', 'public/audio', filePath);
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, (err, audioData) => {
@@ -29,7 +29,11 @@ function getAudioFile (filePath, broadcastId) {
     });
   })
   .then(audioData => {
-    Broadcast.findById(broadcastId)
+    Broadcast.findOne({
+      where: {
+        name: name
+      }
+    })
     .then(broadcast => {
       return broadcast.update({
         blob: audioData
@@ -38,6 +42,15 @@ function getAudioFile (filePath, broadcastId) {
   })
   .catch(console.error);
 }
+
+// .then(audioData => {
+//   Broadcast.findById(broadcastId)
+//   .then(broadcast => {
+//     return broadcast.update({
+//       blob: audioData
+//     });
+//   });
+// })
 
 async function seed () {
   await db.sync({force: true})
@@ -85,7 +98,7 @@ async function seed () {
     Station.create({name: 'By the Book', logoUrl: 'https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/1f/f9/dc/1ff9dce4-208f-b59b-2bdc-cbf6ea0b50b9/source/170x170bb.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks.'}),
     Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
     Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'}),
-    Station.create({name: 'Red Hot Chili Peppers', logoUrl: 'https://yt3.ggpht.com/a-/AJLlDp0VxNB9AWWpNbXvmG8izm_Y655heq61QO1Inw=s900-mo-c-c0xffffffff-rj-k-no', tags: ['Music'], description: `Red Hot Chili Peppers are an American funk rock band formed in Los Angeles in 1983. The group's musical style primarily consists of rock with an emphasis on funk, as well as elements from other genres such as punk rock and psychedelic rock.`}),
+    Station.create({name: 'RHCP', logoUrl: 'https://yt3.ggpht.com/a-/AJLlDp0VxNB9AWWpNbXvmG8izm_Y655heq61QO1Inw=s900-mo-c-c0xffffffff-rj-k-no', tags: ['Music'], description: `Red Hot Chili Peppers are an American funk rock band formed in Los Angeles in 1983. The group's musical style primarily consists of rock with an emphasis on funk, as well as elements from other genres such as punk rock and psychedelic rock.`}),
     Station.create({name: 'Up First', logoUrl: 'https://media.npr.org/assets/img/2017/03/21/upfirst_sq-ffcb53c89446b62b66fefb97b9356ad49b31bc5d-s700-c85.png', tags: ['News'], description: `NPR's Up First is the news you need to start your day. The biggest stories and ideas — from politics to pop culture — in 10 minutes. Hosted by Rachel Martin, David Greene and Steve Inskeep, with reporting and analysis from NPR News. Available weekdays by 6 a.m. ET. Subscribe and listen, then support your local NPR station at donate.npr.org.`}),
   ])
 
@@ -122,16 +135,16 @@ async function seed () {
   //
 
   const audioSeed = await Promise.all([
-    getAudioFile('californication.mp3', 19),
-    getAudioFile('dark-necessities.mp3', 20),
-    getAudioFile('upfirst-5-11-18.mp3', 21),
-    getAudioFile('upfirst-5-14-18.mp3', 22),
-    getAudioFile('upfirst-5-15-18.mp3', 23),
-    getAudioFile('upfirst-5-16-18.mp3', 24),
-    getAudioFile('techd-out-1.m4a', 25),
-    getAudioFile('techd-out-2.m4a', 26),
-    getAudioFile('techd-out-3.m4a', 27),
-    getAudioFile('techd-out-4.m4a', 28),
+    getAudioFile('californication.mp3', 'Californication'),
+    getAudioFile('dark-necessities.mp3', 'Dark Necessities'),
+    getAudioFile('upfirst-5-11-18.mp3', '5-11-18'),
+    getAudioFile('upfirst-5-14-18.mp3', '5-14-18'),
+    getAudioFile('upfirst-5-15-18.mp3', '5-15-18'),
+    getAudioFile('upfirst-5-16-18.mp3', '5-16-18'),
+    getAudioFile('techd-out-1.m4a', `1. The Internet, Browsers, and How JavaScript Became Trendy`),
+    getAudioFile('techd-out-2.m4a', `2. Understanding Data: Bits to Bytes to Paul Revere's Lights`),
+    getAudioFile('techd-out-3.m4a', `3. Algorithms: Problem Solving and Logical Conniving`),
+    getAudioFile('techd-out-4.m4a', `4. Performance: The Art of Making Software Faster`),
   ])
 
   const userStations = await Promise.all([

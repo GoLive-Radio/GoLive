@@ -36,7 +36,7 @@ export class MyStations extends Component {
         <div className="wide-left stations">
           {stations && stations.map(station => {
             return (
-              <Card key={station.id} id="my_station">
+              <Card key={station.id} id="my_station" onClick={e => this.props.history.push(`/stations/${station.id}`)}>
                 <Image src={station.logoUrl} />
                 <Card.Content>
                 <Card.Header>
