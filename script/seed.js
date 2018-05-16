@@ -56,7 +56,7 @@ async function seed () {
     Station.create({name: 'Chrome Extensions to increase build proficiency', logoUrl: 'https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Dev Tips'] , description: 'Test Description'}),
     Station.create({name: 'Day in the life of a developer', logoUrl: 'https://images.pexels.com/photos/7375/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'] , description: 'Test Description'}),
     Station.create({name: 'Experiance', logoUrl: 'https://images.pexels.com/photos/534263/pexels-photo-534263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Consumer'], description: 'Conversations about all things that interest the broadcaster, Including guest interatctions and interviews of all types.'}),
-    Station.create({name: 'By the Book', logoUrl: 'https://itunes.apple.com/us/podcast/by-the-book/id1217948628?mt=2', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks. The results are often hilarious — especially when they enlist their beleaguered partners to join in — and occasionally life-changing.'}),
+    Station.create({name: 'By the Book', logoUrl: 'https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/1f/f9/dc/1ff9dce4-208f-b59b-2bdc-cbf6ea0b50b9/source/170x170bb.jpg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['LifeStyle'], description: 'On each episode, an enthusiastic Jolenta Greenberg and a skeptical Kristen Meinzer pledge to live their lives according to the rules of a new self-help book for two weeks.'}),
     Station.create({name: 'PeopleCast', logoUrl: 'https://images.pexels.com/photos/398532/pexels-photo-398532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Lifestyle'], description: 'Of the people, for the people.'}),
     Station.create({name: 'Game Night', logoUrl: 'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350', tags: ['Game'], description: 'Game reviews of all kinds, board digital, sport.'})
   ])
@@ -149,7 +149,7 @@ User.create({
   profilePic: '',
   summary: '',
   broadCasterRating: ,
-  callerRating: 
+  callerRating:
 })
 
 User.create({userName: '',email: '', password: '', profilePic: '', summary: '', broadcasterRating: , callerRating: })
@@ -173,7 +173,7 @@ Broadcast.create({
   isArchived: false
 })
 
-Broadcast.create({name: , description: , tags: {''}, stationId: ,audioPath: null, isLive: false, isArchived: false})  
+Broadcast.create({name: , description: , tags: {''}, stationId: ,audioPath: null, isLive: false, isArchived: false})
 
 User_station.create({
   userId: ,

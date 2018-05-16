@@ -9,8 +9,10 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
   return (
     <div>
     <Segment inverted>
+      {/* The navbar will show these links after you log in */}
       <Menu inverted>
         <Menu.Item as={Link} to="/" name="Home" />
+        <Menu.Item as={Link} to="/all-stations" name="All Stations" />
         <Menu.Item as={Link} to="/all-broadcasts" name="All Broadcasts" />
         {/* The navbar will show these links after you log in */}
         {
@@ -34,6 +36,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
             <Menu.Item as={Link} to="/signup" name="Sign up" />
           </div>
         }
+          {/* The navbar will show these links before you log in */}
           <Menu.Menu position="right">
             <Menu.Item as={Link} to="/broadcasts/1" name="Random Live Cast" />
           </Menu.Menu>

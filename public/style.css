@@ -281,6 +281,12 @@ h3 .center-text {
   min-height: 40vh;
 }
 
+.all-stations-card {
+  max-width: 30vw;
+  max-height: 50vh;
+  min-height: 40vh;
+}
+
 .center-text {
   text-align: center;
 }
@@ -353,6 +359,10 @@ h3 .center-text {
   flex-direction: column;
 }
 
+.stations-image-height {
+  height: 20vh;
+}
+
 .all-broadcasts {
   display: flex;
   flex-direction: column;
@@ -361,6 +371,17 @@ h3 .center-text {
   background-image: url('/images/all_broadcasts/all_broadcasts_background.jpg');
   background-size: stretch;
   background-repeat: repeat-y;
+}
+
+.all-stations {
+  min-height: calc(90vh - 65px);
+  background-image: url('/images/landing/lower-body.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#margin-bottom {
+  margin-bottom: 5vh;
 }
 
 .all-cast-cards {
@@ -380,6 +401,13 @@ h3 .center-text {
   padding: 0 35px;
   border-radius: 75px;
   box-shadow: 0 0 10px white;
+}
+
+#all-stations-title {
+  font-size: 100px;
+  color: whitesmoke;
+  text-shadow: 0 0 10px white;
+  text-align: center;
 }
 
 #text-glow {
