@@ -76,8 +76,8 @@ class Broadcast extends Component {
   }
 
   componentWillUnmount(){
-    this.connection && 
-    this.connection.close() && 
+    this.connection &&
+    this.connection.close() &&
     this.connection.disconnect();
   }
 
@@ -163,7 +163,6 @@ class Broadcast extends Component {
     const { broadcast } = this.props;
     const myID = this.props.match.params.broadcastId;
 
-    console.log(this.props, 'these are the ppropps ///////////')
     return (
       <div id="broadcast">
         <h1 id="broadcast-title">{broadcast.name}</h1>

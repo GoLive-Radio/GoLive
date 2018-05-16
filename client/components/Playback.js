@@ -78,8 +78,6 @@ class Player extends Component {
 
   render() {
     const { broadcast, audioSrc, event, isLoaded } = this.state;
-    console.log('playback props ', this.props);
-    console.log('playback state ', this.state);
     return !broadcast ? null : (
       <Card id="station-broadcast" onClick={() => this.startPlayback()}>
         <Image src={
