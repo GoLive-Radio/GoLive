@@ -37,51 +37,43 @@ class Player extends Component {
   startPlayback() {
     const { broadcast } = this.state;
 
-    // retrieves the broadcast. If the broadcast is live, creates a new stream,
+    // If the broadcast is live, creates a new stream,
     // then connects to the live stream by the live stream's broadcastId.
     // If broadcast is not live, retrieves audio from backend.
 
-    // return axios
-    //   .get(`/api/broadcasts/${broadcastId}`)
-    //   .then(res => res.data)
-    //   .then(broadcast => {
-    //     this.setState({broadcast});
-        if (broadcast.isLive){
-          this.connection = new window.RTCMultiConnection();
-          // this line is VERY_important
-          this.connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+    if (broadcast.isLive){
+      this.connection = new window.RTCMultiConnection();
+      // this line is VERY_important
+      this.connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
-          this.connection.mediaConstraints.video = false;
-          this.connection.autoCreateMediaElement = false;
+      this.connection.mediaConstraints.video = false;
+      this.connection.autoCreateMediaElement = false;
 
-          // // if you want audio+video conferencing
-          this.connection.session = {
-            audio: false,
-            video: false,
-            oneway: true
-          };
+      // // if you want audio+video conferencing
+      this.connection.session = {
+        audio: false,
+        video: false,
+        oneway: true
+      };
 
-          this.connection.onstream = event => {
-            this.setState({event, isLoaded: true});
-          };
+      this.connection.onstream = event => {
+        this.setState({event, isLoaded: true});
+      };
 
-          this.connection.join(broadcast.id);
+      this.connection.join(broadcast.id);
 
-        } else {
-          axios.get(`/api/broadcasts/${broadcast.id}/playback`)
-          .then(res => res.data)
-          .then(audio => {
-            const blob = new Blob([new Uint8Array(audio.blob.data)], { type: audio.type});
-            const audioURL = window.URL.createObjectURL(blob);
-            this.setState({
-              audioSrc: audioURL,
-              isLoaded: true
-            });
-          });
-        }
-      // })
-      // .catch(console.error);
-
+    } else {
+      axios.get(`/api/broadcasts/${broadcast.id}/playback`)
+      .then(res => res.data)
+      .then(audio => {
+        const blob = new Blob([new Uint8Array(audio.blob.data)], { type: audio.type});
+        const audioURL = window.URL.createObjectURL(blob);
+        this.setState({
+          audioSrc: audioURL,
+          isLoaded: true
+        });
+      });
+    }
   }
 
   render() {
