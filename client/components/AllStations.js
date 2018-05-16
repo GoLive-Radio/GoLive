@@ -20,7 +20,7 @@ export class AllStations extends Component {
           const tags = station.tags.join(', ').trim();
           return (
             <Link key={station.id} to={`/stations/${station.id}`}>
-              <Card className="station-card" id="margin-bottom">
+              <Card className="all-stations-card" id="margin-bottom">
                 <Image className="stations-image-height" src={station.logoUrl} />
                 <Card.Content>
                   <Card.Header>

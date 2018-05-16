@@ -281,6 +281,12 @@ h3 .center-text {
   min-height: 40vh;
 }
 
+.all-stations-card {
+  max-width: 30vw;
+  max-height: 50vh;
+  min-height: 40vh;
+}
+
 .center-text {
   text-align: center;
 }
@@ -402,7 +408,6 @@ h3 .center-text {
   color: whitesmoke;
   text-shadow: 0 0 10px black;
   text-align: center;
-  margin: 20px auto;
 }
 
 #text-glow {
