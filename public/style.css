@@ -25,13 +25,6 @@ div.ui.inverted.segment {
   height: 65px;
 }
 
-.station-title {
-  font-family: Arial;
-  font-size: 40px;
-  color: whitesmoke;
-  text-shadow: 0 0 10px white;
-}
-
 .top-bar {
   display: flex;
 }
@@ -65,13 +58,13 @@ div#mp3_player > canvas {
   margin-left: 10px;
   width: 625px;
   height: 115px;
-  background-image: url('/images/steel-vis-backplate.png');
+  background-image: url('/images/theme/steel-vis-backplate.png');
   border-radius: 20px;
 
 }
 
 #my_account {
-  margin-left: 2vw;
+  margin: 10vh 25% 0 25%;
   width: 55vw;
   display: flex;
   flex-direction: column;
@@ -89,7 +82,7 @@ div#mp3_player > canvas {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  background-image: url("/images/broadcast-page.jpg");
+  background-image: url("/images/broadcast/broadcast-page.jpg");
   background-size: cover;
   min-height: calc(100vh - 65px);
 }
@@ -101,6 +94,7 @@ div#mp3_player > canvas {
   text-align: center;
   margin: 0 auto;
 }
+
 #broadcast-desc {
   font-size: 25px;
   color: whitesmoke;
@@ -117,7 +111,7 @@ div#mp3_player > canvas {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  background-image: url('/images/steel.jpg');
+  background-image: url('/images/theme/steel.jpg');
   background-size: cover;
   border-radius: 85px;
   width: 940px;
@@ -132,7 +126,7 @@ div#mp3_player > canvas {
   width: 225px;
   margin-left: 25px;
   margin-top: 10px;
-  background-image: url('/images/steel.jpg');
+  background-image: url('/images/theme/steel.jpg');
   background-size: cover;
   border-radius: 10px;
 }
@@ -260,14 +254,12 @@ h3 .center-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('/images/new-broadcast.jpg');
-  background-size: cover;
   padding: 50px;
   min-height: calc(94vh - 65px);
 }
 
 .new-broadcast {
-  background-image: url('/images/new-broadcast.jpg');
+  background-image: url('/images/broadcast/new-broadcast.jpg');
   background-size: cover;
 }
 
@@ -283,10 +275,6 @@ h3 .center-text {
   background-size: cover;
 }
 
-.station-wrapper {
-  padding: 40px;
-}
-
 .station-card {
   max-width: 30vw;
   max-height: 40vh;
@@ -298,20 +286,10 @@ h3 .center-text {
 }
 
 .button-link {
-  background-color: #821601;
-  color: #ECEFF1;
-  border-color: #ECEFF1;
-  border: 1px solid;
-  margin-top: 30px;
-  border-radius: 5px;
+  background:gray;
+  opacity: 0.7;
+  border-radius: 0.5em;
   padding:2vh;
-  font-weight: 600;
-  width: 200px;
-}
-
-.button-link:hover {
-  color: #ECEFF1;
-  background-color: black;
 }
 
 .margin-left {
@@ -320,10 +298,6 @@ h3 .center-text {
 
 .padding-top {
   padding-top: 2vh;
-}
-
-.padding-top-large {
-  padding-top: 7vh;
 }
 
 .station-broadcasts {
@@ -345,19 +319,28 @@ h3 .center-text {
   width: 750px;
 }
 
-.station-media-element {
-  width: 100%;
+#back-button {
+  width: 12vw;
+  display: fixed;
+  margin: 3vh 0 0 4vw;
 }
 
-.border-1px {
-  border: 1px solid whitesmoke
+.myStations {
+  background-image: url('/images/Mystations/myStations.jpg')
 }
 
-.station-description {
-  font-size: 110%;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
+.full-height {
+  height: 100vh;
 }
+
+.margin-top {
+  margin: 30vh 0 0 9vw;
+}
+
+.wide-left {
+  margin: 0 0 0 8vw;
+}
+
 #back-button {
   width: 12vw;
   display: fixed;
@@ -383,4 +366,49 @@ h3 .center-text {
 
 .stations-card {
   /* margin-left: 10vw; */
+}
+
+.all-broadcasts {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(90vh - 65px);
+  /* flex-wrap: wrap; */
+  background-image: url('/images/all_broadcasts/grayscale_soundboard.jpg');
+  background-size: contain;
+  background-repeat: repeat-y;
+}
+
+.all-cast-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#all-broadcasts-title {
+  font-size: 100px;
+  color: whitesmoke;
+  text-shadow: 0 0 10px black;
+  text-align: center;
+  margin: 20px auto;
+  border: 2px solid whitesmoke;
+  padding: 0 35px;
+  border-radius: 75px;
+  box-shadow: 0 0 10px white;
+}
+
+#text-glow {
+  font-size: 45px;
+  color: black;
+  text-shadow: 0 0 20px white;
+
+}
+.my-account {
+  height: 95vh;
+  width: 100vw;
+  background-image: url('images/MyAccount/myAccount.jpg');
+}
+
+.shadow {
+  text-shadow: 1px 1px #000000;
 }

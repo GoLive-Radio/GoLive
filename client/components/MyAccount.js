@@ -27,9 +27,9 @@ const mapDispatchToProps = function(dispatch) {
 
 const MyAccount = (props) => {
   return (
-    <Fragment>
+    <div className="my-account flex">
       <Form id="my_account" onSubmit={(evt) => props.handleSubmit(evt, props.user)}>
-        <h1>My account</h1>
+        <h1 className="white-font shadow">My account</h1>
         <Form.Field>
           <label>Profile picture</label>
           <input
@@ -45,7 +45,7 @@ const MyAccount = (props) => {
         <Form.Field
           control={Button} content="Save" />
       </Form>
-    </Fragment>
+    </div>
   );
 };
 

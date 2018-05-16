@@ -201,8 +201,8 @@ class Broadcast extends Component {
                     onClick={() => this.startBroadcast(myID)}
                     src={
                       this.state.isLive
-                        ? '/images/record_on.png'
-                        : '/images/record.png'
+                        ? '/images/broadcast/record_on.png'
+                        : '/images/broadcast/record.png'
                     }
                     />
                   ) : null}

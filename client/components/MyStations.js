@@ -31,9 +31,9 @@ export class MyStations extends Component {
   render() {
     const stations = this.props.stationsByUser;
     return (
-      <Fragment>
-        <h1>My Stations</h1>
-        <div className="stations">
+      <div className="myStations full-height">
+        <h1 className="margin-top white-font">My Stations</h1>
+        <div className="wide-left stations">
           {stations && stations.map(station => {
             return (
               <Card key={station.id} id="my_station">
@@ -64,7 +64,7 @@ export class MyStations extends Component {
             );
           })}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
