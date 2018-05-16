@@ -7,7 +7,7 @@ import {Login, Signup,
         Landing, MyAccount,
         MyStations, NewBroadcast,
         SingleStation, NewStation,
-        AllBroadcasts} from './components';
+        AllStations, AllBroadcasts} from './components';
 import {me, fetchBroadcasts} from './store';
 
 /**
@@ -24,10 +24,11 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={AllStations} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/stations/:stationId" component={SingleStation} />
+        <Route path="/all-stations" component={AllStations} />
         <Route path="/all-broadcasts" component={AllBroadcasts} />
         {
           isLoggedIn &&

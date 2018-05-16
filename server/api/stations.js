@@ -10,21 +10,26 @@ module.exports = router;
 router.get('/', (req, res, next) => {
   if (req.query.userId) {
     Station.findAll({
-      include: [
-        {
-          model: User,
-          required: true,
-          attributes: ['id', 'email', 'profilePic', 'summary'],
-          through: { where: { userId: req.query.userId } }
-        }
-      ]
+      include: [{
+        model: User,
+        // required: true,
+        attributes: ['id', 'email', 'profilePic', 'summary']
+        // through: { where: { userId: req.query.userId } }
+      }]
     })
       .then(stationsByUser => res.json(stationsByUser))
       .catch(next);
   } else {
-    Station.findAll({})
-      .then(stations => res.json(stations))
-      .catch(next);
+    Station.findAll({
+      include: [{
+        model: User,
+        attributes: ['id', 'email', 'profilePic', 'summary']
+      }, {
+        model: Broadcast
+      }]
+    })
+        .then(stations => res.json(stations))
+        .catch(next);
   }
 });
 
