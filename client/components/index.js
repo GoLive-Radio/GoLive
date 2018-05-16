@@ -8,6 +8,7 @@ export {default as UserHome} from './user-home';
 export {default as Footer} from './Footer';
 export {Login, Signup} from './auth-form';
 export {default as Broadcast} from './Broadcast';
+export {default as AllBroadcasts} from './AllBroadcasts';
 export {Landing} from './Landing';
 export {default as MyAccount} from './MyAccount';
 export {default as NewBroadcast} from './NewBroadcast';
