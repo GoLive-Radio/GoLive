@@ -10,18 +10,15 @@ class AllBroadcasts extends Component {
 
 	filterLive = broadcasts => {
 		const liveCasts = broadcasts.filter( broadcast => broadcast.isLive);
-		console.log('these are the live casts ', liveCasts);
 		return liveCasts;
 	}
 
 	filterArchived = broadcasts => {
 		const archivedCasts = broadcasts.filter( broadcast => !broadcast.isLive);
-		console.log('these are the archived casts ', archivedCasts);
 		return archivedCasts;
 	}
 
 	render(){
-		console.log('all broadcasts props ', this.props);
 		const { broadcasts } = this.props;
 		return broadcasts ? (
 			<div className="all-broadcasts">
