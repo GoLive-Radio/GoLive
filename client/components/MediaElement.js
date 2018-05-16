@@ -8,7 +8,8 @@ const MediaElement = props => {
   return props.event ?  (
     <audio
       className="station-media-element"
-      autoPlay={props.type === 'broadcaster'}
+      // autoPlay={props.type === 'broadcaster'}
+      autoPlay={true}
       playsInline={true}
       controls={props.type !== 'broadcaster'}
       muted={props.type === 'broadcaster'}
@@ -22,7 +23,8 @@ const MediaElement = props => {
   : (
   <audio
     className="station-media-element"
-    autoPlay={false}
+    preload="metadata"
+    autoPlay={true}
     playsInline={true}
     controls={true}
     muted={false}
