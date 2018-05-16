@@ -11,6 +11,7 @@ export class AllStations extends Component {
 
   render() {
     const {stations} = this.props;
+    console.log(stations);
 
     return stations ? (
       <div className="all-stations">
