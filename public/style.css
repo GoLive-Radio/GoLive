@@ -70,6 +70,13 @@ div#mp3_player > canvas {
   flex-direction: column;
 }
 
+#login {
+  margin: 10vh 25% 0 25%;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+}
+
 .stations {
   display: flex;
   flex-wrap: wrap;
@@ -418,6 +425,12 @@ h3 .center-text {
 
 }
 .my-account {
+  height: 95vh;
+  width: 100vw;
+  background-image: url('images/MyAccount/myAccount.jpg');
+}
+
+.login-container {
   height: 95vh;
   width: 100vw;
   background-image: url('images/MyAccount/myAccount.jpg');
