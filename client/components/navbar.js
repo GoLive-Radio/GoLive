@@ -37,9 +37,9 @@ const Navbar = ({ handleClick, isLoggedIn}) => {
           </div>
         }
           {/* The navbar will show these links before you log in */}
-          <Menu.Menu position="right">
+          {/*<Menu.Menu position="right">
             <Menu.Item as={Link} to="/broadcasts/1" name="Random Live Cast" />
-          </Menu.Menu>
+      </Menu.Menu>*/}
         </Menu>
       </Segment>
     </div>
