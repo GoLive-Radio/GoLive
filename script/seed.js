@@ -104,9 +104,9 @@ async function seed () {
   ], Station.create.bind(Station));
 
   const broadcasts = await Promise.all([
-    Broadcast.create({name: 'This is a test', description: 'Test Broadcast', tags: ['Test Cast'], stationId: 1, userId: 1}),
-    Broadcast.create({name: "This is fake", description: "News", tags: ['Tech'], stationId: 2, userId: 2}),
-    Broadcast.create({name: "Our first Broadcast", description: "Trial Run", tags: ['Newbies'], stationId: 3, userId: 3}),
+    Broadcast.create({name: 'How you can earn a living working from home', description: 'Test Broadcast', tags: ['Money'], stationId: 1, userId: 1}),
+    Broadcast.create({name: "The everyday struggle", description: "News", tags: ['Tech'], stationId: 3, userId: 2}),
+    Broadcast.create({name: "Lets talk about Fight Club", description: "Lets talk about Fight Club", tags: ['Fighting'], stationId: 3, userId: 3}),
     Broadcast.create({name: "This week in Silicon Valley", description: "Walmart goes head-to-head with amazon on big deals", tags: ['Clickbait'], stationId: 4, userId: 4}),
     Broadcast.create({name: "This Week in Nature Valley", description: "Still making Ranch Dressing", tags: ['Ranch'], stationId: 5, userId: 5}),
     Broadcast.create({name: "Let's talk, Google Assistant", description: "Touching on the recently unveiled 'Google Assistant'", tags: ['AI'], stationId: 6, userId: 6}),
@@ -116,7 +116,7 @@ async function seed () {
     Broadcast.create({name: "Nvidia GeForece 1180", description: "Will it be worth the wait, should I just spend thirteen grand on a max spec iMac pro??", tags: ['Nerd Stuff'], stationId: 5, userId: 3}),
     Broadcast.create({name: 'Game of Thrones', description: 'A recap/analysis of the popular show.', tags: ['Analysis'], stationId: 5,audioPath: null, isLive: false, isArchived: false, userId: 2}),
     Broadcast.create({name: '20 Questions', description: '20 Questions to ask someone to get a better understanding of who they are and how they think.', tags: ['Mind Games'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 1}),
-    Broadcast.create({name: '60 Seeconds', description: 'Second By second recap of the real life news situations, Journalism at it\'s best', tags: ['Lifestyle'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 4}),
+    Broadcast.create({name: '60 Seconds', description: 'Second By second recap of the real life news situations, Journalism at it\'s best', tags: ['Lifestyle'], stationId: 4,audioPath: null, isLive: false, isArchived: false, userId: 4}),
     Broadcast.create({name: 'The Illusion', description: 'Step by step \'talk-throughs\' of the oldest magic tricks in the book. With the addition of some of the more popular tricks done by famous magicians.', tags: ['Magic'], stationId: 12,audioPath: null, isLive: false, isArchived: false, userId: 5}),
     Broadcast.create({name: 'Book club', description: 'Tune in to hear recaps of the book of the week. By two notorious book worms, and intermittent special guests.', tags: ['Reading'], stationId: 3,audioPath: null, isLive: false, isArchived: false, userId: 6}),
     Broadcast.create({name: 'Food Is Rad.io', description: 'Rotating Host\'s talking about the best unknown spots in their boroughs.', tags: ['Food', 'Lifestyle'], stationId: 12,audioPath: null, isLive: false, isArchived: false, userId: 10}),
