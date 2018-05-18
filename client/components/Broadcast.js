@@ -183,14 +183,14 @@ class Broadcast extends Component {
                   );
                 })}
               </div>
-              <div id="broadcaster-list">
+              {/*<div id="broadcaster-list">
                 <h1>Call Queue</h1>
                 {callers.map(user => {
                   return (
                     <CasterMini key={user.id} user={user} rate={'caller'} />
                   );
                 })}
-              </div>
+              </div>*/}
             </div>
             <div className="broadcast-mid-content">
               <div id="live-button">
