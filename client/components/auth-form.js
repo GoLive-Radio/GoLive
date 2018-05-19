@@ -20,7 +20,7 @@ const AuthForm = (props) => {
         </Form.Field>
         <Form.Field>
           <label>Password</label>
-          <input name="password" />
+          <input name="password" type="password" />
         </Form.Field>
         <Form.Field control={Button} content={displayName} />
         {error && error.response && <div> {error.response.data} </div>}
