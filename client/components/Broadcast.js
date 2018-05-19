@@ -167,6 +167,22 @@ class Broadcast extends Component {
       <div id="broadcast">
         <h1 id="broadcast-title">{broadcast.name}</h1>
         <h4 id="broadcast-desc">{broadcast.description}</h4>
+        <div id="live-button">
+          {myID ? (
+            <Image
+              size="small"
+              onClick={() => this.startBroadcast(myID)}
+              src={
+                this.state.isLive
+                  ? '/images/broadcast/record_on.png'
+                  : '/images/broadcast/record.png'
+              }
+              />
+          ) : null}
+          <Visualizer
+            event={this.state.event}
+            isLive={this.state.isLive} />
+          </div>
         {
           //check here to make sure the user is the broadcaster
           <div id="broadcast-dash">
@@ -193,32 +209,16 @@ class Broadcast extends Component {
               </div>*/}
             </div>
             <div className="broadcast-mid-content">
-              <div id="live-button">
-                {myID ? (
-                  <Image
-                    size="small"
-                    onClick={() => this.startBroadcast(myID)}
-                    src={
-                      this.state.isLive
-                        ? '/images/broadcast/record_on.png'
-                        : '/images/broadcast/record.png'
-                    }
-                    />
-                  ) : null}
-                  <Visualizer
-                    event={this.state.event}
-                    isLive={this.state.isLive} />
-                  </div>
-                  <Button
-                    color="blue"
-                    disabled={this.state.isLive}
-                    as={Link}
-                    to={`/stations/${broadcast.stationId}`}
-                    id="back-button"
-                    content="Back to station"
-                    icon="left arrow"
-                    labelPosition="left" />
-              </div>
+              <Button
+                color="blue"
+                disabled={this.state.isLive}
+                as={Link}
+                to={`/stations/${broadcast.stationId}`}
+                id="back-button"
+                content="Back to station"
+                icon="left arrow"
+                labelPosition="left" />
+            </div>
           </div>
         }
         {this.state.event ? <MediaElement type="broadcaster" event={this.state.event} /> : null}
