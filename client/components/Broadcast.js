@@ -160,10 +160,15 @@ class Broadcast extends Component {
     if (this.props.broadcast.user){
       broadcasters = [this.props.broadcast.user];
     }
-    const { broadcast } = this.props;
+    const { broadcast, user } = this.props;
     const myID = this.props.match.params.broadcastId;
 
     return (
+      broadcast.userId !== user.id ? (
+        <div className="forbidden">
+          <h1>You do not own this broadcast.</h1>
+        </div>
+      ) : (
       <div id="broadcast">
         <h1 id="broadcast-title">{broadcast.name}</h1>
         <h4 id="broadcast-desc">{broadcast.description}</h4>
@@ -223,12 +228,14 @@ class Broadcast extends Component {
         }
         {this.state.event ? <MediaElement type="broadcaster" event={this.state.event} /> : null}
       </div>
+      )
     );
   }
 }
 
 const mapState = state => ({
-  broadcast: state.broadcast
+  broadcast: state.broadcast,
+  user: state.user
 });
 
 const mapDispatch = (dispatch, ownProps) => {
