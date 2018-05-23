@@ -368,9 +368,9 @@ h3 .center-text {
   margin-left: 150px;
 }
 
-.stations-image-height {
+/* .stations-image-height {
   height: 20vh;
-}
+} */
 
 .all-broadcasts {
   display: flex;
@@ -494,4 +494,14 @@ h3 .center-text {
   width: 12vw;
   display: fixed;
   margin: 3vh 0 0 4vw;
+}
+
+.forbidden {
+  min-height: calc(90vh - 27px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/images/forbidden/forbidden.jpg');
+  background-size: cover;
 }

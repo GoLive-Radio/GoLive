@@ -11,7 +11,17 @@ export class SingleStation extends Component {
   }
 
   render() {
-    const { station } = this.props;
+    const { station, user } = this.props;
+    const userIds = [];
+    // create an array of station owner Ids so that
+    // we can check to see if current user owns station
+
+    if (station.users){
+      station.users.forEach(person => {
+        userIds.push(person.id);
+      });
+    }
+
     return station ? (
       <div className="height100 station-wrapper">
         <div className="station-wrapper">
@@ -24,8 +34,14 @@ export class SingleStation extends Component {
                 <h1 className="station-title">{station.name}</h1>
                 <p className="station-description">{station.description}</p>
                 <br />
-                <Link className="button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create New Broadcast</Link>
+                <div>
+                  {
+                  // check to make sure the person is logged in and owns the station before allowing broadcasts
+                  !Object.keys(user).length || !userIds.includes(user.id) ? null :
 
+                  <Link className="button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create New Broadcast</Link>
+                  }
+                </div>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
@@ -58,6 +74,7 @@ export class SingleStation extends Component {
 
 /* CONTAINER */
 const mapState = state => ({
+  user: state.user,
   station: state.station
 });
 

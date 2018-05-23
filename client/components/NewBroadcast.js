@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Button, Message } from 'semantic-ui-react';
-import { addBroadcastThunk } from '../store';
+import { addBroadcastThunk, fetchStationsByUserId } from '../store';
 
 const initialState = {
   name: '',
@@ -15,7 +15,8 @@ const initialState = {
 const mapState = state => {
   return {
     user: state.user,
-    station: state.station
+    station: state.station,
+    stationsByUser: state.stationsByUser
   };
 };
 
@@ -23,6 +24,9 @@ const mapDispatch = (dispatch) => {
   return {
     addBroadcast: (broadcastData) => {
       dispatch(addBroadcastThunk(broadcastData));
+    },
+    loadUserStations: (userId) => {
+      dispatch(fetchStationsByUserId(userId));
     }
   };
 };
@@ -33,6 +37,10 @@ class NewBroadcast extends Component {
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.loadUserStations(this.props.user.id);
   }
 
   handleChange(evt){
@@ -66,7 +74,25 @@ class NewBroadcast extends Component {
             descriptionDirty,
             tagsDirty } = this.state;
     const { handleChange, handleSubmit } = this;
+
+    // create an array of all station ids belonging to current user
+    const userStationIds = [];
+    if (this.props.stationsByUser) {
+      this.props.stationsByUser.forEach(station => {
+      userStationIds.push(station.id);
+      });
+    }
+
+    // check to see if current user owns the station that they 
+    // are trying to create a broadcast for.
+    const isStationOwner = userStationIds.includes(+this.props.match.params.stationId);
+
     return (
+      !isStationOwner ? (
+      <div className="forbidden">
+        <h1>You do not own this station.</h1>
+      </div>
+       ) : (
       <div className="fill-page">
         <Form className="vertical-form new-broadcast" onSubmit={handleSubmit}>
           <Form.Field width={8} error={!name && titleDirty} required>
@@ -107,6 +133,7 @@ class NewBroadcast extends Component {
           <Button disabled={!name || !description || !tags } color="blue" type="submit">Onward!</Button>
         </Form>
       </div>
+       )
     );
   }
 
