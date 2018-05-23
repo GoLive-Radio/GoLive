@@ -25,3 +25,4 @@ GoLive Radio uses a library built off of WebRTC and utilizing Socket.io called R
   - station subscriptions
 
 Check out our app on [heroku](https://goliveradio.herokuapp.com).
+You can see us talking about GoLive Radio on [Youtube](https://www.youtube.com/watch?v=0xPotLtyRX0).
