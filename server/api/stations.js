@@ -38,7 +38,7 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const id = +req.params.id;
   Station.findById(id, {
-    include: [{ model: Broadcast, attributes: { exclude: ['blob'] } }]
+    include: [{ model: Broadcast, attributes: { exclude: ['blob'] } }, { model: User, attributes: ['id', 'email', 'broadcasterRating', 'profilePic', 'summary'] }]
   })
     .then(station => {
       res.json(station);

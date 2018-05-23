@@ -12,7 +12,16 @@ export class SingleStation extends Component {
 
   render() {
     const { station, user } = this.props;
-    console.log('user info ', user)
+    const userIds = [];
+    // create an array of station owner Ids so that
+    // we can check to see if current user owns station
+
+    if (station.users){
+      station.users.forEach(person => {
+        userIds.push(person.id);
+      });
+    }
+
     return station ? (
       <div className="height100 station-wrapper">
         <div className="station-wrapper">
@@ -27,7 +36,9 @@ export class SingleStation extends Component {
                 <br />
                 <div>
                   {
-                    !Object.keys(user).length ? null :
+                  // check to make sure the person is logged in and owns the station before allowing broadcasts
+                  !Object.keys(user).length || !userIds.includes(user.id) ? null :
+
                   <Link className="button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create New Broadcast</Link>
                   }
                 </div>
