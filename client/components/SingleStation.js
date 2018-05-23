@@ -11,7 +11,8 @@ export class SingleStation extends Component {
   }
 
   render() {
-    const { station } = this.props;
+    const { station, user } = this.props;
+    console.log('user info ', user)
     return station ? (
       <div className="height100 station-wrapper">
         <div className="station-wrapper">
@@ -24,8 +25,12 @@ export class SingleStation extends Component {
                 <h1 className="station-title">{station.name}</h1>
                 <p className="station-description">{station.description}</p>
                 <br />
-                <Link className="button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create New Broadcast</Link>
-
+                <div>
+                  {
+                    !Object.keys(user).length ? null :
+                  <Link className="button-link white-font" to={`/stations/${station.id}/new-broadcast`}>Create New Broadcast</Link>
+                  }
+                </div>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
@@ -58,6 +63,7 @@ export class SingleStation extends Component {
 
 /* CONTAINER */
 const mapState = state => ({
+  user: state.user,
   station: state.station
 });
 
