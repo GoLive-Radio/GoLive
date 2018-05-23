@@ -32,7 +32,7 @@ export class MyStations extends Component {
     const stations = this.props.stationsByUser;
     return (
       <div className="myStations full-height">
-        <h1 className="margin-top white-font">{stations.length ? "My Stations" : "Welcome! You should create a station!"}</h1>
+        <h1 className="margin-top white-font">{stations.length ? 'My Stations' : 'Welcome! You should create a station!'}</h1>
         <div className="wide-left stations">
           {stations && stations.map(station => {
             return (
