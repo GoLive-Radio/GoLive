@@ -1,4 +1,4 @@
-# GoLive Radio Readme
+# GoLive Radio - live broadcasting for all
 
 ## Introduction
 
